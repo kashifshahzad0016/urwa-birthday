@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+
+<style>
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 50% 15%, #4b2145, #100812 65%);
+  color: white;
+  font-family: "Courier New", monospace;
+  overflow-x: hidden;
+}
+
+.container {
+  width: 92%;
+  max-width: 760px;
+  margin: 30px auto;
+  background: rgba(12, 9, 18, 0.97);
+  border: 1px solid rgba(255, 145, 205, 0.35);
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 0 60px rgba(255, 80, 180, 0.2);
+}
+
+.header {
+  height: 45px;
+  background: #18131e;
+  display: flex;
+  align-items: center;
+  padding-left: 18px;
+  gap: 8px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.red {
+  background: #ff5f56;
+}
+
+.yellow {
+  background: #ffbd2e;
+}
+
+.green {
+  background: #27c93f;
+}
+
+.content {
+  padding: 35px 25px 45px;
+  min-height: 650px;
+}
+
+.center {
+  text-align: center;
+}
+
+h1 {
+  font-family: Arial, sans-serif;
+  color: #ff9ed2;
+  font-size: 32px;
+}
+
+.subtitle {
+  color: #cdbbc8;
+  font-family: Arial, sans-serif;
+  line-height: 1.8;
+}
+
+input {
+  width: 100%;
+  max-width: 500px;
+  padding: 15px;
+  margin-top: 15px;
+  border-radius: 12px;
+  border: 1px solid #65445a;
+  background: #090b10;
+  color: white;
+  font-size: 16px;
+  outline: none;
+}
+
+input:focus {
+  border-color: #ff9ed2;
+  box-shadow: 0 0 18px rgba(255, 158, 210, 0.2);
+}
+
+button {
+  border: none;
+  padding: 13px 28px;
+  margin: 20px 8px;
+  border-radius: 30px;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  background: linear-gradient(135deg, #ff65ae, #bd62ff);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 25px rgba(255, 100, 190, 0.35);
+}
+
+.hidden {
+  display: none;
+}
+
+.terminal {
+  color: #79c0ff;
+  line-height: 2;
+  min-height: 220px;
+}
+
+.pinkText {
+  color: #ff9ed2;
+}
+
+.question {
+  margin-top: 35px;
+  text-align: center;
+  color: #ffd5e9;
+  font-family: Arial, sans-serif;
+  font-size: 21px;
+  line-height: 1.7;
+  min-height: 90px;
+}
+
+.step {
+  text-align: center;
+  color: #777;
+  font-size: 12px;
+}
+
+/* HEART */
+
+.heartArea {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.heart {
+  display: inline-block;
+  font-size: 82px;
+  animation: heartbeat 1.2s infinite;
+  filter: drop-shadow(0 0 22px #ff5cae);
+}
+
+@keyframes heartbeat {
+
+  0%, 100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.18);
+  }
+
+}
+
+/* BALLOONS */
+
+.balloonArea {
+  position: relative;
+  min-height: 390px;
+  margin-top: 20px;
+  overflow: hidden;
+}
+
+.balloon {
+  position: absolute;
+  bottom: 20px;
+  width: 82px;
+  height: 105px;
+  border-radius: 50%;
+  cursor: pointer;
+  animation: floatBalloon 3s ease-in-out infinite;
+  transition: 0.2s;
+}
+
+.balloon:hover {
+  transform: scale(1.08);
+}
+
+.balloon:after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 130px;
+  background: #aaa;
+  top: 100px;
+  left: 40px;
+}
+
+.balloon:before {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 34px;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 12px solid currentColor;
+}
+
+.balloon1 {
+  left: 7%;
+  background: #ff5c9d;
+  color: #ff5c9d;
+}
+
+.balloon2 {
+  left: 29%;
+  background: #8d6bff;
+  color: #8d6bff;
+  animation-delay: .5s;
+}
+
+.balloon3 {
+  right: 29%;
+  background: #55d6be;
+  color: #55d6be;
+  animation-delay: 1s;
+}
+
+.balloon4 {
+  right: 7%;
+  background: #ffc857;
+  color: #ffc857;
+  animation-delay: 1.5s;
+}
+
+@keyframes floatBalloon {
+
+  0%, 100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-25px);
+  }
+
+}
+
+.popped {
+  animation: pop .4s forwards !important;
+}
+
+@keyframes pop {
+
+  0% {
+    transform: scale(1);
+  }
+
+  60% {
+    transform: scale(1.5);
+  }
+
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+}
+
+/* FINAL */
+
+.final {
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
+
+.finalHeart {
+  font-size: 75px;
+  animation: heartbeat 1s infinite;
+}
+
+.final h2 {
+  color: #ff9ed2;
+  font-size: 36px;
+}
+
+.final p {
+  color: #f4eaf0;
+  font-size: 17px;
+  line-height: 1.9;
+}
+
+.signature {
+  margin-top: 28px;
+  color: #ff9ed2;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* CONFETTI */
+
+.confetti {
+  position: fixed;
+  width: 8px;
+  height: 14px;
+  top: -20px;
+  animation: fall 4s linear forwards;
+  z-index: 20;
+}
+
+@keyframes fall {
+
+  to {
+    transform: translateY(110vh) rotate(720deg);
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="header">
+
+    <span class="dot red"></span>
+    <span class="dot yellow"></span>
+    <span class="dot green"></span>
+
+  </div>
+
+  <div class="content">
+
+
+    <!-- START -->
+
+    <div id="start" class="center">
+
+      <div class="pinkText">
+        ~/birthday/secret_surprise.exe
+      </div>
+
+      <h1>
+        ✨ A Little Surprise For You ✨
+      </h1>
+
+      <div class="subtitle">
+        Ek choti si cheez banayi hai... 🌸
+        <br>
+        Lekin pehle mujhe confirm karna hai
+        ke surprise sahi person ke liye hai. ❤️
+      </div>
+
+      <input
+        id="nameInput"
+        type="text"
+        placeholder="Apna naam likho..."
+      >
+
+      <br>
+
+      <button onclick="startProgram()">
+        Continue 💗
+      </button>
+
+    </div>
+
+
+    <!-- PROCESSING -->
+
+    <div id="processing" class="hidden">
+
+      <div class="terminal" id="processText"></div>
+
+    </div>
+
+
+    <!-- QUESTIONS -->
+
+    <div id="questions" class="hidden">
+
+      <div class="step" id="step">
+        Question 1 of 4
+      </div>
+
+      <div class="question" id="questionText"></div>
+
+      <div class="center">
+
+        <input
+          id="answerInput"
+          type="text"
+          placeholder="Dil se answer dena... 💗"
+        >
+
+        <br>
+
+        <button onclick="nextQuestion()">
+          Continue ✨
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- BALLOONS -->
+
+    <div id="balloons" class="hidden">
+
+      <div class="center">
+
+        <div class="heartArea">
+          <div class="heart">❤️</div>
+        </div>
+
+        <h1>
+          Ab Ek Aur Surprise... 🎁
+        </h1>
+
+        <div class="subtitle">
+          Neeche balloons hain 🎈
+          <br>
+          Har balloon ko tap karo...
+          <br>
+          Shayad kisi ke andar tumhare liye kuch chhupa ho. 👀❤️
+        </div>
+
+      </div>
+
+      <div class="balloonArea">
+
+        <div
+          class="balloon balloon1"
+          onclick="popBalloon(this)"
+        ></div>
+
+        <div
+          class="balloon balloon2"
+          onclick="popBalloon(this)"
+        ></div>
+
+        <div
+          class="balloon balloon3"
+          onclick="popBalloon(this)"
+        ></div>
+
+        <div
+          class="balloon balloon4"
+          onclick="popBalloon(this)"
+        ></div>
+
+      </div>
+
+      <div
+        id="balloonMessage"
+        class="center hidden"
+      >
+
+        <h1>
+          🎁 Surprise Unlocked!
+        </h1>
+
+        <div class="subtitle">
+          Tum ne saare balloons pop kar diye. ❤️
+          <br>
+          Ab asli surprise baqi hai...
+        </div>
+
+        <button onclick="showFinal()">
+          Open Final Surprise 🎂
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- FINAL -->
+
+    <div id="final" class="hidden final">
+
+      <div class="finalHeart">
+        ❤️
+      </div>
+
+      <h2>
+        🎉 Happy Birthday Urwa! 🎂
+      </h2>
+
+      <p>
+
+        So... ye saari choti choti cheezen
+        sirf tumhein is moment tak lane ke liye thin. 🌸
+
+        <br><br>
+
+        <strong>16 June</strong> sirf ek date nahi...
+        mere liye ye woh din hai
+        jis din ek bohat achi dost duniya mein aayi. ✨
+
+        <br><br>
+
+        Dua hai tumhari zindagi mein
+        hamesha khushiyan rahen,
+        tumhare chehre par muskurahat rahe,
+        aur tumhari har achi wish poori ho. 🌷
+
+        <br><br>
+
+        Kuch log zindagi mein bas dost ban kar aate hain,
+        lekin unki presence memories ko
+        thora aur beautiful bana deti hai. ❤️
+
+        <br><br>
+
+        Hamesha khush raho,
+        hamesha smile karti raho,
+        aur apni wohi pyari si personality
+        kabhi mat badalna. 🌸
+
+        <br><br>
+
+        <strong>
+        Happy Birthday once again, Urwa! 🎂❤️
+        </strong>
+
+      </p>
+
+      <div class="signature">
+
+        With best wishes,<br>
+        Kashif ❤️
+
+      </div>
+
+    </div>
+
+
+  </div>
+
+</div>
+
+
+<script>
+
+var currentQuestion = 0;
+
+
+/* PYARE QUESTIONS */
+
+var questions = [
+
+  "Agar tumhari life ka koi ek moment dobara aa sakta ho... tum konsa moment choose karti? 🌸",
+
+  "Aisi kaunsi choti si cheez hai jo tumhara mood instantly acha kar deti hai? 😊",
+
+  "Agar tumhein apne future ke liye sirf ek wish maangni ho... woh kya hogi? ✨",
+
+  "Aur ab honestly batao... birthday surprise ke liye ready ho? 👀❤️"
+
+];
+
+
+function wait(time) {
+
+  return new Promise(function(resolve) {
+
+    setTimeout(resolve, time);
+
+  });
+
+}
+
+
+function typeText(element, text, speed) {
+
+  return new Promise(function(resolve) {
+
+    var i = 0;
+
+    var timer = setInterval(function() {
+
+      element.innerHTML += text.charAt(i);
+
+      i++;
+
+      if (i >= text.length) {
+
+        clearInterval(timer);
+
+        resolve();
+
+      }
+
+    }, speed);
+
+  });
+
+}
+
+
+async function startProgram() {
+
+  var name =
+    document.getElementById("nameInput").value.trim();
+
+
+  if (name === "") {
+
+    alert("Pehle apna naam likho 😊");
+
+    return;
+
+  }
+
+
+  document.getElementById("start")
+    .classList.add("hidden");
+
+  document.getElementById("processing")
+    .classList.remove("hidden");
+
+
+  var text =
+    document.getElementById("processText");
+
+
+  await typeText(
+    text,
+    "> Starting special birthday program...",
+    60
+  );
+
+  await wait(1300);
+
+
+  text.innerHTML = "";
+
+  await typeText(
+    text,
+    "> Searching for someone special...",
+    60
+  );
+
+  await wait(1400);
+
+
+  text.innerHTML = "";
+
+  await typeText(
+    text,
+    "> Checking beautiful memories...",
+    60
+  );
+
+  await wait(1400);
+
+
+  text.innerHTML = "";
+
+  await typeText(
+    text,
+    "> Searching for a beautiful smile...",
+    60
+  );
+
+  await wait(1400);
+
+
+  text.innerHTML = "";
+
+  await typeText(
+    text,
+    "> Special person detected... ❤️",
+    60
+  );
+
+  await wait(1800);
+
+
+  document.getElementById("processing")
+    .classList.add("hidden");
+
+  document.getElementById("questions")
+    .classList.remove("hidden");
+
+
+  showQuestion();
+
+}
+
+
+async function showQuestion() {
+
+  var question =
+    document.getElementById("questionText");
+
+
+  question.innerHTML = "";
+
+
+  document.getElementById("step").innerHTML =
+    "Question " +
+    (currentQuestion + 1) +
+    " of " +
+    questions.length;
+
+
+  await typeText(
+    question,
+    questions[currentQuestion],
+    45
+  );
+
+}
+
+
+async function nextQuestion() {
+
+  var answer =
+    document.getElementById("answerInput");
+
+
+  if (answer.value.trim() === "") {
+
+    alert("Iska jawab do 😊");
+
+    return;
+
+  }
+
+
+  answer.value = "";
+
+  currentQuestion++;
+
+
+  if (currentQuestion < questions.length) {
+
+    await showQuestion();
+
+  } else {
+
+    document.getElementById("questions")
+      .classList.add("hidden");
+
+    document.getElementById("balloons")
+      .classList.remove("hidden");
+
+  }
+
+}
+
+
+var popped = 0;
+
+
+function popBalloon(balloon) {
+
+  if (balloon.classList.contains("popped")) {
+
+    return;
+
+  }
+
+
+  balloon.classList.add("popped");
+
+  popped++;
+
+  createConfetti();
+
+
+  if (popped === 4) {
+
+    setTimeout(function() {
+
+      document.getElementById("balloonMessage")
+        .classList.remove("hidden");
+
+    }, 700);
+
+  }
+
+}
+
+
+function createConfetti() {
+
+  for (var i = 0; i < 20; i++) {
+
+    var piece =
+      document.createElement("div");
+
+    piece.className = "confetti";
+
+    piece.style.left =
+      Math.random() * 100 + "vw";
+
+    var colors = [
+      "#ff65ae",
+      "#ffd166",
+      "#7ee787",
+      "#79c0ff",
+      "#c084fc"
+    ];
+
+    piece.style.background =
+      colors[Math.floor(Math.random() * colors.length)];
+
+    piece.style.animationDuration =
+      (2 + Math.random() * 3) + "s";
+
+    document.body.appendChild(piece);
+
+
+    setTimeout(function() {
+
+      piece.remove();
+
+    }, 5000);
+
+  }
+
+}
+
+
+function showFinal() {
+
+  document.getElementById("balloons")
+    .classList.add("hidden");
+
+  document.getElementById("final")
+    .classList.remove("hidden");
+
+  createConfetti();
+  createConfetti();
+
+}
+
+</script>
+
+</body>
+</html>
