@@ -3,284 +3,1191 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Urwa's 3D Birthday Adventure ❤️</title>
+<title>A Little Birthday Surprise 💗</title>
 
 <style>
 *{
     box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+:root{
+    --pink:#ff9fc8;
+    --pink2:#ffc9df;
+    --purple:#b99aff;
+    --gold:#ffd98a;
+    --white:#fff8fc;
+    --dark:#180d27;
 }
 
 html,body{
-    margin:0;
     width:100%;
-    height:100%;
-    overflow:hidden;
-    font-family:Georgia,serif;
-    background:#080518;
+    min-height:100%;
 }
 
-#scene{
-    position:fixed;
-    inset:0;
-}
-
-canvas{
-    display:block;
-}
-
-.ui{
-    position:fixed;
-    inset:0;
-    z-index:10;
-    pointer-events:none;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-}
-
-.card{
-    width:min(90%,620px);
-    padding:38px 30px;
-    text-align:center;
+body{
+    min-height:100vh;
+    overflow-x:hidden;
     color:white;
+    font-family:Georgia,serif;
 
-    background:rgba(35,15,55,.62);
-    border:1px solid rgba(255,190,225,.35);
-    border-radius:30px;
+    background:
+        radial-gradient(circle at 15% 20%,#ff91c62b,transparent 25%),
+        radial-gradient(circle at 85% 15%,#a98cff28,transparent 28%),
+        radial-gradient(circle at 50% 100%,#ff80c61c,transparent 38%),
+        linear-gradient(145deg,#130a20,#241033 48%,#10091d);
+}
 
-    backdrop-filter:blur(18px);
+/* =========================
+   BACKGROUND
+========================= */
+
+.stars,
+.stars2{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    z-index:0;
+}
+
+.stars{
+    background-image:
+        radial-gradient(circle,#fff 1px,transparent 1.5px),
+        radial-gradient(circle,#ffd9ed 1px,transparent 1.5px);
+    background-size:95px 95px,155px 155px;
+    animation:starsMove 20s linear infinite;
+    opacity:.55;
+}
+
+.stars2{
+    background-image:
+        radial-gradient(circle,#d9c5ff 1px,transparent 1.5px);
+    background-size:220px 220px;
+    animation:starsMove2 28s linear infinite;
+    opacity:.35;
+}
+
+@keyframes starsMove{
+    from{transform:translateY(0)}
+    to{transform:translateY(50px)}
+}
+
+@keyframes starsMove2{
+    from{transform:translate(0,0)}
+    to{transform:translate(40px,70px)}
+}
+
+/* moon */
+
+.moon{
+    position:fixed;
+    width:105px;
+    height:105px;
+    right:8%;
+    top:45px;
+    border-radius:50%;
+    z-index:1;
+
+    background:#fff1c9;
+
     box-shadow:
-        0 30px 80px rgba(0,0,0,.5),
-        0 0 45px rgba(255,130,200,.12);
-
-    pointer-events:auto;
+        0 0 25px #ffe8a877,
+        0 0 70px #ffe8a833,
+        0 0 120px #ffe8a811;
 }
 
-.card.hidden{
-    display:none;
+.moon:after{
+    content:"";
+    position:absolute;
+    width:105px;
+    height:105px;
+    border-radius:50%;
+    background:#1b0d29;
+    left:-32px;
+    top:-12px;
 }
 
-.small{
-    color:#ffd0e7;
+/* floating decorations */
+
+.decor{
+    position:fixed;
+    z-index:1;
+    pointer-events:none;
+    opacity:.8;
+    animation:decorFloat 6s ease-in-out infinite;
+}
+
+.d1{
+    left:5%;
+    top:20%;
+    font-size:35px;
+}
+
+.d2{
+    right:5%;
+    top:34%;
+    font-size:30px;
+    animation-delay:1s;
+}
+
+.d3{
+    left:8%;
+    bottom:13%;
+    font-size:28px;
+    animation-delay:2s;
+}
+
+.d4{
+    right:8%;
+    bottom:18%;
+    font-size:35px;
+    animation-delay:3s;
+}
+
+@keyframes decorFloat{
+    0%,100%{
+        transform:translateY(0) rotate(0deg);
+    }
+    50%{
+        transform:translateY(-18px) rotate(8deg);
+    }
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.container{
+    position:relative;
+    z-index:5;
+
+    width:min(92%,760px);
+    margin:40px auto;
+}
+
+.glass{
+    position:relative;
+
+    padding:45px 35px 50px;
+
+    border-radius:38px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.14),
+            rgba(255,255,255,.045)
+        );
+
+    border:1px solid rgba(255,255,255,.18);
+
+    box-shadow:
+        0 35px 100px #0007,
+        inset 0 1px 0 #ffffff28;
+
+    backdrop-filter:blur(24px);
+    -webkit-backdrop-filter:blur(24px);
+
+    overflow:hidden;
+}
+
+.glass:before{
+    content:"";
+    position:absolute;
+    width:260px;
+    height:260px;
+    left:-100px;
+    top:-130px;
+    border-radius:50%;
+
+    background:#ff9fc820;
+    filter:blur(30px);
+}
+
+.glass:after{
+    content:"";
+    position:absolute;
+    width:250px;
+    height:250px;
+    right:-120px;
+    bottom:-130px;
+    border-radius:50%;
+
+    background:#a98cff18;
+    filter:blur(35px);
+}
+
+/* =========================
+   COMMON
+========================= */
+
+.center{
+    text-align:center;
+}
+
+.hidden{
+    display:none !important;
+}
+
+.mini{
+    position:relative;
+    z-index:2;
+
+    color:#ffd1e5;
+    font-family:Arial,sans-serif;
+    font-size:11px;
     letter-spacing:4px;
     text-transform:uppercase;
-    font-size:11px;
+}
+
+.heart{
+    position:relative;
+    z-index:2;
+
+    display:inline-block;
+
+    font-size:75px;
+
+    filter:drop-shadow(0 0 25px #ff8fc8);
+
+    animation:heartBeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartBeat{
+    0%,100%{transform:scale(1)}
+    50%{transform:scale(1.13)}
 }
 
 h1{
-    margin:15px 0 10px;
-    font-size:clamp(38px,8vw,65px);
+    position:relative;
+    z-index:2;
+
+    margin:12px 0;
+
+    font-size:clamp(40px,8vw,67px);
     font-weight:normal;
-    color:#fff1f8;
-    text-shadow:0 0 25px #ff8fc9;
+
+    color:#fff4f9;
+
+    text-shadow:
+        0 4px 25px #ff8fc855;
 }
 
-h2{
-    font-size:30px;
-    font-weight:normal;
-    color:#ffe4f1;
-}
+.subtitle{
+    position:relative;
+    z-index:2;
 
-p{
-    color:#dfd0e5;
-    line-height:1.8;
+    max-width:570px;
+    margin:0 auto;
+
+    color:#dfd1e3;
+
     font-family:Arial,sans-serif;
+    font-size:15px;
+    line-height:1.9;
 }
+
+.divider{
+    position:relative;
+    z-index:2;
+
+    width:100px;
+    height:2px;
+
+    margin:25px auto;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #ffc3dd,
+            transparent
+        );
+}
+
+/* =========================
+   BUTTON
+========================= */
 
 .btn{
+    position:relative;
+    z-index:10;
+
     border:0;
-    padding:15px 30px;
-    margin-top:15px;
+    outline:none;
+
+    padding:15px 32px;
+    margin-top:20px;
 
     border-radius:50px;
 
-    background:linear-gradient(
-        135deg,
-        #ffb3d6,
-        #c8a5ff
-    );
-
-    color:#35183d;
-    font-weight:bold;
-    font-size:15px;
     cursor:pointer;
 
+    color:#421b3e;
+
+    font-family:Arial,sans-serif;
+    font-weight:bold;
+    font-size:14px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffd1e4,
+            #e1c7ff
+        );
+
     box-shadow:
-        0 10px 30px #0005,
-        0 0 25px #ff9fd755;
+        0 12px 35px #0004,
+        0 0 25px #ffafd733;
 
     transition:.3s;
 }
 
 .btn:hover{
-    transform:translateY(-3px) scale(1.04);
+    transform:translateY(-4px) scale(1.03);
+
+    box-shadow:
+        0 18px 40px #0005,
+        0 0 35px #ffafd755;
 }
 
-.progress{
-    position:fixed;
-    top:25px;
-    left:50%;
-    transform:translateX(-50%);
-    z-index:20;
-
-    width:min(80%,420px);
-    height:7px;
-
-    background:#ffffff16;
-    border-radius:20px;
+.btn:active{
+    transform:scale(.95);
 }
 
-.bar{
-    height:100%;
-    width:0%;
-    border-radius:20px;
+/* =========================
+   NAME INPUT
+========================= */
 
-    background:linear-gradient(
-        90deg,
-        #ff9dca,
-        #c7a2ff
-    );
+.input{
+    position:relative;
+    z-index:5;
 
-    box-shadow:0 0 15px #ff9dca;
-    transition:.5s;
-}
+    display:block;
 
-#message{
-    margin-top:15px;
-    min-height:30px;
-    color:#ffd0e5;
-    font-family:Arial,sans-serif;
-}
+    width:min(100%,390px);
 
-.name{
-    width:100%;
-    max-width:350px;
+    margin:24px auto 0;
 
-    padding:14px 20px;
-    margin:15px auto;
+    padding:15px 20px;
 
-    border-radius:40px;
-    border:1px solid #ffffff30;
+    border-radius:50px;
 
-    background:#ffffff0c;
+    border:1px solid #ffffff28;
+
+    background:#ffffff0a;
+
     color:white;
 
     outline:none;
+
     text-align:center;
-    font-size:16px;
+
+    font-size:15px;
 }
 
-.name::placeholder{
-    color:#cdbbd0;
+.input::placeholder{
+    color:#cbb9d0;
 }
 
-.final h1{
-    font-size:clamp(38px,8vw,70px);
+.input:focus{
+    border-color:#ffb2d2;
+    box-shadow:0 0 25px #ff9fc833;
 }
 
-.heart{
-    font-size:65px;
-    animation:pulse 1.4s infinite;
+/* =========================
+   ADVENTURE
+========================= */
+
+.adventureTitle{
+    position:relative;
+    z-index:2;
+    text-align:center;
 }
 
-@keyframes pulse{
-    50%{
-        transform:scale(1.15);
+.adventureTitle h2{
+    margin:10px 0;
+
+    font-size:30px;
+    font-weight:normal;
+
+    color:#ffe7f2;
+}
+
+.adventureTitle p{
+    color:#cdbfd2;
+    font-family:Arial,sans-serif;
+    font-size:13px;
+}
+
+.progressWrap{
+    position:relative;
+    z-index:2;
+
+    width:min(100%,500px);
+    margin:25px auto;
+}
+
+.progressInfo{
+    display:flex;
+    justify-content:space-between;
+
+    color:#d9c9df;
+
+    font:12px Arial,sans-serif;
+
+    margin-bottom:8px;
+}
+
+.progress{
+    height:8px;
+
+    border-radius:20px;
+
+    background:#ffffff10;
+
+    overflow:hidden;
+}
+
+.progressBar{
+    width:25%;
+    height:100%;
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff9fc8,
+            #c7a5ff
+        );
+
+    box-shadow:0 0 18px #ff9fc877;
+
+    transition:.5s;
+}
+
+/* task */
+
+.task{
+    position:relative;
+    z-index:2;
+
+    text-align:center;
+
+    padding:38px 25px;
+
+    border-radius:30px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.11),
+            rgba(255,255,255,.035)
+        );
+
+    border:1px solid #ffffff1c;
+
+    box-shadow:
+        inset 0 1px #ffffff14,
+        0 20px 50px #0003;
+
+    animation:taskIn .55s ease;
+}
+
+@keyframes taskIn{
+    from{
+        opacity:0;
+        transform:translateY(20px) scale(.98);
+    }
+    to{
+        opacity:1;
+        transform:none;
     }
 }
 
-.hint{
-    color:#ffb8d6 !important;
-    font-size:13px;
+.taskIcon{
+    font-size:65px;
+
+    filter:drop-shadow(0 8px 15px #0004);
+}
+
+.task h3{
+    margin:15px 0;
+
+    font-size:27px;
+    font-weight:normal;
+
+    color:#ffe6f2;
+}
+
+.task p{
+    color:#d8cbdc;
+
+    font-family:Arial,sans-serif;
+    line-height:1.8;
+}
+
+/* =========================
+   BALLOON
+========================= */
+
+.balloonArea{
+    position:relative;
+
+    height:210px;
+
+    margin-top:10px;
+
+    overflow:hidden;
+}
+
+.balloon{
+    position:absolute;
+
+    width:75px;
+    height:95px;
+
+    left:50%;
+    top:55px;
+
+    transform:translateX(-50%);
+
+    border-radius:50% 50% 45% 45%;
+
+    cursor:pointer;
+
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            #ffffff99 0 7%,
+            transparent 8%
+        ),
+        linear-gradient(
+            145deg,
+            #ff7eaf,
+            #b889ff
+        );
+
+    box-shadow:
+        inset -12px -15px 20px #0002,
+        0 12px 25px #0004,
+        0 0 30px #ff9ec955;
+
+    transition:
+        left .55s ease,
+        top .55s ease,
+        transform .25s;
+}
+
+.balloon:hover{
+    transform:translateX(-50%) scale(1.08);
+}
+
+.balloon:after{
+    content:"";
+
+    position:absolute;
+
+    width:2px;
+    height:100px;
+
+    left:37px;
+    top:92px;
+
+    background:#e0cfd9;
+}
+
+.balloon:before{
+    content:"";
+
+    position:absolute;
+
+    left:29px;
+    bottom:-8px;
+
+    border-left:9px solid transparent;
+    border-right:9px solid transparent;
+    border-top:13px solid #b889ff;
+}
+
+/* =========================
+   CAKE
+========================= */
+
+.cakeArea{
+    position:relative;
+    height:180px;
+}
+
+.cake{
+    position:absolute;
+
+    left:50%;
+    top:35px;
+
+    transform:translateX(-50%);
+
+    font-size:90px;
+
+    cursor:pointer;
+
+    filter:drop-shadow(0 10px 15px #0004);
+
+    transition:.4s;
+}
+
+.cake:hover{
+    transform:
+        translateX(-50%)
+        scale(1.1)
+        rotate(-3deg);
+}
+
+/* =========================
+   DOORS
+========================= */
+
+.doors{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+
+    margin-top:25px;
+}
+
+.door{
+    width:105px;
+    height:145px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:15px 15px 7px 7px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #765080,
+            #39203f
+        );
+
+    border:2px solid #d7a9ce;
+
+    font-size:45px;
+
+    cursor:pointer;
+
+    box-shadow:
+        inset 0 0 25px #0005,
+        0 12px 25px #0004;
+
+    transition:.3s;
+}
+
+.door:hover{
+    transform:translateY(-8px);
+    box-shadow:
+        0 18px 35px #0006,
+        0 0 25px #dba8d866;
+}
+
+/* =========================
+   FINAL
+========================= */
+
+.final{
+    text-align:center;
+}
+
+.final h1{
+    font-size:clamp(38px,8vw,64px);
+}
+
+.date{
+    display:inline-block;
+
+    padding:10px 24px;
+
+    margin:10px 0 25px;
+
+    border-radius:50px;
+
+    color:#ffd6e8;
+
+    background:#ffffff0b;
+
+    border:1px solid #ffffff18;
+}
+
+.finalText{
+    max-width:610px;
+    margin:auto;
+
+    color:#e2d5e4;
+
+    font-family:Arial,sans-serif;
+    font-size:15px;
+
+    line-height:2;
+}
+
+.signature{
+    margin-top:30px;
+
+    color:#ffd1e5;
+
+    font-size:25px;
+    font-family:cursive;
+}
+
+/* =========================
+   CONFETTI
+========================= */
+
+.confetti{
+    position:fixed;
+
+    top:-20px;
+
+    z-index:100;
+
+    pointer-events:none;
+
+    animation:fall 4s linear forwards;
+}
+
+@keyframes fall{
+    to{
+        transform:
+            translateY(110vh)
+            rotate(720deg);
+    }
+}
+
+/* =========================
+   TOAST
+========================= */
+
+.toast{
+    position:fixed;
+
+    left:50%;
+    bottom:25px;
+
+    z-index:200;
+
+    transform:
+        translate(-50%,100px);
+
+    opacity:0;
+
+    padding:14px 22px;
+
+    max-width:90%;
+
+    border-radius:50px;
+
+    background:#291633ee;
+
+    border:1px solid #ffc2dd55;
+
+    color:#ffe6f1;
+
+    font:14px Arial,sans-serif;
+
+    box-shadow:0 15px 40px #0006;
+
+    transition:.4s;
+
+    text-align:center;
+}
+
+.toast.show{
+    opacity:1;
+
+    transform:
+        translate(-50%,0);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:600px){
+
+    .container{
+        width:94%;
+        margin:22px auto;
+    }
+
+    .glass{
+        padding:35px 17px 40px;
+        border-radius:28px;
+    }
+
+    .moon{
+        width:65px;
+        height:65px;
+        top:25px;
+        right:5%;
+    }
+
+    .moon:after{
+        width:65px;
+        height:65px;
+        left:-20px;
+    }
+
+    .door{
+        width:85px;
+        height:120px;
+    }
+
 }
 </style>
 </head>
 
 <body>
 
-<div id="scene"></div>
+<div class="stars"></div>
+<div class="stars2"></div>
 
-<div class="progress">
-    <div id="bar" class="bar"></div>
-</div>
+<div class="moon"></div>
+
+<div class="decor d1">🌸</div>
+<div class="decor d2">✨</div>
+<div class="decor d3">🌷</div>
+<div class="decor d4">💫</div>
 
 
-<div class="ui">
+<div class="container">
 
-<!-- START -->
+<div class="glass">
 
-<div id="start" class="card">
 
-    <div class="heart">💗</div>
+<!-- =========================
+     START
+========================= -->
 
-    <div class="small">
-        A Magical 3D Birthday Adventure
+<section id="start" class="center">
+
+    <div class="heart">
+        💗
     </div>
 
-    <h1>Urwa ✨</h1>
+    <div class="mini">
+        A Little Birthday Adventure
+    </div>
 
-    <p>
-        Aaj ki raat ordinary nahi hai... 🌙
+    <h1>
+        For Urwa ✨
+    </h1>
+
+    <div class="divider"></div>
+
+    <div class="subtitle">
+
+        Aaj ki raat thori si special hai... 🌙
+
+        <br><br>
+
+        Kyun ke <b>16 June</b> ko
+        ek bohat achi dost ka birthday hai. 🎂
+
+        <br><br>
+
+        Lekin normal birthday wish to bohat log karenge...
         <br>
-        Ek chota sa 3D birthday adventure
-        tumhara wait kar raha hai.
-    </p>
 
-    <p>
-        Lekin surprise unlock karne ke liye
-        kuch funny missions complete karne honge. 😂
-    </p>
+        is liye tumhare liye ek chota sa
+        <b>funny birthday adventure</b> banaya gaya hai. 😂❤️
+
+    </div>
+
 
     <input
-        id="name"
-        class="name"
-        placeholder="Apna naam likho... ❤️"
+        id="nameInput"
+        class="input"
+        placeholder="Apna naam likho... 💕"
     >
-
-    <br>
 
     <button
         class="btn"
-        onclick="startGame()"
+        onclick="startAdventure()"
     >
-        ENTER THE MAGIC ✨
+        Enter The Birthday World ✨
     </button>
 
-</div>
+</section>
 
 
-<!-- TASK -->
+<!-- =========================
+     ADVENTURE
+========================= -->
 
-<div id="task" class="card hidden">
+<section
+    id="adventure"
+    class="hidden"
+>
 
-    <div class="small">
-        Birthday Adventure
+<div class="adventureTitle">
+
+    <div class="mini">
+        Birthday Adventure ✨
     </div>
 
-    <h2 id="taskTitle"></h2>
+    <h2>
+        Chalo surprise unlock karte hain...
+    </h2>
 
-    <p id="taskText"></p>
-
-    <button
-        id="taskButton"
-        class="btn"
-        onclick="taskAction()"
-    >
-        Continue ✨
-    </button>
-
-    <div id="message"></div>
+    <p>
+        Har level ke baad surprise thora aur kareeb hoga. 👀
+    </p>
 
 </div>
 
 
-<!-- FINAL -->
+<div class="progressWrap">
 
-<div id="final" class="card final hidden">
+    <div class="progressInfo">
 
-    <div class="heart">👑</div>
+        <span id="progressText">
+            Level 1 of 4
+        </span>
 
-    <div class="small">
+        <span>
+            💗
+        </span>
+
+    </div>
+
+    <div class="progress">
+
+        <div
+            id="progressBar"
+            class="progressBar"
+        ></div>
+
+    </div>
+
+</div>
+
+
+<!-- TASK 1 -->
+
+<div
+    id="task1"
+    class="task"
+>
+
+    <div class="taskIcon">
+        🎈
+    </div>
+
+    <h3>
+        Pakro Is Naughty Balloon Ko
+    </h3>
+
+    <p>
+
+        Balloon par click karo...
+
+        <br>
+
+        <b>
+        Lekin ye har click ke baad
+        apni jagah badal lega. 😂
+        </b>
+
+        <br><br>
+
+        3 baar pakarna hai!
+
+    </p>
+
+    <div class="balloonArea">
+
+        <div
+            id="balloon"
+            class="balloon"
+            onclick="balloonClick()"
+        ></div>
+
+    </div>
+
+    <div id="result" class="subtitle"></div>
+
+</div>
+
+
+<!-- TASK 2 -->
+
+<div
+    id="task2"
+    class="task hidden"
+>
+
+    <div class="taskIcon">
+        🎂
+    </div>
+
+    <h3>
+        Birthday Cake Mission
+    </h3>
+
+    <p>
+
+        Cake ready hai... 🎂
+
+        <br>
+
+        Lekin candles jalane se pehle
+        cake ko touch karna hoga.
+
+        <br><br>
+
+        <b>
+        Cake ko click karo! 👀
+        </b>
+
+    </p>
+
+    <div class="cakeArea">
+
+        <div
+            class="cake"
+            onclick="cakeClick()"
+        >
+            🎂
+        </div>
+
+    </div>
+
+    <div id="result2" class="subtitle"></div>
+
+</div>
+
+
+<!-- TASK 3 -->
+
+<div
+    id="task3"
+    class="task hidden"
+>
+
+    <div class="taskIcon">
+        🚪
+    </div>
+
+    <h3>
+        Mystery Doors
+    </h3>
+
+    <p>
+
+        Teen doors hain...
+
+        <br>
+
+        Sirf ek tumhein
+        surprise ke kareeb le jayega. 👀
+
+        <br><br>
+
+        <b>
+        Good luck! 😂
+        </b>
+
+    </p>
+
+    <div class="doors">
+
+        <div
+            class="door"
+            onclick="doorClick(1)"
+        >
+            🚪
+        </div>
+
+        <div
+            class="door"
+            onclick="doorClick(2)"
+        >
+            🚪
+        </div>
+
+        <div
+            class="door"
+            onclick="doorClick(3)"
+        >
+            🚪
+        </div>
+
+    </div>
+
+    <div id="result3" class="subtitle"></div>
+
+</div>
+
+
+<!-- TASK 4 -->
+
+<div
+    id="task4"
+    class="task hidden"
+>
+
+    <div class="taskIcon">
+        🎁
+    </div>
+
+    <h3>
+        Final Surprise
+    </h3>
+
+    <p>
+
+        Bas ek last button...
+
+        <br><br>
+
+        <b>
+        Ready for the actual birthday wish? ❤️
+        </b>
+
+    </p>
+
+    <button
+        class="btn"
+        onclick="finish()"
+    >
+        Open My Surprise 🎁
+    </button>
+
+</div>
+
+
+</section>
+
+
+<!-- =========================
+     FINAL
+========================= -->
+
+<section
+    id="final"
+    class="final hidden"
+>
+
+    <div class="heart">
+        👑
+    </div>
+
+    <div class="mini">
         Surprise Unlocked
     </div>
 
@@ -290,1160 +1197,444 @@ p{
         Urwa! 🎂
     </h1>
 
-    <p>
+    <div class="date">
         ✨ 16 June ✨
-    </p>
+    </div>
 
-    <p>
+    <div class="finalText">
+
         Hahaha... finally! 😂❤️
+
         <br><br>
 
-        Tumne saare magical challenges
-        complete kar liye.
+        Tumne naughty balloon ko pakra,
+        cake mission complete kiya,
+        mystery doors cross kiye...
+
+        <br><br>
+
+        Ab serious baat. 🌸
+
+        <br><br>
+
+        <b>
+        Happy Birthday to a really special friend! ❤️
+        </b>
+
         <br><br>
 
         Dua hai tumhari zindagi hamesha
         khushiyon, sukoon, success aur
-        beautiful memories se bhari rahe. 🌸
+        beautiful memories se bhari rahe. ✨
+
         <br><br>
 
-        Tum hamesha smile karti raho
-        aur tumhari har genuine wish
-        poori ho. ❤️
+        Tumhari har achi wish poori ho,
+        har naya saal tumhare liye
+        aur zyada happiness lekar aaye,
+        aur tum hamesha isi tarah
+        smile karti raho. 🌷
+
         <br><br>
+
+        Once again...
+
+        <br>
 
         <b>
-        Happy Birthday once again, Urwa! 🎂🌷
+        Happy Birthday Urwa! 🎂💗
         </b>
-    </p>
 
-    <p>
-        With best wishes,<br>
-        <b>Kashif ❤️</b>
-    </p>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="signature">
+        Your Bestfriend ❤️
+    </div>
+
+</section>
+
 
 </div>
-
 </div>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<div id="toast" class="toast"></div>
+
 
 <script>
 
-/* =========================================
-   THREE.JS 3D WORLD
-========================================= */
+let currentTask = 1;
+let balloonHits = 0;
 
-const scene =
-    new THREE.Scene();
 
-scene.background =
-    new THREE.Color(0x080518);
+/* =========================
+   START
+========================= */
 
-scene.fog =
-    new THREE.FogExp2(
-        0x120923,
-        0.018
-    );
-
-
-const camera =
-    new THREE.PerspectiveCamera(
-        60,
-        window.innerWidth/window.innerHeight,
-        0.1,
-        1000
-    );
-
-camera.position.set(
-    0,
-    2.5,
-    13
-);
-
-
-const renderer =
-    new THREE.WebGLRenderer({
-        antialias:true,
-        alpha:false
-    });
-
-renderer.setSize(
-    window.innerWidth,
-    window.innerHeight
-);
-
-renderer.setPixelRatio(
-    Math.min(window.devicePixelRatio,2)
-);
-
-renderer.shadowMap.enabled = true;
-
-document
-.getElementById("scene")
-.appendChild(renderer.domElement);
-
-
-/* =========================================
-   LIGHTS
-========================================= */
-
-const ambient =
-    new THREE.AmbientLight(
-        0x9275b8,
-        1.5
-    );
-
-scene.add(ambient);
-
-
-const moonLight =
-    new THREE.PointLight(
-        0xffd9ee,
-        3,
-        35
-    );
-
-moonLight.position.set(
-    4,
-    8,
-    4
-);
-
-scene.add(moonLight);
-
-
-const pinkLight =
-    new THREE.PointLight(
-        0xff65b3,
-        2,
-        25
-    );
-
-pinkLight.position.set(
-    -6,
-    3,
-    4
-);
-
-scene.add(pinkLight);
-
-
-/* =========================================
-   MOON
-========================================= */
-
-const moonGeometry =
-    new THREE.SphereGeometry(
-        2,
-        40,
-        40
-    );
-
-const moonMaterial =
-    new THREE.MeshStandardMaterial({
-        color:0xffeac2,
-        emissive:0xffd98d,
-        emissiveIntensity:.4
-    });
-
-const moon =
-    new THREE.Mesh(
-        moonGeometry,
-        moonMaterial
-    );
-
-moon.position.set(
-    6,
-    8,
-    -10
-);
-
-scene.add(moon);
-
-
-/* =========================================
-   STARS
-========================================= */
-
-const starGeometry =
-    new THREE.BufferGeometry();
-
-const starPositions = [];
-
-for(let i=0;i<900;i++){
-
-    starPositions.push(
-        (Math.random()-.5)*80,
-        Math.random()*45,
-        (Math.random()-.5)*60
-    );
-}
-
-starGeometry.setAttribute(
-    "position",
-    new THREE.Float32BufferAttribute(
-        starPositions,
-        3
-    )
-);
-
-const starMaterial =
-    new THREE.PointsMaterial({
-        color:0xffffff,
-        size:.07
-    });
-
-const stars =
-    new THREE.Points(
-        starGeometry,
-        starMaterial
-    );
-
-scene.add(stars);
-
-
-/* =========================================
-   GROUND
-========================================= */
-
-const groundGeometry =
-    new THREE.CircleGeometry(
-        25,
-        64
-    );
-
-const groundMaterial =
-    new THREE.MeshStandardMaterial({
-        color:0x251433,
-        roughness:.8
-    });
-
-const ground =
-    new THREE.Mesh(
-        groundGeometry,
-        groundMaterial
-    );
-
-ground.rotation.x =
-    -Math.PI/2;
-
-ground.position.y =
-    -2;
-
-scene.add(ground);
-
-
-/* =========================================
-   FLOWERS
-========================================= */
-
-function createFlower(x,z){
-
-    const group =
-        new THREE.Group();
-
-    const stem =
-        new THREE.Mesh(
-            new THREE.CylinderGeometry(
-                .035,
-                .05,
-                1.3,
-                8
-            ),
-            new THREE.MeshStandardMaterial({
-                color:0x4c9a65
-            })
-        );
-
-    stem.position.y =
-        -.9;
-
-    group.add(stem);
-
-
-    for(let i=0;i<6;i++){
-
-        const petal =
-            new THREE.Mesh(
-                new THREE.SphereGeometry(
-                    .22,
-                    12,
-                    12
-                ),
-                new THREE.MeshStandardMaterial({
-                    color:
-                        i%2===0
-                        ?0xff91c8
-                        :0xd49aff
-                })
-            );
-
-        const angle =
-            i*Math.PI/3;
-
-        petal.position.set(
-            Math.cos(angle)*.25,
-            -.2,
-            Math.sin(angle)*.25
-        );
-
-        group.add(petal);
-    }
-
-
-    const center =
-        new THREE.Mesh(
-            new THREE.SphereGeometry(
-                .13,
-                12,
-                12
-            ),
-            new THREE.MeshStandardMaterial({
-                color:0xffd66b
-            })
-        );
-
-    center.position.y =
-        -.2;
-
-    group.add(center);
-
-
-    group.position.set(
-        x,
-        0,
-        z
-    );
-
-    scene.add(group);
-
-    return group;
-}
-
-
-for(let i=0;i<18;i++){
-
-    createFlower(
-        (Math.random()-.5)*22,
-        -Math.random()*15
-    );
-
-}
-
-
-/* =========================================
-   BALLOON
-========================================= */
-
-let balloon;
-
-function createBalloon(){
-
-    const group =
-        new THREE.Group();
-
-
-    const body =
-        new THREE.Mesh(
-            new THREE.SphereGeometry(
-                1,
-                32,
-                32
-            ),
-            new THREE.MeshStandardMaterial({
-                color:0xff77b7,
-                roughness:.25,
-                metalness:.05
-            })
-        );
-
-    body.scale.set(
-        .8,
-        1.15,
-        .8
-    );
-
-    group.add(body);
-
-
-    const string =
-        new THREE.Mesh(
-            new THREE.CylinderGeometry(
-                .015,
-                .015,
-                3,
-                8
-            ),
-            new THREE.MeshBasicMaterial({
-                color:0xe9d6df
-            })
-        );
-
-    string.position.y =
-        -2;
-
-    group.add(string);
-
-
-    group.position.set(
-        0,
-        1.5,
-        2
-    );
-
-    scene.add(group);
-
-    balloon = group;
-
-}
-
-createBalloon();
-
-
-/* =========================================
-   GIFT BOX
-========================================= */
-
-let gift;
-
-function createGift(){
-
-    const group =
-        new THREE.Group();
-
-
-    const box =
-        new THREE.Mesh(
-            new THREE.BoxGeometry(
-                2.5,
-                1.8,
-                2.5
-            ),
-            new THREE.MeshStandardMaterial({
-                color:0xff6fae,
-                roughness:.35
-            })
-        );
-
-    group.add(box);
-
-
-    const ribbon =
-        new THREE.Mesh(
-            new THREE.BoxGeometry(
-                .35,
-                1.9,
-                2.6
-            ),
-            new THREE.MeshStandardMaterial({
-                color:0xffe18b
-            })
-        );
-
-    group.add(ribbon);
-
-
-    const ribbon2 =
-        new THREE.Mesh(
-            new THREE.BoxGeometry(
-                2.6,
-                1.9,
-                .35
-            ),
-            new THREE.MeshStandardMaterial({
-                color:0xffe18b
-            })
-        );
-
-    group.add(ribbon2);
-
-
-    group.position.set(
-        0,
-        -.8,
-        -2
-    );
-
-
-    group.visible=false;
-
-    scene.add(group);
-
-    gift=group;
-
-}
-
-createGift();
-
-
-/* =========================================
-   CAKE
-========================================= */
-
-let cake;
-
-function createCake(){
-
-    const group =
-        new THREE.Group();
-
-
-    const base =
-        new THREE.Mesh(
-            new THREE.CylinderGeometry(
-                1.7,
-                1.7,
-                1,
-                32
-            ),
-            new THREE.MeshStandardMaterial({
-                color:0xffa8cf
-            })
-        );
-
-    group.add(base);
-
-
-    const cream =
-        new THREE.Mesh(
-            new THREE.CylinderGeometry(
-                1.3,
-                1.3,
-                .5,
-                32
-            ),
-            new THREE.MeshStandardMaterial({
-                color:0xffe9f4
-            })
-        );
-
-    cream.position.y=.7;
-
-    group.add(cream);
-
-
-    for(let i=0;i<3;i++){
-
-        const candle =
-            new THREE.Mesh(
-                new THREE.CylinderGeometry(
-                    .08,
-                    .08,
-                    .65,
-                    12
-                ),
-                new THREE.MeshStandardMaterial({
-                    color:0xffd166
-                })
-            );
-
-        candle.position.set(
-            (i-1)*.45,
-            1.2,
-            0
-        );
-
-        group.add(candle);
-
-    }
-
-
-    group.position.set(
-        5,
-        -1,
-        -2
-    );
-
-    group.visible=false;
-
-    scene.add(group);
-
-    cake=group;
-
-}
-
-createCake();
-
-
-/* =========================================
-   ANIMATION
-========================================= */
-
-const clock =
-    new THREE.Clock();
-
-
-function animate(){
-
-    requestAnimationFrame(
-        animate
-    );
-
-
-    const t =
-        clock.getElapsedTime();
-
-
-    stars.rotation.y =
-        t*.003;
-
-
-    moon.position.y =
-        8 + Math.sin(t*.3)*.15;
-
-
-    if(balloon){
-
-        balloon.rotation.y =
-            Math.sin(t)*.25;
-
-        balloon.position.y =
-            1.5 +
-            Math.sin(t*1.5)*.3;
-
-    }
-
-
-    if(gift.visible){
-
-        gift.rotation.y =
-            Math.sin(t*.7)*.15;
-
-    }
-
-
-    if(cake.visible){
-
-        cake.rotation.y =
-            Math.sin(t*.5)*.1;
-
-    }
-
-
-    renderer.render(
-        scene,
-        camera
-    );
-
-}
-
-animate();
-
-
-/* =========================================
-   GAME
-========================================= */
-
-let step=0;
-let balloonClicks=0;
-
-
-const tasks=[
-
-    {
-        title:"🎈 The Naughty Balloon",
-        text:
-        "Is balloon ko click karo...<br><br>"+
-        "<b>Warning:</b> Ye bilkul shareef nahi hai. 😂",
-        button:"Catch The Balloon 🎈"
-    },
-
-    {
-        title:"🎂 Birthday Cake Mission",
-        text:
-        "3D cake tumhara wait kar raha hai.<br><br>"+
-        "Cake par click karke candles check karo! ✨",
-        button:"Touch The Cake 🎂"
-    },
-
-    {
-        title:"🚪 Mystery Garden",
-        text:
-        "Magical garden mein 3 invisible doors hain.<br><br>"+
-        "Ek door tumhein surprise ke kareeb le jayega. 👀",
-        button:"Open Mystery Door 🚪"
-    },
-
-    {
-        title:"🎁 Final Surprise",
-        text:
-        "Last mission complete karo...<br><br>"+
-        "Phir asli birthday surprise unlock hoga. ❤️",
-        button:"Open The Gift 🎁"
-    }
-
-];
-
-
-function startGame(){
+function startAdventure(){
 
     const name =
         document
-        .getElementById("name")
+        .getElementById("nameInput")
         .value
         .trim();
 
-
     if(!name){
 
-        alert(
-            "Pehle apna naam likho ❤️"
+        toast(
+            "Pehle naam to likho madam 😂❤️"
         );
 
         return;
     }
-
 
     document
     .getElementById("start")
     .classList.add("hidden");
 
-
     document
-    .getElementById("task")
+    .getElementById("adventure")
     .classList.remove("hidden");
 
-
-    step=0;
-
-    showTask();
+    updateProgress();
 
 }
 
 
-function showTask(){
+/* =========================
+   BALLOON
+========================= */
 
-    const task =
-        tasks[step];
+function balloonClick(){
 
+    balloonHits++;
+
+    const balloon =
+        document
+        .getElementById("balloon");
+
+    const result =
+        document
+        .getElementById("result");
+
+
+    if(balloonHits === 1){
+
+        balloon.style.left="22%";
+        balloon.style.top="30px";
+
+        result.innerHTML =
+        "😂 Oho! Balloon bhaag gaya! Dobara pakro.";
+
+        toast(
+            "HAHA! Itni jaldi nahi 😂🎈"
+        );
+
+    }
+
+    else if(balloonHits === 2){
+
+        balloon.style.left="76%";
+        balloon.style.top="95px";
+
+        result.innerHTML =
+        "🤣 Phir bhaag gaya! Ab ki baar pakar ke dikhao.";
+
+        toast(
+            "Balloon tumse zyada smart nikla 😭"
+        );
+
+    }
+
+    else{
+
+        balloon.style.left="50%";
+        balloon.style.top="50px";
+
+        balloon.style.transform =
+            "translateX(-50%) scale(1.5)";
+
+        result.innerHTML =
+        "💥 GOT IT! Balloon finally haar gaya! 😂❤️";
+
+        createConfetti();
+
+        setTimeout(
+            ()=>nextTask(2),
+            1300
+        );
+
+    }
+
+}
+
+
+/* =========================
+   CAKE
+========================= */
+
+function cakeClick(){
 
     document
-    .getElementById("taskTitle")
+    .getElementById("result2")
     .innerHTML =
-        task.title;
+    "🎂 Cake saved! Candles bhi tumhari permission ka wait kar rahi hain. 😂❤️";
 
+    toast(
+        "Mission complete! 🎂✨"
+    );
+
+    setTimeout(
+        ()=>nextTask(3),
+        1500
+    );
+
+}
+
+
+/* =========================
+   DOORS
+========================= */
+
+function doorClick(number){
+
+    const result =
+        document
+        .getElementById("result3");
+
+
+    if(number===1){
+
+        result.innerHTML =
+        "😂 Wrong door! Yahan sirf birthday ki hawa hai.";
+
+        toast(
+            "Nope! 😂"
+        );
+
+    }
+
+    else if(number===2){
+
+        result.innerHTML =
+        "😭 Yahan cake ka empty box mila...";
+
+        toast(
+            "Close! Lekin surprise nahi 😂"
+        );
+
+    }
+
+    else{
+
+        result.innerHTML =
+        "🎉 Door 3! Finally sahi jagah aa gayi!";
+
+        toast(
+            "Correct door! 👀❤️"
+        );
+
+        setTimeout(
+            ()=>nextTask(4),
+            1400
+        );
+
+    }
+
+}
+
+
+/* =========================
+   NEXT
+========================= */
+
+function nextTask(number){
 
     document
-    .getElementById("taskText")
+    .getElementById("task"+currentTask)
+    .classList.add("hidden");
+
+    currentTask=number;
+
+    document
+    .getElementById("task"+number)
+    .classList.remove("hidden");
+
+    updateProgress();
+
+}
+
+
+/* =========================
+   PROGRESS
+========================= */
+
+function updateProgress(){
+
+    document
+    .getElementById("progressText")
     .innerHTML =
-        task.text;
-
-
-    document
-    .getElementById("taskButton")
-    .innerHTML =
-        task.button;
-
+    "Level "+currentTask+" of 4";
 
     document
-    .getElementById("message")
-    .innerHTML="";
-
-
-    document
-    .getElementById("bar")
+    .getElementById("progressBar")
     .style.width =
-        ((step)/4*100)+"%";
-
-
-    /* scene changes */
-
-    if(step===0){
-
-        balloon.visible=true;
-        gift.visible=false;
-        cake.visible=false;
-
-    }
-
-    if(step===1){
-
-        balloon.visible=false;
-        cake.visible=true;
-
-    }
-
-    if(step===2){
-
-        cake.visible=false;
-
-        balloon.visible=false;
-
-    }
-
-    if(step===3){
-
-        gift.visible=true;
-        cake.visible=false;
-
-    }
+    (currentTask*25)+"%";
 
 }
 
 
-/* =========================================
-   TASK ACTION
-========================================= */
-
-function taskAction(){
-
-    const message =
-        document
-        .getElementById("message");
-
-
-    /* BALLOON */
-
-    if(step===0){
-
-        balloonClicks++;
-
-
-        if(balloonClicks<3){
-
-            balloon.position.x =
-                (Math.random()-.5)*9;
-
-            balloon.position.z =
-                Math.random()*3;
-
-            message.innerHTML =
-                "😂 Oho! Balloon bhaag gaya! Dobara pakro.";
-
-            return;
-
-        }
-
-
-        message.innerHTML =
-            "💥 Balloon finally pakra gaya! 😂";
-
-
-        balloon.visible=false;
-
-
-        setTimeout(
-            ()=>{
-                step++;
-                showTask();
-            },
-            1200
-        );
-
-        return;
-
-    }
-
-
-    /* CAKE */
-
-    if(step===1){
-
-        message.innerHTML =
-            "🎂 Cake approved! Candles bhi ready hain. ✨";
-
-
-        setTimeout(
-            ()=>{
-                step++;
-                showTask();
-            },
-            1200
-        );
-
-        return;
-
-    }
-
-
-    /* DOOR */
-
-    if(step===2){
-
-        message.innerHTML =
-            "🚪 Door open hua... aur tum surprise ke aur kareeb aa gayi! 👀";
-
-
-        setTimeout(
-            ()=>{
-                step++;
-                showTask();
-            },
-            1200
-        );
-
-        return;
-
-    }
-
-
-    /* GIFT */
-
-    if(step===3){
-
-        document
-        .getElementById("task")
-        .classList.add("hidden");
-
-
-        document
-        .getElementById("bar")
-        .style.width="100%";
-
-
-        openGift();
-
-    }
-
-}
-
-
-/* =========================================
-   OPEN GIFT
-========================================= */
-
-function openGift(){
-
-    gift.visible=true;
-
-
-    let scale=1;
-
-
-    const timer =
-        setInterval(
-            ()=>{
-
-                scale+=.03;
-
-                gift.scale.set(
-                    scale,
-                    scale,
-                    scale
-                );
-
-
-                if(scale>=1.35){
-
-                    clearInterval(timer);
-
-                    createConfetti();
-
-                    setTimeout(
-                        showFinal,
-                        700
-                    );
-
-                }
-
-            },
-            30
-        );
-
-}
-
-
-/* =========================================
-   FINAL
-========================================= */
-
-function showFinal(){
+/* =========================
+   FINISH
+========================= */
+
+function finish(){
+
+    document
+    .getElementById("adventure")
+    .classList.add("hidden");
 
     document
     .getElementById("final")
     .classList.remove("hidden");
 
-
     createConfetti();
-
+    createConfetti();
     createConfetti();
 
 }
 
 
-/* =========================================
+/* =========================
+   TOAST
+========================= */
+
+function toast(message){
+
+    const toastBox =
+        document
+        .getElementById("toast");
+
+    toastBox.innerHTML =
+        message;
+
+    toastBox.classList.add("show");
+
+    setTimeout(
+        ()=>{
+            toastBox.classList.remove("show");
+        },
+        2200
+    );
+
+}
+
+
+/* =========================
    CONFETTI
-========================================= */
+========================= */
 
 function createConfetti(){
 
-    const colors=[
-        0xff9fc9,
-        0xc6a4ff,
-        0xffd166,
-        0xffffff
+    const symbols=[
+        "✨",
+        "💗",
+        "💕",
+        "🌸",
+        "🎀",
+        "⭐",
+        "🌷"
     ];
 
 
-    for(let i=0;i<160;i++){
+    for(let i=0;i<55;i++){
 
-        const geo =
-            new THREE.SphereGeometry(
-                .045,
-                6,
-                6
-            );
+        const item =
+            document.createElement("div");
 
+        item.className =
+            "confetti";
 
-        const mat =
-            new THREE.MeshBasicMaterial({
-                color:
-                    colors[
-                        Math.floor(
-                            Math.random()*colors.length
-                        )
-                    ]
-            });
+        item.innerHTML =
+            symbols[
+                Math.floor(
+                    Math.random()*
+                    symbols.length
+                )
+            ];
 
+        item.style.left =
+            Math.random()*100+"vw";
 
-        const piece =
-            new THREE.Mesh(
-                geo,
-                mat
-            );
+        item.style.fontSize =
+            (10+
+            Math.random()*14)+"px";
 
+        item.style.animationDuration =
+            (2.5+
+            Math.random()*3)+"s";
 
-        piece.position.set(
-            (Math.random()-.5)*14,
-            5+Math.random()*7,
-            (Math.random()-.5)*8
+        document.body.appendChild(item);
+
+        setTimeout(
+            ()=>item.remove(),
+            6000
         );
-
-
-        scene.add(piece);
-
-
-        let velocity =
-            .025+
-            Math.random()*.05;
-
-
-        function fall(){
-
-            piece.position.y -= velocity;
-
-            piece.rotation.x += .05;
-            piece.rotation.z += .04;
-
-
-            if(piece.position.y>-4){
-
-                requestAnimationFrame(
-                    fall
-                );
-
-            }
-            else{
-
-                scene.remove(
-                    piece
-                );
-
-            }
-
-        }
-
-        fall();
 
     }
 
 }
 
 
-/* =========================================
-   RESIZE
-========================================= */
+/* =========================
+   FLOATING HEARTS
+========================= */
 
-window.addEventListener(
-    "resize",
+setInterval(
     ()=>{
+        const heart =
+            document.createElement("div");
 
-        camera.aspect =
-            window.innerWidth/
-            window.innerHeight;
+        heart.innerHTML =
+            Math.random()>.5
+            ?"💗"
+            :"💕";
 
-        camera.updateProjectionMatrix();
+        heart.style.position="fixed";
+        heart.style.left=
+            Math.random()*100+"vw";
 
-        renderer.setSize(
-            window.innerWidth,
-            window.innerHeight
+        heart.style.bottom="-30px";
+
+        heart.style.zIndex="2";
+        heart.style.pointerEvents="none";
+
+        heart.style.fontSize=
+            (14+
+            Math.random()*14)+"px";
+
+        heart.style.transition=
+            "transform 7s linear, opacity 7s";
+
+        document.body.appendChild(heart);
+
+        requestAnimationFrame(
+            ()=>{
+                heart.style.transform=
+                    "translateY(-110vh)";
+                heart.style.opacity="0";
+            }
         );
 
-    }
-);
-
-
-/* =========================================
-   CLICK 3D OBJECTS
-========================================= */
-
-const raycaster =
-    new THREE.Raycaster();
-
-const mouse =
-    new THREE.Vector2();
-
-
-renderer.domElement.addEventListener(
-    "click",
-    function(event){
-
-        mouse.x =
-            (event.clientX/
-            window.innerWidth)*2-1;
-
-        mouse.y =
-            -(event.clientY/
-            window.innerHeight)*2+1;
-
-
-        raycaster.setFromCamera(
-            mouse,
-            camera
+        setTimeout(
+            ()=>heart.remove(),
+            7500
         );
 
-
-        const objects =
-            raycaster.intersectObjects(
-                scene.children,
-                true
-            );
-
-
-        if(objects.length){
-
-            const object =
-                objects[0].object;
-
-
-            if(
-                balloon &&
-                balloon.visible &&
-                (object===balloon ||
-                 object.parent===balloon)
-            ){
-
-                taskAction();
-
-            }
-
-
-            if(
-                cake &&
-                cake.visible &&
-                (object===cake ||
-                 object.parent===cake)
-            ){
-
-                taskAction();
-
-            }
-
-        }
-
-    }
+    },
+    1200
 );
 
 </script>
