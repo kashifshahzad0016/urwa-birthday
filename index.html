@@ -1,306 +1,526 @@
-```html
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Urwa Birthday.exe ❤️</title>
 
 <style>
 
-* {
-  box-sizing: border-box;
+*{
+  box-sizing:border-box;
 }
 
-body {
-  margin: 0;
-  min-height: 100vh;
+body{
+  margin:0;
+  min-height:100vh;
   background:
-    radial-gradient(circle at 50% 15%, #512344, #100812 70%);
-  color: white;
-  font-family: "Courier New", monospace;
-  overflow-x: hidden;
+    radial-gradient(circle at 20% 20%,#482040 0%,transparent 30%),
+    radial-gradient(circle at 80% 80%,#302052 0%,transparent 30%),
+    #09070d;
+  color:white;
+  font-family:"Courier New",monospace;
+  overflow-x:hidden;
 }
 
-.container {
-  width: 92%;
-  max-width: 760px;
-  margin: 30px auto;
-  background: rgba(12, 9, 18, 0.97);
-  border: 1px solid rgba(255, 145, 205, 0.35);
-  border-radius: 22px;
-  overflow: hidden;
-  box-shadow: 0 0 60px rgba(255, 80, 180, 0.2);
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background-image:
+    radial-gradient(#ffffff55 1px,transparent 1px);
+  background-size:45px 45px;
+  opacity:.18;
+  pointer-events:none;
 }
 
-.header {
-  height: 45px;
-  background: #18131e;
-  display: flex;
-  align-items: center;
-  padding-left: 18px;
-  gap: 8px;
+.app{
+  width:92%;
+  max-width:780px;
+  margin:35px auto;
+  background:rgba(15,11,22,.94);
+  border:1px solid #ff8fc955;
+  border-radius:24px;
+  overflow:hidden;
+  box-shadow:
+    0 0 70px #ff4fa522,
+    0 20px 60px #000;
+  position:relative;
+  z-index:2;
 }
 
-.dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
+.topbar{
+  height:48px;
+  background:#17121e;
+  display:flex;
+  align-items:center;
+  padding:0 18px;
+  border-bottom:1px solid #ffffff0c;
 }
 
-.red {
-  background: #ff5f56;
+.dot{
+  width:13px;
+  height:13px;
+  border-radius:50%;
+  margin-right:8px;
 }
 
-.yellow {
-  background: #ffbd2e;
+.red{background:#ff5f56;}
+.yellow{background:#ffbd2e;}
+.green{background:#27c93f;}
+
+.fileName{
+  margin-left:auto;
+  margin-right:auto;
+  color:#8e8493;
+  font-size:12px;
 }
 
-.green {
-  background: #27c93f;
+.content{
+  padding:35px 25px 50px;
+  min-height:680px;
 }
 
-.content {
-  padding: 35px 25px 45px;
-  min-height: 650px;
+.center{
+  text-align:center;
 }
 
-.center {
-  text-align: center;
+.logo{
+  font-size:50px;
+  animation:pulse 2s infinite;
 }
 
-h1 {
-  font-family: Arial, sans-serif;
-  color: #ff9ed2;
-  font-size: 32px;
+@keyframes pulse{
+  50%{transform:scale(1.08);}
 }
 
-.subtitle {
-  color: #cdbbc8;
-  font-family: Arial, sans-serif;
-  line-height: 1.8;
+h1{
+  font-family:Arial,sans-serif;
+  color:#ff9ed2;
+  font-size:34px;
+  margin:15px 0;
 }
 
-input {
-  width: 100%;
-  max-width: 500px;
-  padding: 15px;
-  margin-top: 15px;
-  border-radius: 12px;
-  border: 1px solid #65445a;
-  background: #090b10;
-  color: white;
-  font-size: 16px;
-  outline: none;
+h2{
+  font-family:Arial,sans-serif;
+  color:#ffd0e7;
 }
 
-button {
-  border: none;
-  padding: 13px 28px;
-  margin: 20px 8px;
-  border-radius: 30px;
-  color: white;
-  font-weight: bold;
-  font-size: 15px;
-  background: linear-gradient(135deg, #ff65ae, #bd62ff);
-  cursor: pointer;
-  transition: 0.3s;
+.subtitle{
+  color:#cbbdca;
+  font-family:Arial,sans-serif;
+  line-height:1.8;
 }
 
-button:hover {
-  transform: scale(1.06);
-  box-shadow: 0 0 25px rgba(255, 100, 190, 0.35);
+input{
+  width:100%;
+  max-width:470px;
+  padding:16px;
+  margin-top:22px;
+  border-radius:14px;
+  border:1px solid #ff8fc944;
+  background:#08070b;
+  color:white;
+  font-size:16px;
+  outline:none;
 }
 
-.hidden {
-  display: none;
+input:focus{
+  border-color:#ff9ed2;
+  box-shadow:0 0 20px #ff65ae22;
 }
 
-.terminal {
-  color: #79c0ff;
-  line-height: 2;
-  min-height: 250px;
+button{
+  border:0;
+  padding:14px 28px;
+  margin:18px 6px;
+  border-radius:30px;
+  color:white;
+  font-weight:bold;
+  font-size:15px;
+  background:linear-gradient(135deg,#ff65ae,#9b62ff);
+  cursor:pointer;
+  transition:.25s;
+  box-shadow:0 8px 20px #0005;
 }
 
-.pinkText {
-  color: #ff9ed2;
+button:hover{
+  transform:translateY(-3px) scale(1.04);
+  box-shadow:0 10px 30px #ff65ae44;
 }
 
-.greenText {
-  color: #7ee787;
+button:active{
+  transform:scale(.94);
 }
 
-.funny {
-  color: #ffd166;
-  text-align: center;
-  font-family: Arial, sans-serif;
-  font-size: 20px;
-  min-height: 35px;
-  margin-top: 15px;
+.hidden{
+  display:none!important;
 }
 
-/* HEART */
+/* TERMINAL */
 
-.heartArea {
-  text-align: center;
-  margin: 15px 0;
+.terminal{
+  min-height:280px;
+  color:#7ee787;
+  line-height:2;
+  font-size:15px;
+  white-space:pre-line;
 }
 
-.heart {
-  display: inline-block;
-  font-size: 75px;
-  animation: heartbeat 1.2s infinite;
-  filter: drop-shadow(0 0 22px #ff5cae);
+.blue{
+  color:#79c0ff;
 }
 
-@keyframes heartbeat {
+.pink{
+  color:#ff9ed2;
+}
 
-  0%, 100% {
-    transform: scale(1);
+.yellowText{
+  color:#ffd166;
+}
+
+/* TASK */
+
+.taskTop{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
+
+.taskNumber{
+  color:#ff9ed2;
+  font-size:13px;
+}
+
+.progress{
+  width:45%;
+  height:7px;
+  background:#27202c;
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.progressBar{
+  height:100%;
+  width:25%;
+  background:linear-gradient(90deg,#ff65ae,#bd62ff);
+  transition:.5s;
+}
+
+.taskCard{
+  padding:30px 20px;
+  border:1px solid #ff9ed222;
+  border-radius:22px;
+  background:
+    linear-gradient(145deg,#ffffff06,#ff65ae05);
+  box-shadow:
+    inset 0 0 40px #ff65ae05,
+    0 15px 40px #0005;
+  animation:cardIn .5s ease;
+}
+
+@keyframes cardIn{
+  from{
+    opacity:0;
+    transform:translateY(20px) scale(.97);
   }
-
-  50% {
-    transform: scale(1.18);
+  to{
+    opacity:1;
+    transform:none;
   }
-
 }
 
-/* BALLOON AREA */
+.taskIcon{
+  font-size:60px;
+}
 
-.balloonArea {
-  position: relative;
-  height: 390px;
-  margin-top: 20px;
-  overflow: hidden;
-  border-radius: 18px;
+.taskTitle{
+  font-family:Arial,sans-serif;
+  font-size:24px;
+  color:#ffd1e7;
+  margin:15px 0;
+}
+
+.taskText{
+  color:#c9bec9;
+  font-family:Arial,sans-serif;
+  line-height:1.8;
+}
+
+.bigButton{
+  min-width:210px;
+}
+
+.result{
+  min-height:75px;
+  margin-top:10px;
+  color:#ffd166;
+  font-family:Arial,sans-serif;
+  line-height:1.6;
+}
+
+/* FACE SCAN */
+
+.scanBox{
+  width:160px;
+  height:160px;
+  margin:20px auto;
+  border:2px solid #ff78b8;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:65px;
+  box-shadow:0 0 35px #ff65ae33;
+}
+
+.scanning{
+  animation:scan 1s infinite;
+}
+
+@keyframes scan{
+  50%{
+    box-shadow:
+      0 0 10px #ff65ae,
+      0 0 60px #ff65ae;
+  }
+}
+
+/* IQ */
+
+.options{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  max-width:500px;
+  margin:20px auto;
+}
+
+.option{
+  padding:15px;
+  border:1px solid #ffffff15;
+  border-radius:14px;
+  background:#ffffff06;
+  cursor:pointer;
+  transition:.25s;
+  font-family:Arial,sans-serif;
+}
+
+.option:hover{
+  background:#ff65ae18;
+  transform:scale(1.03);
+}
+
+/* DONT LAUGH */
+
+.timer{
+  font-size:52px;
+  color:#ff9ed2;
+  margin:15px;
+}
+
+/* EMERGENCY */
+
+.emergency{
+  font-size:65px;
+  animation:shake .6s infinite;
+}
+
+@keyframes shake{
+  0%,100%{transform:rotate(0);}
+  25%{transform:rotate(-4deg);}
+  75%{transform:rotate(4deg);}
+}
+
+.redButton{
+  background:linear-gradient(135deg,#ff3d5a,#ff6b35);
 }
 
 /* BALLOON */
 
-.balloon {
-  position: absolute;
-  width: 92px;
-  height: 115px;
-  border-radius: 50%;
-  cursor: pointer;
-  left: 50%;
-  top: 120px;
-  transform: translateX(-50%);
+.balloonScreen{
+  animation:fadeIn .7s ease;
+}
+
+@keyframes fadeIn{
+  from{opacity:0;}
+  to{opacity:1;}
+}
+
+.warning{
+  color:#ff7272;
+  font-family:Arial,sans-serif;
+  font-weight:bold;
+  font-size:18px;
+}
+
+.balloonArea{
+  height:390px;
+  position:relative;
+  overflow:hidden;
+  border-radius:20px;
+  margin-top:20px;
+  background:
+    radial-gradient(circle at 50% 40%,#ff65ae0d,transparent 50%);
+}
+
+.balloon{
+  position:absolute;
+  width:95px;
+  height:120px;
+  border-radius:50%;
+  cursor:pointer;
+  left:50%;
+  top:130px;
+  transform:translateX(-50%);
   transition:
-    left 0.45s ease,
-    top 0.45s ease,
-    transform 0.25s ease;
+    left .5s ease,
+    top .5s ease,
+    transform .3s ease;
   box-shadow:
-    inset -12px -15px 20px rgba(0,0,0,0.15),
-    0 10px 20px rgba(0,0,0,0.25);
+    inset -15px -15px 25px #0002,
+    0 10px 30px #0005;
 }
 
-.balloon:hover {
-  transform: translateX(-50%) scale(1.08);
+.balloon:hover{
+  transform:translateX(-50%) scale(1.08);
 }
 
-.balloon:after {
-  content: "";
-  position: absolute;
-  width: 2px;
-  height: 135px;
-  background: #aaa;
-  top: 112px;
-  left: 45px;
+.balloon:after{
+  content:"";
+  position:absolute;
+  width:2px;
+  height:135px;
+  background:#aaa;
+  top:118px;
+  left:47px;
 }
 
-.balloon:before {
-  content: "";
-  position: absolute;
-  bottom: -7px;
-  left: 38px;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  border-top: 13px solid currentColor;
+.balloon:before{
+  content:"";
+  position:absolute;
+  bottom:-7px;
+  left:39px;
+  border-left:9px solid transparent;
+  border-right:9px solid transparent;
+  border-top:13px solid currentColor;
 }
 
-.balloonGlow {
-  animation: balloonFloat 2s ease-in-out infinite;
+.float{
+  animation:float 2s ease-in-out infinite;
 }
 
-@keyframes balloonFloat {
-
-  0%, 100% {
-    margin-top: 0;
+@keyframes float{
+  50%{
+    margin-top:-15px;
   }
-
-  50% {
-    margin-top: -15px;
-  }
-
 }
 
-/* POP */
-
-.pop {
-  animation: balloonPop 0.4s forwards !important;
+.pop{
+  animation:pop .5s forwards!important;
 }
 
-@keyframes balloonPop {
-
-  0% {
-    transform: translateX(-50%) scale(1);
+@keyframes pop{
+  40%{
+    transform:translateX(-50%) scale(1.4);
   }
-
-  40% {
-    transform: translateX(-50%) scale(1.35);
+  100%{
+    transform:translateX(-50%) scale(0);
+    opacity:0;
   }
-
-  100% {
-    transform: translateX(-50%) scale(0);
-    opacity: 0;
-  }
-
 }
 
 /* FINAL */
 
-.final {
-  text-align: center;
-  font-family: Arial, sans-serif;
+.final{
+  text-align:center;
+  font-family:Arial,sans-serif;
 }
 
-.finalHeart {
-  font-size: 75px;
-  animation: heartbeat 1s infinite;
+.finalHeart{
+  font-size:85px;
+  animation:pulse 1s infinite;
+  filter:drop-shadow(0 0 25px #ff65ae);
 }
 
-.final h2 {
-  color: #ff9ed2;
-  font-size: 36px;
+.final h2{
+  color:#ff9ed2;
+  font-size:38px;
 }
 
-.final p {
-  color: #f4eaf0;
-  font-size: 17px;
-  line-height: 1.9;
+.final p{
+  color:#eee4ec;
+  font-size:17px;
+  line-height:1.9;
 }
 
-.signature {
-  margin-top: 28px;
-  color: #ff9ed2;
-  font-size: 18px;
-  font-weight: bold;
+.signature{
+  color:#ff9ed2;
+  font-size:19px;
+  font-weight:bold;
+  margin-top:30px;
 }
 
 /* CONFETTI */
 
-.confetti {
-  position: fixed;
-  width: 8px;
-  height: 14px;
-  top: -20px;
-  animation: fall 4s linear forwards;
-  z-index: 20;
+.confetti{
+  position:fixed;
+  top:-20px;
+  width:8px;
+  height:14px;
+  z-index:99;
+  animation:fall 4s linear forwards;
 }
 
-@keyframes fall {
+@keyframes fall{
+  to{
+    transform:translateY(110vh) rotate(720deg);
+  }
+}
 
-  to {
-    transform: translateY(110vh) rotate(720deg);
+/* TOAST */
+
+.toast{
+  position:fixed;
+  left:50%;
+  bottom:25px;
+  transform:translateX(-50%) translateY(100px);
+  background:#211826;
+  border:1px solid #ff9ed255;
+  padding:15px 22px;
+  border-radius:30px;
+  color:#ffd9e9;
+  z-index:100;
+  opacity:0;
+  transition:.4s;
+  box-shadow:0 10px 40px #0008;
+  font-family:Arial,sans-serif;
+}
+
+.toast.show{
+  transform:translateX(-50%) translateY(0);
+  opacity:1;
+}
+
+@media(max-width:550px){
+
+  h1{
+    font-size:27px;
+  }
+
+  .content{
+    padding:25px 17px 40px;
+  }
+
+  .options{
+    grid-template-columns:1fr;
+  }
+
+  .balloon{
+    width:80px;
+    height:105px;
   }
 
 }
@@ -308,15 +528,20 @@ button:hover {
 </style>
 </head>
 
+
 <body>
 
-<div class="container">
+<div class="app">
 
-  <div class="header">
+  <div class="topbar">
 
     <span class="dot red"></span>
     <span class="dot yellow"></span>
     <span class="dot green"></span>
+
+    <span class="fileName">
+      URWA_BIRTHDAY.exe
+    </span>
 
   </div>
 
@@ -328,33 +553,31 @@ button:hover {
 
     <div id="start" class="center">
 
-      <div class="pinkText">
-        ~/birthday/secret_surprise.exe
-      </div>
+      <div class="logo">🎂</div>
 
       <h1>
-        ✨ A Little Surprise For You ✨
+        URWA'S BIRTHDAY.exe
       </h1>
 
       <div class="subtitle">
 
-        Ek choti si surprise banayi hai...
+        Ek secret birthday program banaya gaya hai... 👀
         <br>
-        Lekin pehle system ko tumhari identity confirm karni hai. 👀❤️
+        Lekin system ko pehle confirm karna hai
+        ke surprise sahi person ke liye hai. ❤️
 
       </div>
 
 
       <input
         id="nameInput"
-        type="text"
         placeholder="Apna naam likho..."
       >
 
       <br>
 
       <button onclick="startProgram()">
-        Enter The Surprise 💗
+        Start Surprise 🚀
       </button>
 
     </div>
@@ -369,34 +592,297 @@ button:hover {
     </div>
 
 
-    <!-- BALLOON GAME -->
+    <!-- TASKS -->
 
-    <div id="game" class="hidden">
+    <div id="tasks" class="hidden">
+
+      <div class="taskTop">
+
+        <div
+          class="taskNumber"
+          id="taskNumber"
+        >
+          TASK 01 / 04
+        </div>
+
+        <div class="progress">
+          <div
+            id="progressBar"
+            class="progressBar"
+          ></div>
+        </div>
+
+      </div>
+
+
+      <!-- TASK 1 -->
+
+      <div
+        id="task1"
+        class="taskCard center"
+      >
+
+        <div class="taskIcon">
+          🔍
+        </div>
+
+        <div class="taskTitle">
+          Birthday Girl Verification
+        </div>
+
+        <div class="taskText">
+
+          System ko confirm karna hai
+          ke tum waqai Urwa ho... 👀
+
+          <br><br>
+
+          Please smile for the extremely
+          advanced AI scanner. 😁
+
+        </div>
+
+
+        <div
+          id="scanFace"
+          class="scanBox"
+        >
+          😐
+        </div>
+
+
+        <button
+          class="bigButton"
+          onclick="faceScan()"
+        >
+          SCAN MY FACE 🔍
+        </button>
+
+
+        <div
+          id="taskResult1"
+          class="result"
+        ></div>
+
+      </div>
+
+
+      <!-- TASK 2 -->
+
+      <div
+        id="task2"
+        class="taskCard center hidden"
+      >
+
+        <div class="taskIcon">
+          🧠
+        </div>
+
+        <div class="taskTitle">
+          Extremely Difficult IQ Test
+        </div>
+
+        <div class="taskText">
+
+          Ek bohat hi mushkil sawal hai...
+          <br>
+          Soch samajh kar answer dena. 😂
+
+          <br><br>
+
+          <strong>
+          Agar birthday girl ko cake mile,
+          to kya karna chahiye? 🎂
+          </strong>
+
+        </div>
+
+
+        <div class="options">
+
+          <div
+            class="option"
+            onclick="iqAnswer()"
+          >
+            A) Share karna
+          </div>
+
+          <div
+            class="option"
+            onclick="iqAnswer()"
+          >
+            B) Khud kha lena 😂
+          </div>
+
+          <div
+            class="option"
+            onclick="iqAnswer()"
+          >
+            C) Pehle picture 📸
+          </div>
+
+          <div
+            class="option"
+            onclick="iqAnswer()"
+          >
+            D) Sab correct 😎
+          </div>
+
+        </div>
+
+
+        <div
+          id="taskResult2"
+          class="result"
+        ></div>
+
+      </div>
+
+
+      <!-- TASK 3 -->
+
+      <div
+        id="task3"
+        class="taskCard center hidden"
+      >
+
+        <div class="taskIcon">
+          😂
+        </div>
+
+        <div class="taskTitle">
+          Don't Laugh Challenge
+        </div>
+
+        <div class="taskText">
+
+          Ab ek serious test hai.
+
+          <br><br>
+
+          Agle <strong>5 seconds</strong>
+          tak bilkul mat hansna. 😐
+
+        </div>
+
+
+        <div
+          id="timer"
+          class="timer"
+        >
+          5
+        </div>
+
+
+        <button
+          id="laughButton"
+          class="bigButton"
+          onclick="startLaughTest()"
+        >
+          I'M READY 😐
+        </button>
+
+
+        <div
+          id="taskResult3"
+          class="result"
+        ></div>
+
+      </div>
+
+
+      <!-- TASK 4 -->
+
+      <div
+        id="task4"
+        class="taskCard center hidden"
+      >
+
+        <div class="emergency">
+          🚨
+        </div>
+
+        <div class="taskTitle">
+          EMERGENCY ALERT!
+        </div>
+
+        <div class="taskText">
+
+          🚨 Birthday system mein serious problem!
+
+          <br><br>
+
+          <strong>
+          KISI NE CAKE CHURA LIYA HAI! 😭🎂
+          </strong>
+
+          <br><br>
+
+          Emergency button dabao
+          aur cake ko bachao!
+
+        </div>
+
+
+        <button
+          class="redButton bigButton"
+          onclick="saveCake()"
+        >
+          SAVE THE CAKE 🚨
+        </button>
+
+
+        <div
+          id="taskResult4"
+          class="result"
+        ></div>
+
+      </div>
+
+    </div>
+
+
+    <!-- BALLOON -->
+
+    <div
+      id="balloonScreen"
+      class="hidden balloonScreen"
+    >
 
       <div class="center">
 
-        <div class="heartArea">
-          <div class="heart">❤️</div>
+        <div class="logo">
+          🎈
         </div>
 
         <h1>
-          🎈 Special Balloon Detected
+          FINAL SECURITY CHECK
         </h1>
 
         <div class="subtitle">
 
-          System ne ek suspicious balloon detect kiya hai. 😂
+          Congratulations! 🎉
+          <br>
+          Tumne saare impossible tasks complete kar liye.
+
           <br><br>
 
-          Isko click karke pakro...
-          <br>
-          Lekin warning:
-          <strong>yeh normal balloon nahi hai. 👀</strong>
+          Lekin system ne ek suspicious
+          balloon detect kiya hai...
 
         </div>
 
-        <div id="funnyText" class="funny">
-          Ready? 😏
+        <p class="warning">
+
+          ⚠️ DO NOT TOUCH THE BALLOON. ⚠️
+
+        </p>
+
+        <div
+          id="balloonMessage"
+          class="yellowText"
+        >
+          Seriously... isko touch mat karna. 👀
         </div>
 
       </div>
@@ -406,9 +892,12 @@ button:hover {
 
         <div
           id="balloon"
-          class="balloon balloonGlow"
-          onclick="balloonClicked()"
-          style="background:#ff5c9d;color:#ff5c9d;"
+          class="balloon float"
+          onclick="balloonClick()"
+          style="
+            background:#ff5c9d;
+            color:#ff5c9d;
+          "
         ></div>
 
       </div>
@@ -418,7 +907,10 @@ button:hover {
 
     <!-- FINAL -->
 
-    <div id="final" class="hidden final">
+    <div
+      id="final"
+      class="hidden final"
+    >
 
       <div class="finalHeart">
         ❤️
@@ -428,23 +920,26 @@ button:hover {
         🎉 Happy Birthday Urwa! 🎂
       </h2>
 
+
       <p>
 
-        Haha... finally! 😂
+        Hahaha... 😂
         <br><br>
 
-        Tum ne balloon ko aakhir pakar hi liya. 🎈
-        <br>
-        Waise balloon se zyada stubborn
-        koi aur bhi hai... 👀😂
-
-        <br><br>
-
-        Lekin ab mazaak side par...
+        Tumne tasks complete kiye,
+        emergency mein cake bachaya,
+        aur phir balloon ko bhi
+        aakhir pakar liya. 🎈😂
 
         <br><br>
 
-        <strong>16 June</strong>
+        Lekin ab asli baat...
+
+        <br><br>
+
+        <strong>
+        16 June
+        </strong>
         mere liye ek special date hai,
         kyun ke isi din ek bohat achi dost
         duniya mein aayi. 🌸
@@ -452,20 +947,20 @@ button:hover {
         <br><br>
 
         Dua hai tumhari zindagi hamesha
-        khushiyon, sukoon, success
+        khushiyon, success, sukoon
         aur beautiful memories se bhari rahe. ✨
 
         <br><br>
 
         Tum hamesha khush raho,
         smile karti raho,
-        aur life mein jo chahti ho
-        woh tumhein zaroor mile. ❤️
+        aur life mein jo bhi acha chahti ho,
+        Allah tumhein woh sab ata kare. ❤️
 
         <br><br>
 
         <strong>
-        Happy Birthday once again, Urwa! 🎂🌷
+        Happy Birthday once again, Urwa! 🎂❤️
         </strong>
 
       </p>
@@ -486,48 +981,45 @@ button:hover {
 </div>
 
 
+<div
+  id="toast"
+  class="toast"
+></div>
+
+
 <script>
 
-var balloonClicks = 0;
+var currentTask = 1;
 
 
-var funnyMessages = [
+/* WAIT */
 
-  "Oho! Pakar liya? 😜",
+function wait(ms){
 
-  "HAHA! Itni jaldi nahi! 😂 Balloon bhaag gaya! 🎈",
+  return new Promise(function(resolve){
 
-  "Ab ki baar pakar ke dikhao... 👀",
-
-  "Bas! Ab system ko gussa aa gaya... 😂"
-
-];
-
-
-function wait(time) {
-
-  return new Promise(function(resolve) {
-
-    setTimeout(resolve, time);
+    setTimeout(resolve,ms);
 
   });
 
 }
 
 
-function typeText(element, text, speed) {
+/* TYPING */
 
-  return new Promise(function(resolve) {
+function typeText(element,text,speed){
 
-    var i = 0;
+  return new Promise(function(resolve){
 
-    var timer = setInterval(function() {
+    var i=0;
+
+    var timer=setInterval(function(){
 
       element.innerHTML += text.charAt(i);
 
       i++;
 
-      if (i >= text.length) {
+      if(i>=text.length){
 
         clearInterval(timer);
 
@@ -535,22 +1027,45 @@ function typeText(element, text, speed) {
 
       }
 
-    }, speed);
+    },speed);
 
   });
 
 }
 
 
-async function startProgram() {
+/* TOAST */
 
-  var name =
-    document.getElementById("nameInput").value.trim();
+function showToast(message){
+
+  var toast=
+    document.getElementById("toast");
+
+  toast.innerHTML=message;
+
+  toast.classList.add("show");
+
+  setTimeout(function(){
+
+    toast.classList.remove("show");
+
+  },2500);
+
+}
 
 
-  if (name === "") {
+/* START */
 
-    alert("Naam to likho pehle 😄");
+async function startProgram(){
+
+  var name=
+    document.getElementById("nameInput")
+    .value.trim();
+
+
+  if(name===""){
+
+    showToast("Pehle naam to likho 😂❤️");
 
     return;
 
@@ -560,217 +1075,456 @@ async function startProgram() {
   document.getElementById("start")
     .classList.add("hidden");
 
-
   document.getElementById("processing")
     .classList.remove("hidden");
 
 
-  var text =
+  var text=
     document.getElementById("processText");
 
 
   await typeText(
     text,
-    "> Initializing birthday.exe...",
-    65
+    "> Starting URWA_BIRTHDAY.exe...",
+    55
   );
 
-  await wait(1300);
+  await wait(1000);
 
 
-  text.innerHTML = "";
+  text.innerHTML="";
 
   await typeText(
     text,
-    "> Searching for someone special...",
-    65
+    "> Searching for birthday girl...",
+    55
   );
 
-  await wait(1400);
+  await wait(1000);
 
 
-  text.innerHTML = "";
+  text.innerHTML="";
 
   await typeText(
     text,
     "> Checking smile database...",
-    65
+    55
   );
 
-  await wait(1400);
+  await wait(1000);
 
 
-  text.innerHTML = "";
+  text.innerHTML="";
 
   await typeText(
     text,
-    "> Checking kindness level...",
-    65
+    "> Warning: Too much cuteness detected...",
+    55
   );
 
-  await wait(1400);
+  await wait(1200);
 
 
-  text.innerHTML = "";
+  text.innerHTML="";
 
   await typeText(
     text,
-    "> Special person detected! ❤️",
-    65
+    "> System has officially given up. 😂",
+    55
   );
 
-  await wait(1600);
-
-
-  text.innerHTML = "";
-
-  await typeText(
-    text,
-    "> Preparing birthday surprise...",
-    65
-  );
-
-  await wait(1600);
+  await wait(1500);
 
 
   document.getElementById("processing")
     .classList.add("hidden");
 
-
-  document.getElementById("game")
+  document.getElementById("tasks")
     .classList.remove("hidden");
 
 }
 
 
-function balloonClicked() {
+/* FACE SCAN */
 
-  var balloon =
+async function faceScan(){
+
+  var scan=
+    document.getElementById("scanFace");
+
+  var result=
+    document.getElementById("taskResult1");
+
+
+  scan.classList.add("scanning");
+
+  scan.innerHTML="😳";
+
+
+  showToast("Scanning... please smile 😁");
+
+
+  await wait(1000);
+
+
+  scan.innerHTML="😂";
+
+
+  await wait(700);
+
+
+  scan.classList.remove("scanning");
+
+
+  result.innerHTML=
+    "❌ ERROR! Itni cute candidate database mein nahi mil rahi. 😂<br><br>" +
+    "System ne manually approve kar diya. ❤️";
+
+
+  showToast(
+    "✅ Urwa detected! 😂❤️"
+  );
+
+
+  setTimeout(function(){
+
+    nextTask(2);
+
+  },1800);
+
+}
+
+
+/* IQ */
+
+function iqAnswer(){
+
+  var result=
+    document.getElementById("taskResult2");
+
+
+  result.innerHTML=
+    "🧠 Calculating IQ...<br>" +
+    "Processing...<br>" +
+    "Result: <strong>Birthday Girl = Always Correct</strong> 😂";
+
+
+  showToast(
+    "IQ test successfully confused. 😂"
+  );
+
+
+  setTimeout(function(){
+
+    nextTask(3);
+
+  },2000);
+
+}
+
+
+/* LAUGH TEST */
+
+var laughTimer;
+var laughTime=5;
+
+
+function startLaughTest(){
+
+  var button=
+    document.getElementById("laughButton");
+
+  var timer=
+    document.getElementById("timer");
+
+  var result=
+    document.getElementById("taskResult3");
+
+
+  button.disabled=true;
+
+  button.innerHTML=
+    "DON'T LAUGH! 😐";
+
+
+  laughTime=5;
+
+  timer.innerHTML=laughTime;
+
+
+  laughTimer=setInterval(function(){
+
+    laughTime--;
+
+    timer.innerHTML=laughTime;
+
+
+    if(laughTime<=0){
+
+      clearInterval(laughTimer);
+
+
+      timer.innerHTML="😂";
+
+
+      result.innerHTML=
+        "❌ Lie Detected!<br>" +
+        "System ne tumhari imaginary smile detect kar li. 😂<br><br>" +
+        "Penalty: Ek extra birthday wish. ❤️";
+
+
+      showToast(
+        "HAHA! Challenge failed 😂"
+      );
+
+
+      setTimeout(function(){
+
+        nextTask(4);
+
+      },2200);
+
+    }
+
+  },1000);
+
+}
+
+
+/* CAKE */
+
+function saveCake(){
+
+  var result=
+    document.getElementById("taskResult4");
+
+
+  result.innerHTML=
+    "🚨 Cake rescue successful! 🎂<br><br>" +
+    "😂 Relax... cake actually safe tha.<br>" +
+    "Bas tumhara reaction check kar raha tha. 👀";
+
+
+  showToast(
+    "🎂 CAKE SAVED! HERO DETECTED! 😂"
+  );
+
+
+  setTimeout(function(){
+
+    showBalloon();
+
+  },2200);
+
+}
+
+
+/* NEXT TASK */
+
+function nextTask(number){
+
+  document
+    .getElementById("task"+currentTask)
+    .classList.add("hidden");
+
+
+  currentTask=number;
+
+
+  document
+    .getElementById("task"+number)
+    .classList.remove("hidden");
+
+
+  document
+    .getElementById("taskNumber")
+    .innerHTML=
+      "TASK 0"+number+" / 04";
+
+
+  document
+    .getElementById("progressBar")
+    .style.width=
+      (number*25)+"%";
+
+}
+
+
+/* BALLOON SCREEN */
+
+function showBalloon(){
+
+  document
+    .getElementById("tasks")
+    .classList.add("hidden");
+
+
+  document
+    .getElementById("balloonScreen")
+    .classList.remove("hidden");
+
+}
+
+
+/* BALLOON GAME */
+
+var balloonClicks=0;
+
+
+function balloonClick(){
+
+  var balloon=
     document.getElementById("balloon");
 
-  var funny =
-    document.getElementById("funnyText");
+  var message=
+    document.getElementById("balloonMessage");
 
 
   balloonClicks++;
 
 
-  /* FIRST CLICK */
+  /* FIRST */
 
-  if (balloonClicks === 1) {
+  if(balloonClicks===1){
 
-    funny.innerHTML =
-      funnyMessages[0];
-
-    balloon.style.left = "25%";
-    balloon.style.top = "70px";
-
-  }
+    message.innerHTML=
+      "😂 HAHA! Pakar liya? Itni jaldi nahi!";
 
 
-  /* SECOND CLICK */
+    balloon.style.left="22%";
+    balloon.style.top="70px";
 
-  else if (balloonClicks === 2) {
 
-    funny.innerHTML =
-      funnyMessages[1];
-
-    balloon.style.left = "72%";
-    balloon.style.top = "210px";
+    showToast(
+      "Balloon bhaag gaya! 😂🎈"
+    );
 
   }
 
 
-  /* THIRD CLICK */
+  /* SECOND */
 
-  else if (balloonClicks === 3) {
+  else if(balloonClicks===2){
 
-    funny.innerHTML =
-      funnyMessages[2];
+    message.innerHTML=
+      "Oho! Dobara? 😂 Ab tum seriously determined ho.";
 
-    balloon.style.left = "50%";
-    balloon.style.top = "35px";
+
+    balloon.style.left="76%";
+    balloon.style.top="220px";
+
+
+    showToast(
+      "HAHA! Phir miss! 🎈😂"
+    );
 
   }
 
 
-  /* FOURTH CLICK = POP */
+  /* THIRD */
 
-  else if (balloonClicks === 4) {
+  else if(balloonClicks===3){
 
-    funny.innerHTML =
-      funnyMessages[3];
+    message.innerHTML=
+      "Bas bas... ab main nahi bhaagunga. Promise. 👀";
+
+
+    balloon.style.left="50%";
+    balloon.style.top="45px";
+
+
+    showToast(
+      "Last chance... maybe. 😏"
+    );
+
+  }
+
+
+  /* FOURTH = POP */
+
+  else if(balloonClicks===4){
+
+    message.innerHTML=
+      "💥 OH NOOOOO!";
+
+
+    balloon.classList.remove("float");
 
     balloon.classList.add("pop");
+
 
     createConfetti();
 
 
-    setTimeout(function() {
+    setTimeout(function(){
 
-      document.getElementById("game")
+      document
+        .getElementById("balloonScreen")
         .classList.add("hidden");
 
 
-      document.getElementById("final")
+      document
+        .getElementById("final")
         .classList.remove("hidden");
 
 
       createConfetti();
       createConfetti();
 
-    }, 900);
+    },900);
 
   }
 
 }
 
 
-function createConfetti() {
+/* CONFETTI */
 
-  for (var i = 0; i < 30; i++) {
+function createConfetti(){
 
-    var piece =
+  for(var i=0;i<45;i++){
+
+    var piece=
       document.createElement("div");
 
-    piece.className = "confetti";
+
+    piece.className="confetti";
 
 
-    piece.style.left =
-      Math.random() * 100 + "vw";
+    piece.style.left=
+      Math.random()*100+"vw";
 
 
-    var colors = [
-
+    var colors=[
       "#ff65ae",
       "#ffd166",
       "#7ee787",
       "#79c0ff",
-      "#c084fc"
-
+      "#c084fc",
+      "#ffffff"
     ];
 
 
-    piece.style.background =
+    piece.style.background=
       colors[
         Math.floor(
-          Math.random() * colors.length
+          Math.random()*colors.length
         )
       ];
 
 
-    piece.style.animationDuration =
-      (2 + Math.random() * 3) + "s";
+    piece.style.animationDuration=
+      (2+Math.random()*3)+"s";
 
 
     document.body.appendChild(piece);
 
 
-    setTimeout(function() {
+    setTimeout(function(){
 
       piece.remove();
 
-    }, 5000);
+    },5000);
 
   }
 
@@ -780,5 +1534,3 @@ function createConfetti() {
 
 </body>
 </html>
-```
-
