@@ -1,527 +1,990 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Urwa Birthday.exe ❤️</title>
+<title>Urwa's Birthday Adventure ❤️</title>
 
 <style>
 
+/* =========================
+   DREAMY BIRTHDAY GARDEN
+========================= */
+
 *{
-  box-sizing:border-box;
+    box-sizing:border-box;
+}
+
+html,body{
+    margin:0;
+    padding:0;
+    min-height:100%;
 }
 
 body{
-  margin:0;
-  min-height:100vh;
-  background:
-    radial-gradient(circle at 20% 20%,#482040 0%,transparent 30%),
-    radial-gradient(circle at 80% 80%,#302052 0%,transparent 30%),
-    #09070d;
-  color:white;
-  font-family:"Courier New",monospace;
-  overflow-x:hidden;
+    font-family:Georgia, "Times New Roman", serif;
+    color:#fff;
+    overflow-x:hidden;
+
+    background:
+        radial-gradient(circle at 15% 15%, #ffb6d933 0 8%, transparent 28%),
+        radial-gradient(circle at 85% 25%, #c4a1ff33 0 8%, transparent 30%),
+        radial-gradient(circle at 50% 100%, #ff8fc522 0 10%, transparent 40%),
+        linear-gradient(135deg,#24122f,#43234e 45%,#20142f);
 }
 
-body:before{
-  content:"";
-  position:fixed;
-  inset:0;
-  background-image:
-    radial-gradient(#ffffff55 1px,transparent 1px);
-  background-size:45px 45px;
-  opacity:.18;
-  pointer-events:none;
+/* stars */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    opacity:.55;
+
+    background-image:
+        radial-gradient(circle,#fff 1px,transparent 1.5px),
+        radial-gradient(circle,#ffd8ec 1px,transparent 1.5px),
+        radial-gradient(circle,#d9c7ff 1px,transparent 1.5px);
+
+    background-size:
+        90px 90px,
+        140px 140px,
+        190px 190px;
+
+    background-position:
+        10px 20px,
+        40px 80px,
+        90px 30px;
+
+    animation:starsMove 18s linear infinite;
 }
 
-.app{
-  width:92%;
-  max-width:780px;
-  margin:35px auto;
-  background:rgba(15,11,22,.94);
-  border:1px solid #ff8fc955;
-  border-radius:24px;
-  overflow:hidden;
-  box-shadow:
-    0 0 70px #ff4fa522,
-    0 20px 60px #000;
-  position:relative;
-  z-index:2;
+@keyframes starsMove{
+    from{
+        transform:translateY(0);
+    }
+    to{
+        transform:translateY(40px);
+    }
 }
 
-.topbar{
-  height:48px;
-  background:#17121e;
-  display:flex;
-  align-items:center;
-  padding:0 18px;
-  border-bottom:1px solid #ffffff0c;
+/* floating decorations */
+
+.decor{
+    position:fixed;
+    pointer-events:none;
+    z-index:0;
+    opacity:.7;
+    animation:floatDecor 6s ease-in-out infinite;
 }
 
-.dot{
-  width:13px;
-  height:13px;
-  border-radius:50%;
-  margin-right:8px;
+.flower1{
+    left:5%;
+    top:20%;
+    font-size:34px;
 }
 
-.red{background:#ff5f56;}
-.yellow{background:#ffbd2e;}
-.green{background:#27c93f;}
-
-.fileName{
-  margin-left:auto;
-  margin-right:auto;
-  color:#8e8493;
-  font-size:12px;
+.flower2{
+    right:6%;
+    top:30%;
+    font-size:30px;
+    animation-delay:1s;
 }
 
-.content{
-  padding:35px 25px 50px;
-  min-height:680px;
+.flower3{
+    left:8%;
+    bottom:15%;
+    font-size:28px;
+    animation-delay:2s;
 }
 
-.center{
-  text-align:center;
+.flower4{
+    right:8%;
+    bottom:18%;
+    font-size:34px;
+    animation-delay:3s;
 }
 
-.logo{
-  font-size:50px;
-  animation:pulse 2s infinite;
+@keyframes floatDecor{
+    0%,100%{
+        transform:translateY(0) rotate(0);
+    }
+    50%{
+        transform:translateY(-20px) rotate(8deg);
+    }
 }
 
-@keyframes pulse{
-  50%{transform:scale(1.08);}
+/* moon */
+
+.moon{
+    position:fixed;
+    top:45px;
+    right:8%;
+    width:75px;
+    height:75px;
+    border-radius:50%;
+    background:#fff3c7;
+    box-shadow:
+        0 0 25px #ffe9a866,
+        0 0 70px #ffe9a822;
+    z-index:0;
 }
 
-h1{
-  font-family:Arial,sans-serif;
-  color:#ff9ed2;
-  font-size:34px;
-  margin:15px 0;
+.moon::after{
+    content:"";
+    position:absolute;
+    width:75px;
+    height:75px;
+    border-radius:50%;
+    background:#2d1839;
+    left:-23px;
+    top:-9px;
 }
 
-h2{
-  font-family:Arial,sans-serif;
-  color:#ffd0e7;
+
+/* main card */
+
+.wrapper{
+    width:92%;
+    max-width:820px;
+    margin:45px auto;
+    position:relative;
+    z-index:2;
+}
+
+.card{
+    min-height:700px;
+    padding:45px 32px 55px;
+
+    border-radius:35px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.13),
+            rgba(255,255,255,.045)
+        );
+
+    border:1px solid rgba(255,255,255,.20);
+
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.35),
+        inset 0 1px 0 rgba(255,255,255,.20);
+}
+
+
+/* top decoration */
+
+.top{
+    text-align:center;
+    margin-bottom:20px;
+}
+
+.smallTitle{
+    letter-spacing:4px;
+    text-transform:uppercase;
+    font-size:12px;
+    color:#ffd8eb;
+}
+
+.title{
+    margin:12px 0;
+    font-size:clamp(34px,7vw,58px);
+    font-weight:normal;
+    color:#fff4fa;
+
+    text-shadow:
+        0 4px 20px #ff9dcc55;
 }
 
 .subtitle{
-  color:#cbbdca;
-  font-family:Arial,sans-serif;
-  line-height:1.8;
+    color:#eadbea;
+    font-family:Arial,sans-serif;
+    line-height:1.8;
+    font-size:15px;
 }
 
-input{
-  width:100%;
-  max-width:470px;
-  padding:16px;
-  margin-top:22px;
-  border-radius:14px;
-  border:1px solid #ff8fc944;
-  background:#08070b;
-  color:white;
-  font-size:16px;
-  outline:none;
+
+/* heart */
+
+.bigHeart{
+    font-size:75px;
+    display:inline-block;
+
+    filter:
+        drop-shadow(0 0 18px #ff80b8aa);
+
+    animation:heartBeat 1.5s infinite;
 }
 
-input:focus{
-  border-color:#ff9ed2;
-  box-shadow:0 0 20px #ff65ae22;
+@keyframes heartBeat{
+    0%,100%{
+        transform:scale(1);
+    }
+
+    50%{
+        transform:scale(1.13);
+    }
 }
 
-button{
-  border:0;
-  padding:14px 28px;
-  margin:18px 6px;
-  border-radius:30px;
-  color:white;
-  font-weight:bold;
-  font-size:15px;
-  background:linear-gradient(135deg,#ff65ae,#9b62ff);
-  cursor:pointer;
-  transition:.25s;
-  box-shadow:0 8px 20px #0005;
+
+/* input */
+
+.nameInput{
+    display:block;
+    width:100%;
+    max-width:430px;
+    margin:25px auto 10px;
+
+    padding:16px 20px;
+
+    border-radius:50px;
+
+    border:1px solid #ffffff33;
+
+    background:#ffffff0c;
+
+    color:white;
+
+    text-align:center;
+
+    outline:none;
+
+    font-size:16px;
+
+    font-family:Georgia,serif;
 }
 
-button:hover{
-  transform:translateY(-3px) scale(1.04);
-  box-shadow:0 10px 30px #ff65ae44;
+.nameInput::placeholder{
+    color:#e8cfe0;
 }
 
-button:active{
-  transform:scale(.94);
+.nameInput:focus{
+    border-color:#ffafd2;
+    box-shadow:0 0 25px #ff8fc833;
 }
+
+
+/* buttons */
+
+.btn{
+    border:0;
+    padding:15px 32px;
+
+    border-radius:50px;
+
+    color:#4b2149;
+
+    font-size:15px;
+    font-weight:bold;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffd3e8,
+            #e5c6ff
+        );
+
+    cursor:pointer;
+
+    box-shadow:
+        0 10px 30px #0003,
+        0 0 20px #ffb3d522;
+
+    transition:.3s;
+
+    font-family:Arial,sans-serif;
+}
+
+.btn:hover{
+    transform:translateY(-4px) scale(1.03);
+
+    box-shadow:
+        0 15px 35px #0004,
+        0 0 30px #ffafd255;
+}
+
+.btn:active{
+    transform:scale(.95);
+}
+
+
+/* divider */
+
+.divider{
+    width:90px;
+    height:2px;
+    margin:25px auto;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #ffc3de,
+            transparent
+        );
+}
+
+
+/* hidden */
 
 .hidden{
-  display:none!important;
+    display:none !important;
 }
 
-/* TERMINAL */
 
-.terminal{
-  min-height:280px;
-  color:#7ee787;
-  line-height:2;
-  font-size:15px;
-  white-space:pre-line;
+/* adventure */
+
+.adventureHeader{
+    text-align:center;
+    margin-bottom:25px;
 }
 
-.blue{
-  color:#79c0ff;
+.adventureHeader h2{
+    margin:5px 0;
+    font-weight:normal;
+    font-size:29px;
+    color:#ffe7f3;
 }
 
-.pink{
-  color:#ff9ed2;
+.adventureHeader p{
+    color:#d9c8db;
+    font-family:Arial,sans-serif;
+    font-size:14px;
 }
 
-.yellowText{
-  color:#ffd166;
+
+/* progress */
+
+.progressWrap{
+    width:100%;
+    max-width:480px;
+    margin:20px auto 30px;
 }
 
-/* TASK */
-
-.taskTop{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:20px;
-}
-
-.taskNumber{
-  color:#ff9ed2;
-  font-size:13px;
+.progressInfo{
+    display:flex;
+    justify-content:space-between;
+    color:#e8d3e5;
+    font-size:12px;
+    margin-bottom:8px;
 }
 
 .progress{
-  width:45%;
-  height:7px;
-  background:#27202c;
-  border-radius:20px;
-  overflow:hidden;
+    height:8px;
+    border-radius:20px;
+    background:#ffffff13;
+    overflow:hidden;
 }
 
 .progressBar{
-  height:100%;
-  width:25%;
-  background:linear-gradient(90deg,#ff65ae,#bd62ff);
-  transition:.5s;
+    height:100%;
+    width:25%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ff9fc9,
+            #d7b5ff
+        );
+
+    border-radius:20px;
+
+    box-shadow:0 0 15px #ffabd555;
+
+    transition:.5s;
 }
 
-.taskCard{
-  padding:30px 20px;
-  border:1px solid #ff9ed222;
-  border-radius:22px;
-  background:
-    linear-gradient(145deg,#ffffff06,#ff65ae05);
-  box-shadow:
-    inset 0 0 40px #ff65ae05,
-    0 15px 40px #0005;
-  animation:cardIn .5s ease;
+
+/* task card */
+
+.task{
+    text-align:center;
+
+    padding:35px 25px;
+
+    border-radius:30px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.12),
+            rgba(255,255,255,.035)
+        );
+
+    border:1px solid #ffffff1c;
+
+    box-shadow:
+        inset 0 1px #ffffff14,
+        0 20px 45px #0002;
+
+    animation:taskAppear .6s ease;
 }
 
-@keyframes cardIn{
-  from{
-    opacity:0;
-    transform:translateY(20px) scale(.97);
-  }
-  to{
-    opacity:1;
-    transform:none;
-  }
+@keyframes taskAppear{
+    from{
+        opacity:0;
+        transform:translateY(25px) scale(.97);
+    }
+
+    to{
+        opacity:1;
+        transform:none;
+    }
 }
 
 .taskIcon{
-  font-size:60px;
+    font-size:65px;
+
+    filter:
+        drop-shadow(0 8px 15px #0003);
 }
 
-.taskTitle{
-  font-family:Arial,sans-serif;
-  font-size:24px;
-  color:#ffd1e7;
-  margin:15px 0;
+.task h3{
+    margin:15px 0 12px;
+
+    font-size:26px;
+    font-weight:normal;
+
+    color:#ffe5f1;
 }
 
 .taskText{
-  color:#c9bec9;
-  font-family:Arial,sans-serif;
-  line-height:1.8;
+    font-family:Arial,sans-serif;
+    line-height:1.8;
+    color:#dfd0df;
 }
 
-.bigButton{
-  min-width:210px;
+.taskText strong{
+    color:#ffd2e7;
 }
+
+
+/* task options */
+
+.choiceGrid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:14px;
+
+    max-width:520px;
+    margin:25px auto;
+}
+
+.choice{
+    padding:16px;
+
+    border-radius:18px;
+
+    border:1px solid #ffffff18;
+
+    background:#ffffff09;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    font-family:Arial,sans-serif;
+}
+
+.choice:hover{
+    background:#ffb2d51b;
+    transform:translateY(-3px);
+    border-color:#ffb4d955;
+}
+
+
+/* running button */
+
+.runArea{
+    position:relative;
+    height:170px;
+    max-width:520px;
+    margin:auto;
+    overflow:hidden;
+}
+
+.runButton{
+    position:absolute;
+
+    left:50%;
+    top:60px;
+
+    transform:translateX(-50%);
+
+    white-space:nowrap;
+}
+
+
+/* cake */
+
+.cakeArea{
+    position:relative;
+    height:170px;
+    margin:10px auto;
+    max-width:500px;
+}
+
+.cake{
+    position:absolute;
+    font-size:75px;
+    cursor:pointer;
+    transition:.45s;
+    user-select:none;
+}
+
+.cake:hover{
+    transform:scale(1.15);
+}
+
+
+/* doors */
+
+.doors{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    margin:25px auto;
+    flex-wrap:wrap;
+}
+
+.door{
+    width:110px;
+    height:150px;
+
+    border-radius:12px 12px 5px 5px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #7d4c78,
+            #4a2c52
+        );
+
+    border:2px solid #dca6cf;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:45px;
+
+    cursor:pointer;
+
+    transition:.35s;
+
+    box-shadow:
+        inset 0 0 20px #0004,
+        0 10px 25px #0003;
+}
+
+.door:hover{
+    transform:translateY(-8px);
+    box-shadow:
+        0 15px 30px #0005,
+        0 0 20px #e4a9d855;
+}
+
+
+/* secret password */
+
+.password{
+    width:100%;
+    max-width:380px;
+    margin:20px auto;
+
+    padding:15px 18px;
+
+    border-radius:50px;
+
+    border:1px solid #ffffff22;
+
+    background:#ffffff09;
+
+    color:white;
+
+    outline:none;
+
+    text-align:center;
+
+    font-size:16px;
+}
+
+
+/* result */
 
 .result{
-  min-height:75px;
-  margin-top:10px;
-  color:#ffd166;
-  font-family:Arial,sans-serif;
-  line-height:1.6;
+    min-height:45px;
+    margin-top:18px;
+
+    color:#ffd7e9;
+
+    font-family:Arial,sans-serif;
+    line-height:1.6;
 }
 
-/* FACE SCAN */
 
-.scanBox{
-  width:160px;
-  height:160px;
-  margin:20px auto;
-  border:2px solid #ff78b8;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:65px;
-  box-shadow:0 0 35px #ff65ae33;
+/* balloon level */
+
+.balloonLevel{
+    text-align:center;
+    animation:taskAppear .8s ease;
 }
 
-.scanning{
-  animation:scan 1s infinite;
+.balloonLevel h2{
+    font-size:34px;
+    font-weight:normal;
+    color:#ffe5f3;
 }
 
-@keyframes scan{
-  50%{
-    box-shadow:
-      0 0 10px #ff65ae,
-      0 0 60px #ff65ae;
-  }
-}
-
-/* IQ */
-
-.options{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:12px;
-  max-width:500px;
-  margin:20px auto;
-}
-
-.option{
-  padding:15px;
-  border:1px solid #ffffff15;
-  border-radius:14px;
-  background:#ffffff06;
-  cursor:pointer;
-  transition:.25s;
-  font-family:Arial,sans-serif;
-}
-
-.option:hover{
-  background:#ff65ae18;
-  transform:scale(1.03);
-}
-
-/* DONT LAUGH */
-
-.timer{
-  font-size:52px;
-  color:#ff9ed2;
-  margin:15px;
-}
-
-/* EMERGENCY */
-
-.emergency{
-  font-size:65px;
-  animation:shake .6s infinite;
-}
-
-@keyframes shake{
-  0%,100%{transform:rotate(0);}
-  25%{transform:rotate(-4deg);}
-  75%{transform:rotate(4deg);}
-}
-
-.redButton{
-  background:linear-gradient(135deg,#ff3d5a,#ff6b35);
-}
-
-/* BALLOON */
-
-.balloonScreen{
-  animation:fadeIn .7s ease;
-}
-
-@keyframes fadeIn{
-  from{opacity:0;}
-  to{opacity:1;}
+.balloonLevel p{
+    color:#dfd0df;
+    font-family:Arial,sans-serif;
+    line-height:1.8;
 }
 
 .warning{
-  color:#ff7272;
-  font-family:Arial,sans-serif;
-  font-weight:bold;
-  font-size:18px;
+    color:#ffb3cb !important;
+    font-weight:bold;
 }
+
+
+/* balloon area */
 
 .balloonArea{
-  height:390px;
-  position:relative;
-  overflow:hidden;
-  border-radius:20px;
-  margin-top:20px;
-  background:
-    radial-gradient(circle at 50% 40%,#ff65ae0d,transparent 50%);
+    position:relative;
+    height:390px;
+
+    overflow:hidden;
+
+    margin-top:20px;
+
+    border-radius:25px;
+
+    background:
+        radial-gradient(
+            circle at 50% 50%,
+            #ffb5d718,
+            transparent 55%
+        );
 }
 
+
+/* balloon */
+
 .balloon{
-  position:absolute;
-  width:95px;
-  height:120px;
-  border-radius:50%;
-  cursor:pointer;
-  left:50%;
-  top:130px;
-  transform:translateX(-50%);
-  transition:
-    left .5s ease,
-    top .5s ease,
-    transform .3s ease;
-  box-shadow:
-    inset -15px -15px 25px #0002,
-    0 10px 30px #0005;
+    position:absolute;
+
+    width:95px;
+    height:120px;
+
+    left:50%;
+    top:125px;
+
+    transform:translateX(-50%);
+
+    border-radius:50%;
+
+    background:
+        radial-gradient(
+            circle at 30% 25%,
+            #fff6,
+            transparent 20%
+        ),
+        linear-gradient(
+            145deg,
+            #ff8dbd,
+            #c57cff
+        );
+
+    cursor:pointer;
+
+    box-shadow:
+        inset -15px -18px 25px #0002,
+        0 15px 30px #0004,
+        0 0 30px #ff9ec955;
+
+    transition:
+        left .55s ease,
+        top .55s ease,
+        transform .3s ease;
 }
 
 .balloon:hover{
-  transform:translateX(-50%) scale(1.08);
+    transform:
+        translateX(-50%)
+        scale(1.08);
 }
 
-.balloon:after{
-  content:"";
-  position:absolute;
-  width:2px;
-  height:135px;
-  background:#aaa;
-  top:118px;
-  left:47px;
+.balloon::after{
+    content:"";
+
+    position:absolute;
+
+    width:2px;
+    height:145px;
+
+    background:#d8c8d5;
+
+    left:47px;
+    top:117px;
 }
 
-.balloon:before{
-  content:"";
-  position:absolute;
-  bottom:-7px;
-  left:39px;
-  border-left:9px solid transparent;
-  border-right:9px solid transparent;
-  border-top:13px solid currentColor;
+.balloon::before{
+    content:"";
+
+    position:absolute;
+
+    left:38px;
+    bottom:-8px;
+
+    border-left:9px solid transparent;
+    border-right:9px solid transparent;
+    border-top:14px solid #c57cff;
 }
 
-.float{
-  animation:float 2s ease-in-out infinite;
+.balloonFloat{
+    animation:balloonFloat 2s ease-in-out infinite;
 }
 
-@keyframes float{
-  50%{
-    margin-top:-15px;
-  }
+@keyframes balloonFloat{
+    50%{
+        margin-top:-13px;
+    }
 }
+
+
+/* pop */
 
 .pop{
-  animation:pop .5s forwards!important;
+    animation:balloonPop .5s forwards !important;
 }
 
-@keyframes pop{
-  40%{
-    transform:translateX(-50%) scale(1.4);
-  }
-  100%{
-    transform:translateX(-50%) scale(0);
-    opacity:0;
-  }
+@keyframes balloonPop{
+    0%{
+        transform:translateX(-50%) scale(1);
+    }
+
+    45%{
+        transform:translateX(-50%) scale(1.5);
+    }
+
+    100%{
+        transform:translateX(-50%) scale(0);
+        opacity:0;
+    }
 }
 
-/* FINAL */
+
+/* final */
 
 .final{
-  text-align:center;
-  font-family:Arial,sans-serif;
+    text-align:center;
+    animation:taskAppear .8s ease;
 }
 
-.finalHeart{
-  font-size:85px;
-  animation:pulse 1s infinite;
-  filter:drop-shadow(0 0 25px #ff65ae);
+.final .crown{
+    font-size:60px;
 }
 
-.final h2{
-  color:#ff9ed2;
-  font-size:38px;
+.final h1{
+    font-size:clamp(36px,8vw,60px);
+    margin:10px 0;
+
+    color:#fff0f8;
 }
 
-.final p{
-  color:#eee4ec;
-  font-size:17px;
-  line-height:1.9;
+.finalDate{
+    display:inline-block;
+
+    padding:10px 22px;
+
+    border-radius:50px;
+
+    background:#ffffff0d;
+
+    border:1px solid #ffffff18;
+
+    color:#ffd3e7;
+
+    margin:10px 0 25px;
+}
+
+.finalMessage{
+    max-width:650px;
+    margin:auto;
+
+    font-family:Arial,sans-serif;
+
+    color:#eee1ed;
+
+    line-height:2;
+
+    font-size:16px;
 }
 
 .signature{
-  color:#ff9ed2;
-  font-size:19px;
-  font-weight:bold;
-  margin-top:30px;
+    margin-top:30px;
+
+    font-family:cursive;
+
+    color:#ffd0e6;
+
+    font-size:25px;
 }
 
-/* CONFETTI */
+
+/* confetti */
 
 .confetti{
-  position:fixed;
-  top:-20px;
-  width:8px;
-  height:14px;
-  z-index:99;
-  animation:fall 4s linear forwards;
+    position:fixed;
+
+    top:-20px;
+
+    width:8px;
+    height:14px;
+
+    z-index:99;
+
+    animation:confettiFall 4s linear forwards;
 }
 
-@keyframes fall{
-  to{
-    transform:translateY(110vh) rotate(720deg);
-  }
+@keyframes confettiFall{
+    to{
+        transform:
+            translateY(110vh)
+            rotate(720deg);
+    }
 }
 
-/* TOAST */
+
+/* floating hearts */
+
+.floatHeart{
+    position:fixed;
+
+    bottom:-30px;
+
+    font-size:18px;
+
+    z-index:1;
+
+    animation:heartFloat 7s linear forwards;
+
+    pointer-events:none;
+}
+
+@keyframes heartFloat{
+    from{
+        transform:
+            translateY(0)
+            rotate(0);
+        opacity:0;
+    }
+
+    15%{
+        opacity:.8;
+    }
+
+    to{
+        transform:
+            translateY(-110vh)
+            rotate(25deg);
+        opacity:0;
+    }
+}
+
+
+/* toast */
 
 .toast{
-  position:fixed;
-  left:50%;
-  bottom:25px;
-  transform:translateX(-50%) translateY(100px);
-  background:#211826;
-  border:1px solid #ff9ed255;
-  padding:15px 22px;
-  border-radius:30px;
-  color:#ffd9e9;
-  z-index:100;
-  opacity:0;
-  transition:.4s;
-  box-shadow:0 10px 40px #0008;
-  font-family:Arial,sans-serif;
+    position:fixed;
+
+    left:50%;
+    bottom:25px;
+
+    transform:
+        translateX(-50%)
+        translateY(100px);
+
+    background:#3b2141ee;
+
+    border:1px solid #ffc0dd55;
+
+    padding:14px 22px;
+
+    border-radius:50px;
+
+    color:#ffe8f2;
+
+    z-index:200;
+
+    opacity:0;
+
+    transition:.4s;
+
+    box-shadow:0 15px 40px #0006;
+
+    font-family:Arial,sans-serif;
+
+    text-align:center;
+
+    max-width:90%;
 }
 
 .toast.show{
-  transform:translateX(-50%) translateY(0);
-  opacity:1;
+    transform:
+        translateX(-50%)
+        translateY(0);
+
+    opacity:1;
 }
 
-@media(max-width:550px){
 
-  h1{
-    font-size:27px;
-  }
+/* mobile */
 
-  .content{
-    padding:25px 17px 40px;
-  }
+@media(max-width:600px){
 
-  .options{
-    grid-template-columns:1fr;
-  }
+    .wrapper{
+        width:94%;
+        margin:25px auto;
+    }
 
-  .balloon{
-    width:80px;
-    height:105px;
-  }
+    .card{
+        padding:35px 17px 45px;
+        border-radius:27px;
+    }
+
+    .moon{
+        width:55px;
+        height:55px;
+        right:5%;
+        top:25px;
+    }
+
+    .moon::after{
+        width:55px;
+        height:55px;
+        left:-17px;
+    }
+
+    .choiceGrid{
+        grid-template-columns:1fr;
+    }
+
+    .door{
+        width:90px;
+        height:125px;
+    }
+
+    .balloonArea{
+        height:350px;
+    }
 
 }
 
@@ -531,1004 +994,1108 @@ button:active{
 
 <body>
 
-<div class="app">
 
-  <div class="topbar">
+<div class="moon"></div>
 
-    <span class="dot red"></span>
-    <span class="dot yellow"></span>
-    <span class="dot green"></span>
-
-    <span class="fileName">
-      URWA_BIRTHDAY.exe
-    </span>
-
-  </div>
+<div class="decor flower1">🌸</div>
+<div class="decor flower2">✨</div>
+<div class="decor flower3">🌷</div>
+<div class="decor flower4">💫</div>
 
 
-  <div class="content">
+<div class="wrapper">
+
+<div class="card">
 
 
-    <!-- START -->
+<!-- ================= START ================= -->
 
-    <div id="start" class="center">
+<section id="start" class="center">
 
-      <div class="logo">🎂</div>
+    <div class="bigHeart">
+        💗
+    </div>
 
-      <h1>
-        URWA'S BIRTHDAY.exe
-      </h1>
+    <div class="smallTitle">
+        A Magical Birthday Adventure
+    </div>
 
-      <div class="subtitle">
+    <div class="title">
+        Urwa's Special Day
+    </div>
 
-        Ek secret birthday program banaya gaya hai... 👀
+    <div class="divider"></div>
+
+    <div class="subtitle">
+
+        Aaj ki raat thori si magical hone wali hai... 🌙✨
+
         <br>
-        Lekin system ko pehle confirm karna hai
-        ke surprise sahi person ke liye hai. ❤️
 
-      </div>
+        16 June ko ek bohat special person ka
+        birthday hai. 🎂
+
+        <br><br>
+
+        Lekin surprise tak pohanchne ke liye
+        kuch funny challenges complete karne honge. 😏
+
+    </div>
 
 
-      <input
+    <input
         id="nameInput"
-        placeholder="Apna naam likho..."
-      >
-
-      <br>
-
-      <button onclick="startProgram()">
-        Start Surprise 🚀
-      </button>
-
-    </div>
-
-
-    <!-- PROCESSING -->
-
-    <div id="processing" class="hidden">
-
-      <div class="terminal" id="processText"></div>
-
-    </div>
-
-
-    <!-- TASKS -->
-
-    <div id="tasks" class="hidden">
-
-      <div class="taskTop">
-
-        <div
-          class="taskNumber"
-          id="taskNumber"
-        >
-          TASK 01 / 04
-        </div>
-
-        <div class="progress">
-          <div
-            id="progressBar"
-            class="progressBar"
-          ></div>
-        </div>
-
-      </div>
-
-
-      <!-- TASK 1 -->
-
-      <div
-        id="task1"
-        class="taskCard center"
-      >
-
-        <div class="taskIcon">
-          🔍
-        </div>
-
-        <div class="taskTitle">
-          Birthday Girl Verification
-        </div>
-
-        <div class="taskText">
-
-          System ko confirm karna hai
-          ke tum waqai Urwa ho... 👀
-
-          <br><br>
-
-          Please smile for the extremely
-          advanced AI scanner. 😁
-
-        </div>
-
-
-        <div
-          id="scanFace"
-          class="scanBox"
-        >
-          😐
-        </div>
-
-
-        <button
-          class="bigButton"
-          onclick="faceScan()"
-        >
-          SCAN MY FACE 🔍
-        </button>
-
-
-        <div
-          id="taskResult1"
-          class="result"
-        ></div>
-
-      </div>
-
-
-      <!-- TASK 2 -->
-
-      <div
-        id="task2"
-        class="taskCard center hidden"
-      >
-
-        <div class="taskIcon">
-          🧠
-        </div>
-
-        <div class="taskTitle">
-          Extremely Difficult IQ Test
-        </div>
-
-        <div class="taskText">
-
-          Ek bohat hi mushkil sawal hai...
-          <br>
-          Soch samajh kar answer dena. 😂
-
-          <br><br>
-
-          <strong>
-          Agar birthday girl ko cake mile,
-          to kya karna chahiye? 🎂
-          </strong>
-
-        </div>
-
-
-        <div class="options">
-
-          <div
-            class="option"
-            onclick="iqAnswer()"
-          >
-            A) Share karna
-          </div>
-
-          <div
-            class="option"
-            onclick="iqAnswer()"
-          >
-            B) Khud kha lena 😂
-          </div>
-
-          <div
-            class="option"
-            onclick="iqAnswer()"
-          >
-            C) Pehle picture 📸
-          </div>
-
-          <div
-            class="option"
-            onclick="iqAnswer()"
-          >
-            D) Sab correct 😎
-          </div>
-
-        </div>
-
-
-        <div
-          id="taskResult2"
-          class="result"
-        ></div>
-
-      </div>
-
-
-      <!-- TASK 3 -->
-
-      <div
-        id="task3"
-        class="taskCard center hidden"
-      >
-
-        <div class="taskIcon">
-          😂
-        </div>
-
-        <div class="taskTitle">
-          Don't Laugh Challenge
-        </div>
-
-        <div class="taskText">
-
-          Ab ek serious test hai.
-
-          <br><br>
-
-          Agle <strong>5 seconds</strong>
-          tak bilkul mat hansna. 😐
-
-        </div>
-
-
-        <div
-          id="timer"
-          class="timer"
-        >
-          5
-        </div>
-
-
-        <button
-          id="laughButton"
-          class="bigButton"
-          onclick="startLaughTest()"
-        >
-          I'M READY 😐
-        </button>
-
-
-        <div
-          id="taskResult3"
-          class="result"
-        ></div>
-
-      </div>
-
-
-      <!-- TASK 4 -->
-
-      <div
-        id="task4"
-        class="taskCard center hidden"
-      >
-
-        <div class="emergency">
-          🚨
-        </div>
-
-        <div class="taskTitle">
-          EMERGENCY ALERT!
-        </div>
-
-        <div class="taskText">
-
-          🚨 Birthday system mein serious problem!
-
-          <br><br>
-
-          <strong>
-          KISI NE CAKE CHURA LIYA HAI! 😭🎂
-          </strong>
-
-          <br><br>
-
-          Emergency button dabao
-          aur cake ko bachao!
-
-        </div>
-
-
-        <button
-          class="redButton bigButton"
-          onclick="saveCake()"
-        >
-          SAVE THE CAKE 🚨
-        </button>
-
-
-        <div
-          id="taskResult4"
-          class="result"
-        ></div>
-
-      </div>
-
-    </div>
-
-
-    <!-- BALLOON -->
-
-    <div
-      id="balloonScreen"
-      class="hidden balloonScreen"
+        class="nameInput"
+        type="text"
+        placeholder="Pehle apna naam likho... 💕"
     >
 
-      <div class="center">
 
-        <div class="logo">
-          🎈
-        </div>
-
-        <h1>
-          FINAL SECURITY CHECK
-        </h1>
-
-        <div class="subtitle">
-
-          Congratulations! 🎉
-          <br>
-          Tumne saare impossible tasks complete kar liye.
-
-          <br><br>
-
-          Lekin system ne ek suspicious
-          balloon detect kiya hai...
-
-        </div>
-
-        <p class="warning">
-
-          ⚠️ DO NOT TOUCH THE BALLOON. ⚠️
-
-        </p>
-
-        <div
-          id="balloonMessage"
-          class="yellowText"
-        >
-          Seriously... isko touch mat karna. 👀
-        </div>
-
-      </div>
-
-
-      <div class="balloonArea">
-
-        <div
-          id="balloon"
-          class="balloon float"
-          onclick="balloonClick()"
-          style="
-            background:#ff5c9d;
-            color:#ff5c9d;
-          "
-        ></div>
-
-      </div>
-
-    </div>
-
-
-    <!-- FINAL -->
-
-    <div
-      id="final"
-      class="hidden final"
+    <button
+        class="btn"
+        onclick="startAdventure()"
     >
+        Start The Adventure ✨
+    </button>
 
-      <div class="finalHeart">
-        ❤️
-      </div>
-
-      <h2>
-        🎉 Happy Birthday Urwa! 🎂
-      </h2>
+</section>
 
 
-      <p>
 
-        Hahaha... 😂
-        <br><br>
+<!-- ================= ADVENTURE ================= -->
 
-        Tumne tasks complete kiye,
-        emergency mein cake bachaya,
-        aur phir balloon ko bhi
-        aakhir pakar liya. 🎈😂
-
-        <br><br>
-
-        Lekin ab asli baat...
-
-        <br><br>
-
-        <strong>
-        16 June
-        </strong>
-        mere liye ek special date hai,
-        kyun ke isi din ek bohat achi dost
-        duniya mein aayi. 🌸
-
-        <br><br>
-
-        Dua hai tumhari zindagi hamesha
-        khushiyon, success, sukoon
-        aur beautiful memories se bhari rahe. ✨
-
-        <br><br>
-
-        Tum hamesha khush raho,
-        smile karti raho,
-        aur life mein jo bhi acha chahti ho,
-        Allah tumhein woh sab ata kare. ❤️
-
-        <br><br>
-
-        <strong>
-        Happy Birthday once again, Urwa! 🎂❤️
-        </strong>
-
-      </p>
+<section
+    id="adventure"
+    class="hidden"
+>
 
 
-      <div class="signature">
+<div class="adventureHeader">
 
-        With best wishes,<br>
-        Kashif ❤️
-
-      </div>
-
+    <div class="smallTitle">
+        ✨ Birthday Adventure ✨
     </div>
 
+    <h2>
+        Chalo dekhein surprise kitna door hai...
+    </h2>
 
-  </div>
+    <p>
+        4 choti si challenges hain. 😌
+    </p>
 
 </div>
 
 
+<div class="progressWrap">
+
+    <div class="progressInfo">
+
+        <span id="progressText">
+            Surprise 1 of 4
+        </span>
+
+        <span>
+            ✨
+        </span>
+
+    </div>
+
+    <div class="progress">
+
+        <div
+            id="progressBar"
+            class="progressBar"
+        ></div>
+
+    </div>
+
+</div>
+
+
+
+<!-- TASK 1 -->
+
 <div
-  id="toast"
-  class="toast"
+    id="task1"
+    class="task"
+>
+
+    <div class="taskIcon">
+        🎀
+    </div>
+
+    <h3>
+        The Impossible Button
+    </h3>
+
+    <div class="taskText">
+
+        Surprise unlock karne ke liye
+        neeche wala button dabao.
+
+        <br><br>
+
+        <strong>
+        Lekin warning...
+        ye button thora shararti hai. 😂
+        </strong>
+
+    </div>
+
+
+    <div class="runArea">
+
+        <button
+            id="runButton"
+            class="btn runButton"
+            onclick="runButtonClick()"
+        >
+            Unlock Surprise 🔓
+        </button>
+
+    </div>
+
+
+    <div
+        id="result1"
+        class="result"
+    ></div>
+
+</div>
+
+
+
+<!-- TASK 2 -->
+
+<div
+    id="task2"
+    class="task hidden"
+>
+
+    <div class="taskIcon">
+        🎂
+    </div>
+
+    <h3>
+        Catch The Birthday Cake
+    </h3>
+
+    <div class="taskText">
+
+        Kisi ne birthday cake chura liya hai! 😭
+
+        <br>
+
+        <strong>
+        Cake ko pakro before it escapes! 😂
+        </strong>
+
+    </div>
+
+
+    <div class="cakeArea">
+
+        <div
+            id="cake"
+            class="cake"
+            onclick="catchCake()"
+        >
+            🎂
+        </div>
+
+    </div>
+
+
+    <div
+        id="result2"
+        class="result"
+    ></div>
+
+</div>
+
+
+
+<!-- TASK 3 -->
+
+<div
+    id="task3"
+    class="task hidden"
+>
+
+    <div class="taskIcon">
+        🚪
+    </div>
+
+    <h3>
+        The Mystery Doors
+    </h3>
+
+    <div class="taskText">
+
+        In 3 doors mein se sirf ek
+        surprise ke kareeb le jayega. 👀
+
+        <br>
+
+        <strong>
+        Socho... phir choose karo. 😏
+        </strong>
+
+    </div>
+
+
+    <div class="doors">
+
+        <div
+            class="door"
+            onclick="chooseDoor(1)"
+        >
+            🚪
+        </div>
+
+        <div
+            class="door"
+            onclick="chooseDoor(2)"
+        >
+            🚪
+        </div>
+
+        <div
+            class="door"
+            onclick="chooseDoor(3)"
+        >
+            🚪
+        </div>
+
+    </div>
+
+
+    <div
+        id="result3"
+        class="result"
+    ></div>
+
+</div>
+
+
+
+<!-- TASK 4 -->
+
+<div
+    id="task4"
+    class="task hidden"
+>
+
+    <div class="taskIcon">
+        🔐
+    </div>
+
+    <h3>
+        The Secret Password
+    </h3>
+
+    <div class="taskText">
+
+        Surprise almost unlock ho gaya...
+
+        <br>
+
+        Lekin secret password chahiye.
+
+        <br><br>
+
+        <strong>
+        Hint: Birthday girl's name + ❤️
+        </strong>
+
+    </div>
+
+
+    <input
+        id="password"
+        class="password"
+        placeholder="Secret password..."
+    >
+
+
+    <br>
+
+
+    <button
+        class="btn"
+        onclick="checkPassword()"
+    >
+        Unlock 🔐
+    </button>
+
+
+    <div
+        id="result4"
+        class="result"
+    ></div>
+
+</div>
+
+
+</section>
+
+
+
+<!-- ================= BALLOON ================= -->
+
+<section
+    id="balloonLevel"
+    class="hidden balloonLevel"
+>
+
+
+<div class="bigHeart">
+    🎈
+</div>
+
+<h2>
+    One Last Little Thing...
+</h2>
+
+<p>
+
+    Wow! Tumne saare challenges complete kar liye. 🎉
+
+    <br><br>
+
+    Lekin ek last security check baqi hai...
+
+</p>
+
+
+<p class="warning">
+
+    ⚠️ IMPORTANT:
+    Balloon ko bilkul touch mat karna. ⚠️
+
+</p>
+
+
+<div
+    id="balloonMessage"
+    class="result"
+>
+    Seriously... isko touch mat karna. 👀
+</div>
+
+
+<div class="balloonArea">
+
+    <div
+        id="balloon"
+        class="balloon balloonFloat"
+        onclick="balloonClick()"
+    ></div>
+
+</div>
+
+
+</section>
+
+
+
+<!-- ================= FINAL ================= -->
+
+<section
+    id="final"
+    class="hidden final"
+>
+
+
+<div class="crown">
+    👑
+</div>
+
+
+<div class="bigHeart">
+    ❤️
+</div>
+
+
+<div class="smallTitle">
+    Surprise Unlocked
+</div>
+
+
+<h1>
+    Happy Birthday Urwa! 🎂
+</h1>
+
+
+<div class="finalDate">
+    ✨ 16 June ✨
+</div>
+
+
+<div class="finalMessage">
+
+    Hahaha... finally! 😂❤️
+
+    <br><br>
+
+    Tumne impossible button pakra,
+    cake bachaya,
+    mystery doors cross kiye,
+    password solve kiya...
+
+    <br><br>
+
+    Aur phir us naughty balloon ko bhi
+    aakhir pakar hi liya. 🎈😂
+
+    <br><br>
+
+    Lekin ab mazaak side par...
+
+    <br><br>
+
+    <strong>
+    16 June mere liye ek special date hai,
+    kyun ke isi din ek bohat achi dost
+    duniya mein aayi. 🌸
+    </strong>
+
+    <br><br>
+
+    Dua hai tumhari zindagi hamesha
+    khushiyon, sukoon, success aur
+    beautiful memories se bhari rahe. ✨
+
+    <br><br>
+
+    Tumhari har genuine wish poori ho,
+    tum hamesha smile karti raho,
+    aur zindagi tumhein bohat si
+    beautiful surprises deti rahe. ❤️
+
+    <br><br>
+
+    <strong>
+    Happy Birthday once again, Urwa! 🎂🌷
+    </strong>
+
+</div>
+
+
+<div class="divider"></div>
+
+
+<div class="signature">
+
+    With best wishes,<br>
+    Kashif ❤️
+
+</div>
+
+
+</section>
+
+
+</div>
+</div>
+
+
+<div
+    id="toast"
+    class="toast"
 ></div>
 
 
 <script>
 
-var currentTask = 1;
+/* =========================
+   GLOBAL
+========================= */
+
+let currentTask = 1;
+let buttonAttempts = 0;
+let cakeAttempts = 0;
+let balloonAttempts = 0;
 
 
-/* WAIT */
+/* =========================
+   START
+========================= */
 
-function wait(ms){
+function startAdventure(){
 
-  return new Promise(function(resolve){
+    const name =
+        document
+        .getElementById("nameInput")
+        .value
+        .trim();
 
-    setTimeout(resolve,ms);
+    if(name === ""){
 
-  });
+        toast("Pehle naam to likho madam 😂❤️");
 
-}
-
-
-/* TYPING */
-
-function typeText(element,text,speed){
-
-  return new Promise(function(resolve){
-
-    var i=0;
-
-    var timer=setInterval(function(){
-
-      element.innerHTML += text.charAt(i);
-
-      i++;
-
-      if(i>=text.length){
-
-        clearInterval(timer);
-
-        resolve();
-
-      }
-
-    },speed);
-
-  });
-
-}
+        return;
+    }
 
 
-/* TOAST */
-
-function showToast(message){
-
-  var toast=
-    document.getElementById("toast");
-
-  toast.innerHTML=message;
-
-  toast.classList.add("show");
-
-  setTimeout(function(){
-
-    toast.classList.remove("show");
-
-  },2500);
-
-}
-
-
-/* START */
-
-async function startProgram(){
-
-  var name=
-    document.getElementById("nameInput")
-    .value.trim();
-
-
-  if(name===""){
-
-    showToast("Pehle naam to likho 😂❤️");
-
-    return;
-
-  }
-
-
-  document.getElementById("start")
+    document
+    .getElementById("start")
     .classList.add("hidden");
 
-  document.getElementById("processing")
+
+    document
+    .getElementById("adventure")
     .classList.remove("hidden");
 
 
-  var text=
-    document.getElementById("processText");
-
-
-  await typeText(
-    text,
-    "> Starting URWA_BIRTHDAY.exe...",
-    55
-  );
-
-  await wait(1000);
-
-
-  text.innerHTML="";
-
-  await typeText(
-    text,
-    "> Searching for birthday girl...",
-    55
-  );
-
-  await wait(1000);
-
-
-  text.innerHTML="";
-
-  await typeText(
-    text,
-    "> Checking smile database...",
-    55
-  );
-
-  await wait(1000);
-
-
-  text.innerHTML="";
-
-  await typeText(
-    text,
-    "> Warning: Too much cuteness detected...",
-    55
-  );
-
-  await wait(1200);
-
-
-  text.innerHTML="";
-
-  await typeText(
-    text,
-    "> System has officially given up. 😂",
-    55
-  );
-
-  await wait(1500);
-
-
-  document.getElementById("processing")
-    .classList.add("hidden");
-
-  document.getElementById("tasks")
-    .classList.remove("hidden");
+    createHearts();
 
 }
 
 
-/* FACE SCAN */
+/* =========================
+   TASK 1
+   RUNNING BUTTON
+========================= */
 
-async function faceScan(){
+function runButtonClick(){
 
-  var scan=
-    document.getElementById("scanFace");
+    buttonAttempts++;
 
-  var result=
-    document.getElementById("taskResult1");
+    const button =
+        document
+        .getElementById("runButton");
 
+    const result =
+        document
+        .getElementById("result1");
 
-  scan.classList.add("scanning");
 
-  scan.innerHTML="😳";
+    if(buttonAttempts === 1){
 
+        result.innerHTML =
+        "😂 Oho! Button bhaag gaya! Dobara pakro.";
 
-  showToast("Scanning... please smile 😁");
+        button.style.left="20%";
+        button.style.top="15px";
 
-
-  await wait(1000);
-
-
-  scan.innerHTML="😂";
-
-
-  await wait(700);
-
-
-  scan.classList.remove("scanning");
-
-
-  result.innerHTML=
-    "❌ ERROR! Itni cute candidate database mein nahi mil rahi. 😂<br><br>" +
-    "System ne manually approve kar diya. ❤️";
-
-
-  showToast(
-    "✅ Urwa detected! 😂❤️"
-  );
-
-
-  setTimeout(function(){
-
-    nextTask(2);
-
-  },1800);
-
-}
-
-
-/* IQ */
-
-function iqAnswer(){
-
-  var result=
-    document.getElementById("taskResult2");
-
-
-  result.innerHTML=
-    "🧠 Calculating IQ...<br>" +
-    "Processing...<br>" +
-    "Result: <strong>Birthday Girl = Always Correct</strong> 😂";
-
-
-  showToast(
-    "IQ test successfully confused. 😂"
-  );
-
-
-  setTimeout(function(){
-
-    nextTask(3);
-
-  },2000);
-
-}
-
-
-/* LAUGH TEST */
-
-var laughTimer;
-var laughTime=5;
-
-
-function startLaughTest(){
-
-  var button=
-    document.getElementById("laughButton");
-
-  var timer=
-    document.getElementById("timer");
-
-  var result=
-    document.getElementById("taskResult3");
-
-
-  button.disabled=true;
-
-  button.innerHTML=
-    "DON'T LAUGH! 😐";
-
-
-  laughTime=5;
-
-  timer.innerHTML=laughTime;
-
-
-  laughTimer=setInterval(function(){
-
-    laughTime--;
-
-    timer.innerHTML=laughTime;
-
-
-    if(laughTime<=0){
-
-      clearInterval(laughTimer);
-
-
-      timer.innerHTML="😂";
-
-
-      result.innerHTML=
-        "❌ Lie Detected!<br>" +
-        "System ne tumhari imaginary smile detect kar li. 😂<br><br>" +
-        "Penalty: Ek extra birthday wish. ❤️";
-
-
-      showToast(
-        "HAHA! Challenge failed 😂"
-      );
-
-
-      setTimeout(function(){
-
-        nextTask(4);
-
-      },2200);
+        toast("HAHA! Missed it 😂");
 
     }
 
-  },1000);
+    else if(buttonAttempts === 2){
+
+        result.innerHTML =
+        "👀 Tum itni easily haarne wali nahi lag rahi...";
+
+        button.style.left="75%";
+        button.style.top="100px";
+
+        toast("Phir se bhaag gaya! 😭");
+
+    }
+
+    else if(buttonAttempts === 3){
+
+        result.innerHTML =
+        "😂 Bas bas! Itni mehnat surprise ke liye?";
+
+        button.style.left="40%";
+        button.style.top="120px";
+
+        toast("Almost! 😏");
+
+    }
+
+    else{
+
+        result.innerHTML =
+        "🎉 Okayyy! Tum jeet gayi. Button surrender karta hai. 😂❤️";
+
+        button.innerHTML =
+        "Unlocked! ✨";
+
+        button.style.left="50%";
+        button.style.top="60px";
+
+        setTimeout(
+            () => nextTask(2),
+            1600
+        );
+
+    }
 
 }
 
 
-/* CAKE */
+/* =========================
+   TASK 2
+   CAKE
+========================= */
 
-function saveCake(){
+function moveCake(){
 
-  var result=
-    document.getElementById("taskResult4");
+    const cake =
+        document
+        .getElementById("cake");
 
-
-  result.innerHTML=
-    "🚨 Cake rescue successful! 🎂<br><br>" +
-    "😂 Relax... cake actually safe tha.<br>" +
-    "Bas tumhara reaction check kar raha tha. 👀";
-
-
-  showToast(
-    "🎂 CAKE SAVED! HERO DETECTED! 😂"
-  );
+    const area =
+        document
+        .querySelector(".cakeArea");
 
 
-  setTimeout(function(){
+    const maxX =
+        area.clientWidth - 80;
 
-    showBalloon();
+    const maxY =
+        area.clientHeight - 80;
 
-  },2200);
+
+    cake.style.left =
+        Math.random()*maxX + "px";
+
+    cake.style.top =
+        Math.random()*maxY + "px";
 
 }
 
 
-/* NEXT TASK */
+function catchCake(){
+
+    cakeAttempts++;
+
+    const result =
+        document
+        .getElementById("result2");
+
+
+    if(cakeAttempts < 4){
+
+        result.innerHTML =
+        "😂 HAHAHA! Cake phir bhaag gaya!";
+
+        moveCake();
+
+        toast("Cake escape kar gaya 🎂😂");
+
+    }
+    else{
+
+        result.innerHTML =
+        "🎂 CAKE SAVED! Tum official birthday hero ho. 😂❤️";
+
+        toast("Mission successful! 🎉");
+
+        setTimeout(
+            () => nextTask(3),
+            1700
+        );
+
+    }
+
+}
+
+
+/* move cake initially */
+
+setTimeout(
+    moveCake,
+    500
+);
+
+
+/* =========================
+   TASK 3
+   DOORS
+========================= */
+
+function chooseDoor(number){
+
+    const result =
+        document
+        .getElementById("result3");
+
+
+    if(number === 1){
+
+        result.innerHTML =
+        "😂 Wrong door! Yahan sirf birthday ki hawa chal rahi hai.";
+
+        toast("Nope! 😂");
+
+    }
+
+    else if(number === 2){
+
+        result.innerHTML =
+        "😭 Oops! Yahan birthday cake ka empty box hai.";
+
+        toast("Close... but nope! 🎂");
+
+    }
+
+    else{
+
+        result.innerHTML =
+        "👀 Door 3 khula... lekin surprise phir bhi bhaag gaya! 😂";
+
+        toast("HAHA! Surprise tricky hai 😏");
+
+        setTimeout(
+            () => nextTask(4),
+            1800
+        );
+
+    }
+
+}
+
+
+/* =========================
+   TASK 4
+   PASSWORD
+========================= */
+
+function checkPassword(){
+
+    const value =
+        document
+        .getElementById("password")
+        .value
+        .trim()
+        .toLowerCase();
+
+
+    const result =
+        document
+        .getElementById("result4");
+
+
+    if(
+        value === "urwa ❤️" ||
+        value === "urwa❤️" ||
+        value === "urwa" ||
+        value === "urwa love"
+    ){
+
+        result.innerHTML =
+        "🔓 Password accepted! Tumne secret unlock kar liya. ❤️✨";
+
+        toast("Correct! 🔐❤️");
+
+
+        setTimeout(
+            showBalloonLevel,
+            1800
+        );
+
+    }
+    else{
+
+        result.innerHTML =
+        "❌ Wrong password! Hint mein 'Urwa + ❤️' likha tha... 👀😂";
+
+        toast("Password ko thora pyar se likho 😂");
+
+    }
+
+}
+
+
+/* =========================
+   NEXT TASK
+========================= */
 
 function nextTask(number){
 
-  document
+    document
     .getElementById("task"+currentTask)
     .classList.add("hidden");
 
 
-  currentTask=number;
+    currentTask = number;
 
 
-  document
+    document
     .getElementById("task"+number)
     .classList.remove("hidden");
 
 
-  document
-    .getElementById("taskNumber")
-    .innerHTML=
-      "TASK 0"+number+" / 04";
+    document
+    .getElementById("progressText")
+    .innerHTML =
+        "Surprise " + number + " of 4";
 
 
-  document
+    document
     .getElementById("progressBar")
-    .style.width=
-      (number*25)+"%";
+    .style.width =
+        (number*25) + "%";
 
 }
 
 
-/* BALLOON SCREEN */
+/* =========================
+   BALLOON LEVEL
+========================= */
 
-function showBalloon(){
+function showBalloonLevel(){
 
-  document
-    .getElementById("tasks")
+    document
+    .getElementById("adventure")
     .classList.add("hidden");
 
 
-  document
-    .getElementById("balloonScreen")
+    document
+    .getElementById("balloonLevel")
     .classList.remove("hidden");
 
 }
 
 
-/* BALLOON GAME */
-
-var balloonClicks=0;
-
+/* =========================
+   BALLOON
+========================= */
 
 function balloonClick(){
 
-  var balloon=
-    document.getElementById("balloon");
+    balloonAttempts++;
 
-  var message=
-    document.getElementById("balloonMessage");
+    const balloon =
+        document
+        .getElementById("balloon");
 
-
-  balloonClicks++;
-
-
-  /* FIRST */
-
-  if(balloonClicks===1){
-
-    message.innerHTML=
-      "😂 HAHA! Pakar liya? Itni jaldi nahi!";
+    const message =
+        document
+        .getElementById("balloonMessage");
 
 
-    balloon.style.left="22%";
-    balloon.style.top="70px";
+    if(balloonAttempts === 1){
+
+        message.innerHTML =
+        "😂 Oho! Maine kaha tha touch mat karna!";
+
+        balloon.style.left="20%";
+        balloon.style.top="70px";
+
+        toast("Balloon bhaag gaya! 🎈😂");
+
+    }
+
+    else if(balloonAttempts === 2){
+
+        message.innerHTML =
+        "HAHA! Phir se? Tum seriously balloon ke peeche ho. 😂";
+
+        balloon.style.left="76%";
+        balloon.style.top="210px";
+
+        toast("Again miss! 😭🎈");
+
+    }
+
+    else if(balloonAttempts === 3){
+
+        message.innerHTML =
+        "Okay... ab main bilkul nahi bhaagunga. Promise. 👀";
+
+        balloon.style.left="50%";
+        balloon.style.top="35px";
+
+        toast("Last chance... 😏");
+
+    }
+
+    else{
+
+        message.innerHTML =
+        "💥 OH NOOOO! Balloon POP ho gaya!";
+
+        balloon.classList.remove("balloonFloat");
+        balloon.classList.add("pop");
 
 
-    showToast(
-      "Balloon bhaag gaya! 😂🎈"
-    );
-
-  }
+        createConfetti();
+        createConfetti();
 
 
-  /* SECOND */
+        setTimeout(
+            showFinal,
+            1000
+        );
 
-  else if(balloonClicks===2){
+    }
 
-    message.innerHTML=
-      "Oho! Dobara? 😂 Ab tum seriously determined ho.";
-
-
-    balloon.style.left="76%";
-    balloon.style.top="220px";
+}
 
 
-    showToast(
-      "HAHA! Phir miss! 🎈😂"
-    );
+/* =========================
+   FINAL
+========================= */
 
-  }
+function showFinal(){
 
-
-  /* THIRD */
-
-  else if(balloonClicks===3){
-
-    message.innerHTML=
-      "Bas bas... ab main nahi bhaagunga. Promise. 👀";
+    document
+    .getElementById("balloonLevel")
+    .classList.add("hidden");
 
 
-    balloon.style.left="50%";
-    balloon.style.top="45px";
-
-
-    showToast(
-      "Last chance... maybe. 😏"
-    );
-
-  }
-
-
-  /* FOURTH = POP */
-
-  else if(balloonClicks===4){
-
-    message.innerHTML=
-      "💥 OH NOOOOO!";
-
-
-    balloon.classList.remove("float");
-
-    balloon.classList.add("pop");
+    document
+    .getElementById("final")
+    .classList.remove("hidden");
 
 
     createConfetti();
-
-
-    setTimeout(function(){
-
-      document
-        .getElementById("balloonScreen")
-        .classList.add("hidden");
-
-
-      document
-        .getElementById("final")
-        .classList.remove("hidden");
-
-
-      createConfetti();
-      createConfetti();
-
-    },900);
-
-  }
+    createConfetti();
+    createHearts();
 
 }
 
 
-/* CONFETTI */
+/* =========================
+   TOAST
+========================= */
+
+function toast(message){
+
+    const element =
+        document
+        .getElementById("toast");
+
+
+    element.innerHTML = message;
+
+    element.classList.add("show");
+
+
+    setTimeout(
+        () => element.classList.remove("show"),
+        2200
+    );
+
+}
+
+
+/* =========================
+   CONFETTI
+========================= */
 
 function createConfetti(){
 
-  for(var i=0;i<45;i++){
-
-    var piece=
-      document.createElement("div");
-
-
-    piece.className="confetti";
-
-
-    piece.style.left=
-      Math.random()*100+"vw";
-
-
-    var colors=[
-      "#ff65ae",
-      "#ffd166",
-      "#7ee787",
-      "#79c0ff",
-      "#c084fc",
-      "#ffffff"
+    const symbols =
+    [
+        "✨",
+        "💗",
+        "🌸",
+        "🎀",
+        "⭐",
+        "💕",
+        "🌷"
     ];
 
 
-    piece.style.background=
-      colors[
-        Math.floor(
-          Math.random()*colors.length
-        )
-      ];
+    for(let i=0;i<45;i++){
+
+        const piece =
+            document
+            .createElement("div");
 
 
-    piece.style.animationDuration=
-      (2+Math.random()*3)+"s";
+        piece.className =
+            "confetti";
 
 
-    document.body.appendChild(piece);
+        piece.innerHTML =
+            symbols[
+                Math.floor(
+                    Math.random()*symbols.length
+                )
+            ];
 
 
-    setTimeout(function(){
+        piece.style.left =
+            Math.random()*100 + "vw";
 
-      piece.remove();
 
-    },5000);
+        piece.style.fontSize =
+            (10 + Math.random()*14) + "px";
 
-  }
+
+        piece.style.animationDuration =
+            (2.5 + Math.random()*3) + "s";
+
+
+        document.body.appendChild(piece);
+
+
+        setTimeout(
+            () => piece.remove(),
+            6000
+        );
+
+    }
 
 }
+
+
+/* =========================
+   FLOATING HEARTS
+========================= */
+
+function createHearts(){
+
+    for(let i=0;i<8;i++){
+
+        setTimeout(
+            () => {
+
+                const heart =
+                    document
+                    .createElement("div");
+
+
+                heart.className =
+                    "floatHeart";
+
+
+                heart.innerHTML =
+                    Math.random() > .5
+                    ? "💗"
+                    : "💕";
+
+
+                heart.style.left =
+                    Math.random()*100 + "vw";
+
+
+                heart.style.animationDuration =
+                    (5 + Math.random()*4) + "s";
+
+
+                document.body.appendChild(heart);
+
+
+                setTimeout(
+                    () => heart.remove(),
+                    9000
+                );
+
+            },
+            i*800
+        );
+
+    }
+
+}
+
+
+/* floating hearts loop */
+
+setInterval(
+    createHearts,
+    9000
+);
 
 </script>
 
