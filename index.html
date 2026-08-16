@@ -3,1537 +3,994 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Urwa's Birthday Adventure ❤️</title>
+<title>Urwa's 3D Birthday Adventure ❤️</title>
 
 <style>
-
-/* =========================
-   DREAMY BIRTHDAY GARDEN
-========================= */
-
 *{
     box-sizing:border-box;
 }
 
 html,body{
     margin:0;
-    padding:0;
-    min-height:100%;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    font-family:Georgia,serif;
+    background:#080518;
 }
 
-body{
-    font-family:Georgia, "Times New Roman", serif;
-    color:#fff;
-    overflow-x:hidden;
-
-    background:
-        radial-gradient(circle at 15% 15%, #ffb6d933 0 8%, transparent 28%),
-        radial-gradient(circle at 85% 25%, #c4a1ff33 0 8%, transparent 30%),
-        radial-gradient(circle at 50% 100%, #ff8fc522 0 10%, transparent 40%),
-        linear-gradient(135deg,#24122f,#43234e 45%,#20142f);
-}
-
-/* stars */
-
-body::before{
-    content:"";
+#scene{
     position:fixed;
     inset:0;
-    pointer-events:none;
-    opacity:.55;
-
-    background-image:
-        radial-gradient(circle,#fff 1px,transparent 1.5px),
-        radial-gradient(circle,#ffd8ec 1px,transparent 1.5px),
-        radial-gradient(circle,#d9c7ff 1px,transparent 1.5px);
-
-    background-size:
-        90px 90px,
-        140px 140px,
-        190px 190px;
-
-    background-position:
-        10px 20px,
-        40px 80px,
-        90px 30px;
-
-    animation:starsMove 18s linear infinite;
 }
 
-@keyframes starsMove{
-    from{
-        transform:translateY(0);
-    }
-    to{
-        transform:translateY(40px);
-    }
+canvas{
+    display:block;
 }
 
-/* floating decorations */
-
-.decor{
+.ui{
     position:fixed;
+    inset:0;
+    z-index:10;
     pointer-events:none;
-    z-index:0;
-    opacity:.7;
-    animation:floatDecor 6s ease-in-out infinite;
-}
-
-.flower1{
-    left:5%;
-    top:20%;
-    font-size:34px;
-}
-
-.flower2{
-    right:6%;
-    top:30%;
-    font-size:30px;
-    animation-delay:1s;
-}
-
-.flower3{
-    left:8%;
-    bottom:15%;
-    font-size:28px;
-    animation-delay:2s;
-}
-
-.flower4{
-    right:8%;
-    bottom:18%;
-    font-size:34px;
-    animation-delay:3s;
-}
-
-@keyframes floatDecor{
-    0%,100%{
-        transform:translateY(0) rotate(0);
-    }
-    50%{
-        transform:translateY(-20px) rotate(8deg);
-    }
-}
-
-/* moon */
-
-.moon{
-    position:fixed;
-    top:45px;
-    right:8%;
-    width:75px;
-    height:75px;
-    border-radius:50%;
-    background:#fff3c7;
-    box-shadow:
-        0 0 25px #ffe9a866,
-        0 0 70px #ffe9a822;
-    z-index:0;
-}
-
-.moon::after{
-    content:"";
-    position:absolute;
-    width:75px;
-    height:75px;
-    border-radius:50%;
-    background:#2d1839;
-    left:-23px;
-    top:-9px;
-}
-
-
-/* main card */
-
-.wrapper{
-    width:92%;
-    max-width:820px;
-    margin:45px auto;
-    position:relative;
-    z-index:2;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
 .card{
-    min-height:700px;
-    padding:45px 32px 55px;
-
-    border-radius:35px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.13),
-            rgba(255,255,255,.045)
-        );
-
-    border:1px solid rgba(255,255,255,.20);
-
-    backdrop-filter:blur(20px);
-    -webkit-backdrop-filter:blur(20px);
-
-    box-shadow:
-        0 30px 80px rgba(0,0,0,.35),
-        inset 0 1px 0 rgba(255,255,255,.20);
-}
-
-
-/* top decoration */
-
-.top{
+    width:min(90%,620px);
+    padding:38px 30px;
     text-align:center;
-    margin-bottom:20px;
-}
-
-.smallTitle{
-    letter-spacing:4px;
-    text-transform:uppercase;
-    font-size:12px;
-    color:#ffd8eb;
-}
-
-.title{
-    margin:12px 0;
-    font-size:clamp(34px,7vw,58px);
-    font-weight:normal;
-    color:#fff4fa;
-
-    text-shadow:
-        0 4px 20px #ff9dcc55;
-}
-
-.subtitle{
-    color:#eadbea;
-    font-family:Arial,sans-serif;
-    line-height:1.8;
-    font-size:15px;
-}
-
-
-/* heart */
-
-.bigHeart{
-    font-size:75px;
-    display:inline-block;
-
-    filter:
-        drop-shadow(0 0 18px #ff80b8aa);
-
-    animation:heartBeat 1.5s infinite;
-}
-
-@keyframes heartBeat{
-    0%,100%{
-        transform:scale(1);
-    }
-
-    50%{
-        transform:scale(1.13);
-    }
-}
-
-
-/* input */
-
-.nameInput{
-    display:block;
-    width:100%;
-    max-width:430px;
-    margin:25px auto 10px;
-
-    padding:16px 20px;
-
-    border-radius:50px;
-
-    border:1px solid #ffffff33;
-
-    background:#ffffff0c;
-
     color:white;
 
-    text-align:center;
+    background:rgba(35,15,55,.62);
+    border:1px solid rgba(255,190,225,.35);
+    border-radius:30px;
 
-    outline:none;
+    backdrop-filter:blur(18px);
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.5),
+        0 0 45px rgba(255,130,200,.12);
 
-    font-size:16px;
-
-    font-family:Georgia,serif;
+    pointer-events:auto;
 }
 
-.nameInput::placeholder{
-    color:#e8cfe0;
+.card.hidden{
+    display:none;
 }
 
-.nameInput:focus{
-    border-color:#ffafd2;
-    box-shadow:0 0 25px #ff8fc833;
+.small{
+    color:#ffd0e7;
+    letter-spacing:4px;
+    text-transform:uppercase;
+    font-size:11px;
 }
 
+h1{
+    margin:15px 0 10px;
+    font-size:clamp(38px,8vw,65px);
+    font-weight:normal;
+    color:#fff1f8;
+    text-shadow:0 0 25px #ff8fc9;
+}
 
-/* buttons */
+h2{
+    font-size:30px;
+    font-weight:normal;
+    color:#ffe4f1;
+}
+
+p{
+    color:#dfd0e5;
+    line-height:1.8;
+    font-family:Arial,sans-serif;
+}
 
 .btn{
     border:0;
-    padding:15px 32px;
+    padding:15px 30px;
+    margin-top:15px;
 
     border-radius:50px;
 
-    color:#4b2149;
+    background:linear-gradient(
+        135deg,
+        #ffb3d6,
+        #c8a5ff
+    );
 
-    font-size:15px;
+    color:#35183d;
     font-weight:bold;
-
-    background:
-        linear-gradient(
-            135deg,
-            #ffd3e8,
-            #e5c6ff
-        );
-
+    font-size:15px;
     cursor:pointer;
 
     box-shadow:
-        0 10px 30px #0003,
-        0 0 20px #ffb3d522;
+        0 10px 30px #0005,
+        0 0 25px #ff9fd755;
 
     transition:.3s;
-
-    font-family:Arial,sans-serif;
 }
 
 .btn:hover{
-    transform:translateY(-4px) scale(1.03);
-
-    box-shadow:
-        0 15px 35px #0004,
-        0 0 30px #ffafd255;
-}
-
-.btn:active{
-    transform:scale(.95);
-}
-
-
-/* divider */
-
-.divider{
-    width:90px;
-    height:2px;
-    margin:25px auto;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            #ffc3de,
-            transparent
-        );
-}
-
-
-/* hidden */
-
-.hidden{
-    display:none !important;
-}
-
-
-/* adventure */
-
-.adventureHeader{
-    text-align:center;
-    margin-bottom:25px;
-}
-
-.adventureHeader h2{
-    margin:5px 0;
-    font-weight:normal;
-    font-size:29px;
-    color:#ffe7f3;
-}
-
-.adventureHeader p{
-    color:#d9c8db;
-    font-family:Arial,sans-serif;
-    font-size:14px;
-}
-
-
-/* progress */
-
-.progressWrap{
-    width:100%;
-    max-width:480px;
-    margin:20px auto 30px;
-}
-
-.progressInfo{
-    display:flex;
-    justify-content:space-between;
-    color:#e8d3e5;
-    font-size:12px;
-    margin-bottom:8px;
+    transform:translateY(-3px) scale(1.04);
 }
 
 .progress{
-    height:8px;
+    position:fixed;
+    top:25px;
+    left:50%;
+    transform:translateX(-50%);
+    z-index:20;
+
+    width:min(80%,420px);
+    height:7px;
+
+    background:#ffffff16;
     border-radius:20px;
-    background:#ffffff13;
-    overflow:hidden;
 }
 
-.progressBar{
+.bar{
     height:100%;
-    width:25%;
-
-    background:
-        linear-gradient(
-            90deg,
-            #ff9fc9,
-            #d7b5ff
-        );
-
+    width:0%;
     border-radius:20px;
 
-    box-shadow:0 0 15px #ffabd555;
+    background:linear-gradient(
+        90deg,
+        #ff9dca,
+        #c7a2ff
+    );
 
+    box-shadow:0 0 15px #ff9dca;
     transition:.5s;
 }
 
-
-/* task card */
-
-.task{
-    text-align:center;
-
-    padding:35px 25px;
-
-    border-radius:30px;
-
-    background:
-        linear-gradient(
-            145deg,
-            rgba(255,255,255,.12),
-            rgba(255,255,255,.035)
-        );
-
-    border:1px solid #ffffff1c;
-
-    box-shadow:
-        inset 0 1px #ffffff14,
-        0 20px 45px #0002;
-
-    animation:taskAppear .6s ease;
-}
-
-@keyframes taskAppear{
-    from{
-        opacity:0;
-        transform:translateY(25px) scale(.97);
-    }
-
-    to{
-        opacity:1;
-        transform:none;
-    }
-}
-
-.taskIcon{
-    font-size:65px;
-
-    filter:
-        drop-shadow(0 8px 15px #0003);
-}
-
-.task h3{
-    margin:15px 0 12px;
-
-    font-size:26px;
-    font-weight:normal;
-
-    color:#ffe5f1;
-}
-
-.taskText{
-    font-family:Arial,sans-serif;
-    line-height:1.8;
-    color:#dfd0df;
-}
-
-.taskText strong{
-    color:#ffd2e7;
-}
-
-
-/* task options */
-
-.choiceGrid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:14px;
-
-    max-width:520px;
-    margin:25px auto;
-}
-
-.choice{
-    padding:16px;
-
-    border-radius:18px;
-
-    border:1px solid #ffffff18;
-
-    background:#ffffff09;
-
-    cursor:pointer;
-
-    transition:.3s;
-
+#message{
+    margin-top:15px;
+    min-height:30px;
+    color:#ffd0e5;
     font-family:Arial,sans-serif;
 }
 
-.choice:hover{
-    background:#ffb2d51b;
-    transform:translateY(-3px);
-    border-color:#ffb4d955;
-}
-
-
-/* running button */
-
-.runArea{
-    position:relative;
-    height:170px;
-    max-width:520px;
-    margin:auto;
-    overflow:hidden;
-}
-
-.runButton{
-    position:absolute;
-
-    left:50%;
-    top:60px;
-
-    transform:translateX(-50%);
-
-    white-space:nowrap;
-}
-
-
-/* cake */
-
-.cakeArea{
-    position:relative;
-    height:170px;
-    margin:10px auto;
-    max-width:500px;
-}
-
-.cake{
-    position:absolute;
-    font-size:75px;
-    cursor:pointer;
-    transition:.45s;
-    user-select:none;
-}
-
-.cake:hover{
-    transform:scale(1.15);
-}
-
-
-/* doors */
-
-.doors{
-    display:flex;
-    justify-content:center;
-    gap:15px;
-    margin:25px auto;
-    flex-wrap:wrap;
-}
-
-.door{
-    width:110px;
-    height:150px;
-
-    border-radius:12px 12px 5px 5px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #7d4c78,
-            #4a2c52
-        );
-
-    border:2px solid #dca6cf;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    font-size:45px;
-
-    cursor:pointer;
-
-    transition:.35s;
-
-    box-shadow:
-        inset 0 0 20px #0004,
-        0 10px 25px #0003;
-}
-
-.door:hover{
-    transform:translateY(-8px);
-    box-shadow:
-        0 15px 30px #0005,
-        0 0 20px #e4a9d855;
-}
-
-
-/* secret password */
-
-.password{
+.name{
     width:100%;
-    max-width:380px;
-    margin:20px auto;
+    max-width:350px;
 
-    padding:15px 18px;
+    padding:14px 20px;
+    margin:15px auto;
 
-    border-radius:50px;
+    border-radius:40px;
+    border:1px solid #ffffff30;
 
-    border:1px solid #ffffff22;
-
-    background:#ffffff09;
-
+    background:#ffffff0c;
     color:white;
 
     outline:none;
-
     text-align:center;
-
     font-size:16px;
 }
 
-
-/* result */
-
-.result{
-    min-height:45px;
-    margin-top:18px;
-
-    color:#ffd7e9;
-
-    font-family:Arial,sans-serif;
-    line-height:1.6;
-}
-
-
-/* balloon level */
-
-.balloonLevel{
-    text-align:center;
-    animation:taskAppear .8s ease;
-}
-
-.balloonLevel h2{
-    font-size:34px;
-    font-weight:normal;
-    color:#ffe5f3;
-}
-
-.balloonLevel p{
-    color:#dfd0df;
-    font-family:Arial,sans-serif;
-    line-height:1.8;
-}
-
-.warning{
-    color:#ffb3cb !important;
-    font-weight:bold;
-}
-
-
-/* balloon area */
-
-.balloonArea{
-    position:relative;
-    height:390px;
-
-    overflow:hidden;
-
-    margin-top:20px;
-
-    border-radius:25px;
-
-    background:
-        radial-gradient(
-            circle at 50% 50%,
-            #ffb5d718,
-            transparent 55%
-        );
-}
-
-
-/* balloon */
-
-.balloon{
-    position:absolute;
-
-    width:95px;
-    height:120px;
-
-    left:50%;
-    top:125px;
-
-    transform:translateX(-50%);
-
-    border-radius:50%;
-
-    background:
-        radial-gradient(
-            circle at 30% 25%,
-            #fff6,
-            transparent 20%
-        ),
-        linear-gradient(
-            145deg,
-            #ff8dbd,
-            #c57cff
-        );
-
-    cursor:pointer;
-
-    box-shadow:
-        inset -15px -18px 25px #0002,
-        0 15px 30px #0004,
-        0 0 30px #ff9ec955;
-
-    transition:
-        left .55s ease,
-        top .55s ease,
-        transform .3s ease;
-}
-
-.balloon:hover{
-    transform:
-        translateX(-50%)
-        scale(1.08);
-}
-
-.balloon::after{
-    content:"";
-
-    position:absolute;
-
-    width:2px;
-    height:145px;
-
-    background:#d8c8d5;
-
-    left:47px;
-    top:117px;
-}
-
-.balloon::before{
-    content:"";
-
-    position:absolute;
-
-    left:38px;
-    bottom:-8px;
-
-    border-left:9px solid transparent;
-    border-right:9px solid transparent;
-    border-top:14px solid #c57cff;
-}
-
-.balloonFloat{
-    animation:balloonFloat 2s ease-in-out infinite;
-}
-
-@keyframes balloonFloat{
-    50%{
-        margin-top:-13px;
-    }
-}
-
-
-/* pop */
-
-.pop{
-    animation:balloonPop .5s forwards !important;
-}
-
-@keyframes balloonPop{
-    0%{
-        transform:translateX(-50%) scale(1);
-    }
-
-    45%{
-        transform:translateX(-50%) scale(1.5);
-    }
-
-    100%{
-        transform:translateX(-50%) scale(0);
-        opacity:0;
-    }
-}
-
-
-/* final */
-
-.final{
-    text-align:center;
-    animation:taskAppear .8s ease;
-}
-
-.final .crown{
-    font-size:60px;
+.name::placeholder{
+    color:#cdbbd0;
 }
 
 .final h1{
-    font-size:clamp(36px,8vw,60px);
-    margin:10px 0;
-
-    color:#fff0f8;
+    font-size:clamp(38px,8vw,70px);
 }
 
-.finalDate{
-    display:inline-block;
-
-    padding:10px 22px;
-
-    border-radius:50px;
-
-    background:#ffffff0d;
-
-    border:1px solid #ffffff18;
-
-    color:#ffd3e7;
-
-    margin:10px 0 25px;
+.heart{
+    font-size:65px;
+    animation:pulse 1.4s infinite;
 }
 
-.finalMessage{
-    max-width:650px;
-    margin:auto;
-
-    font-family:Arial,sans-serif;
-
-    color:#eee1ed;
-
-    line-height:2;
-
-    font-size:16px;
-}
-
-.signature{
-    margin-top:30px;
-
-    font-family:cursive;
-
-    color:#ffd0e6;
-
-    font-size:25px;
-}
-
-
-/* confetti */
-
-.confetti{
-    position:fixed;
-
-    top:-20px;
-
-    width:8px;
-    height:14px;
-
-    z-index:99;
-
-    animation:confettiFall 4s linear forwards;
-}
-
-@keyframes confettiFall{
-    to{
-        transform:
-            translateY(110vh)
-            rotate(720deg);
+@keyframes pulse{
+    50%{
+        transform:scale(1.15);
     }
 }
 
-
-/* floating hearts */
-
-.floatHeart{
-    position:fixed;
-
-    bottom:-30px;
-
-    font-size:18px;
-
-    z-index:1;
-
-    animation:heartFloat 7s linear forwards;
-
-    pointer-events:none;
+.hint{
+    color:#ffb8d6 !important;
+    font-size:13px;
 }
-
-@keyframes heartFloat{
-    from{
-        transform:
-            translateY(0)
-            rotate(0);
-        opacity:0;
-    }
-
-    15%{
-        opacity:.8;
-    }
-
-    to{
-        transform:
-            translateY(-110vh)
-            rotate(25deg);
-        opacity:0;
-    }
-}
-
-
-/* toast */
-
-.toast{
-    position:fixed;
-
-    left:50%;
-    bottom:25px;
-
-    transform:
-        translateX(-50%)
-        translateY(100px);
-
-    background:#3b2141ee;
-
-    border:1px solid #ffc0dd55;
-
-    padding:14px 22px;
-
-    border-radius:50px;
-
-    color:#ffe8f2;
-
-    z-index:200;
-
-    opacity:0;
-
-    transition:.4s;
-
-    box-shadow:0 15px 40px #0006;
-
-    font-family:Arial,sans-serif;
-
-    text-align:center;
-
-    max-width:90%;
-}
-
-.toast.show{
-    transform:
-        translateX(-50%)
-        translateY(0);
-
-    opacity:1;
-}
-
-
-/* mobile */
-
-@media(max-width:600px){
-
-    .wrapper{
-        width:94%;
-        margin:25px auto;
-    }
-
-    .card{
-        padding:35px 17px 45px;
-        border-radius:27px;
-    }
-
-    .moon{
-        width:55px;
-        height:55px;
-        right:5%;
-        top:25px;
-    }
-
-    .moon::after{
-        width:55px;
-        height:55px;
-        left:-17px;
-    }
-
-    .choiceGrid{
-        grid-template-columns:1fr;
-    }
-
-    .door{
-        width:90px;
-        height:125px;
-    }
-
-    .balloonArea{
-        height:350px;
-    }
-
-}
-
 </style>
 </head>
 
-
 <body>
 
+<div id="scene"></div>
 
-<div class="moon"></div>
-
-<div class="decor flower1">🌸</div>
-<div class="decor flower2">✨</div>
-<div class="decor flower3">🌷</div>
-<div class="decor flower4">💫</div>
+<div class="progress">
+    <div id="bar" class="bar"></div>
+</div>
 
 
-<div class="wrapper">
+<div class="ui">
 
-<div class="card">
+<!-- START -->
 
+<div id="start" class="card">
 
-<!-- ================= START ================= -->
+    <div class="heart">💗</div>
 
-<section id="start" class="center">
-
-    <div class="bigHeart">
-        💗
+    <div class="small">
+        A Magical 3D Birthday Adventure
     </div>
 
-    <div class="smallTitle">
-        A Magical Birthday Adventure
-    </div>
+    <h1>Urwa ✨</h1>
 
-    <div class="title">
-        Urwa's Special Day
-    </div>
-
-    <div class="divider"></div>
-
-    <div class="subtitle">
-
-        Aaj ki raat thori si magical hone wali hai... 🌙✨
-
+    <p>
+        Aaj ki raat ordinary nahi hai... 🌙
         <br>
+        Ek chota sa 3D birthday adventure
+        tumhara wait kar raha hai.
+    </p>
 
-        16 June ko ek bohat special person ka
-        birthday hai. 🎂
-
-        <br><br>
-
-        Lekin surprise tak pohanchne ke liye
-        kuch funny challenges complete karne honge. 😏
-
-    </div>
-
+    <p>
+        Lekin surprise unlock karne ke liye
+        kuch funny missions complete karne honge. 😂
+    </p>
 
     <input
-        id="nameInput"
-        class="nameInput"
-        type="text"
-        placeholder="Pehle apna naam likho... 💕"
+        id="name"
+        class="name"
+        placeholder="Apna naam likho... ❤️"
     >
 
+    <br>
 
     <button
         class="btn"
-        onclick="startAdventure()"
+        onclick="startGame()"
     >
-        Start The Adventure ✨
+        ENTER THE MAGIC ✨
     </button>
 
-</section>
+</div>
 
 
+<!-- TASK -->
 
-<!-- ================= ADVENTURE ================= -->
+<div id="task" class="card hidden">
 
-<section
-    id="adventure"
-    class="hidden"
->
-
-
-<div class="adventureHeader">
-
-    <div class="smallTitle">
-        ✨ Birthday Adventure ✨
+    <div class="small">
+        Birthday Adventure
     </div>
 
-    <h2>
-        Chalo dekhein surprise kitna door hai...
-    </h2>
+    <h2 id="taskTitle"></h2>
+
+    <p id="taskText"></p>
+
+    <button
+        id="taskButton"
+        class="btn"
+        onclick="taskAction()"
+    >
+        Continue ✨
+    </button>
+
+    <div id="message"></div>
+
+</div>
+
+
+<!-- FINAL -->
+
+<div id="final" class="card final hidden">
+
+    <div class="heart">👑</div>
+
+    <div class="small">
+        Surprise Unlocked
+    </div>
+
+    <h1>
+        Happy Birthday
+        <br>
+        Urwa! 🎂
+    </h1>
 
     <p>
-        4 choti si challenges hain. 😌
+        ✨ 16 June ✨
+    </p>
+
+    <p>
+        Hahaha... finally! 😂❤️
+        <br><br>
+
+        Tumne saare magical challenges
+        complete kar liye.
+        <br><br>
+
+        Dua hai tumhari zindagi hamesha
+        khushiyon, sukoon, success aur
+        beautiful memories se bhari rahe. 🌸
+        <br><br>
+
+        Tum hamesha smile karti raho
+        aur tumhari har genuine wish
+        poori ho. ❤️
+        <br><br>
+
+        <b>
+        Happy Birthday once again, Urwa! 🎂🌷
+        </b>
+    </p>
+
+    <p>
+        With best wishes,<br>
+        <b>Kashif ❤️</b>
     </p>
 
 </div>
 
-
-<div class="progressWrap">
-
-    <div class="progressInfo">
-
-        <span id="progressText">
-            Surprise 1 of 4
-        </span>
-
-        <span>
-            ✨
-        </span>
-
-    </div>
-
-    <div class="progress">
-
-        <div
-            id="progressBar"
-            class="progressBar"
-        ></div>
-
-    </div>
-
 </div>
 
 
-
-<!-- TASK 1 -->
-
-<div
-    id="task1"
-    class="task"
->
-
-    <div class="taskIcon">
-        🎀
-    </div>
-
-    <h3>
-        The Impossible Button
-    </h3>
-
-    <div class="taskText">
-
-        Surprise unlock karne ke liye
-        neeche wala button dabao.
-
-        <br><br>
-
-        <strong>
-        Lekin warning...
-        ye button thora shararti hai. 😂
-        </strong>
-
-    </div>
-
-
-    <div class="runArea">
-
-        <button
-            id="runButton"
-            class="btn runButton"
-            onclick="runButtonClick()"
-        >
-            Unlock Surprise 🔓
-        </button>
-
-    </div>
-
-
-    <div
-        id="result1"
-        class="result"
-    ></div>
-
-</div>
-
-
-
-<!-- TASK 2 -->
-
-<div
-    id="task2"
-    class="task hidden"
->
-
-    <div class="taskIcon">
-        🎂
-    </div>
-
-    <h3>
-        Catch The Birthday Cake
-    </h3>
-
-    <div class="taskText">
-
-        Kisi ne birthday cake chura liya hai! 😭
-
-        <br>
-
-        <strong>
-        Cake ko pakro before it escapes! 😂
-        </strong>
-
-    </div>
-
-
-    <div class="cakeArea">
-
-        <div
-            id="cake"
-            class="cake"
-            onclick="catchCake()"
-        >
-            🎂
-        </div>
-
-    </div>
-
-
-    <div
-        id="result2"
-        class="result"
-    ></div>
-
-</div>
-
-
-
-<!-- TASK 3 -->
-
-<div
-    id="task3"
-    class="task hidden"
->
-
-    <div class="taskIcon">
-        🚪
-    </div>
-
-    <h3>
-        The Mystery Doors
-    </h3>
-
-    <div class="taskText">
-
-        In 3 doors mein se sirf ek
-        surprise ke kareeb le jayega. 👀
-
-        <br>
-
-        <strong>
-        Socho... phir choose karo. 😏
-        </strong>
-
-    </div>
-
-
-    <div class="doors">
-
-        <div
-            class="door"
-            onclick="chooseDoor(1)"
-        >
-            🚪
-        </div>
-
-        <div
-            class="door"
-            onclick="chooseDoor(2)"
-        >
-            🚪
-        </div>
-
-        <div
-            class="door"
-            onclick="chooseDoor(3)"
-        >
-            🚪
-        </div>
-
-    </div>
-
-
-    <div
-        id="result3"
-        class="result"
-    ></div>
-
-</div>
-
-
-
-<!-- TASK 4 -->
-
-<div
-    id="task4"
-    class="task hidden"
->
-
-    <div class="taskIcon">
-        🔐
-    </div>
-
-    <h3>
-        The Secret Password
-    </h3>
-
-    <div class="taskText">
-
-        Surprise almost unlock ho gaya...
-
-        <br>
-
-        Lekin secret password chahiye.
-
-        <br><br>
-
-        <strong>
-        Hint: Birthday girl's name + ❤️
-        </strong>
-
-    </div>
-
-
-    <input
-        id="password"
-        class="password"
-        placeholder="Secret password..."
-    >
-
-
-    <br>
-
-
-    <button
-        class="btn"
-        onclick="checkPassword()"
-    >
-        Unlock 🔐
-    </button>
-
-
-    <div
-        id="result4"
-        class="result"
-    ></div>
-
-</div>
-
-
-</section>
-
-
-
-<!-- ================= BALLOON ================= -->
-
-<section
-    id="balloonLevel"
-    class="hidden balloonLevel"
->
-
-
-<div class="bigHeart">
-    🎈
-</div>
-
-<h2>
-    One Last Little Thing...
-</h2>
-
-<p>
-
-    Wow! Tumne saare challenges complete kar liye. 🎉
-
-    <br><br>
-
-    Lekin ek last security check baqi hai...
-
-</p>
-
-
-<p class="warning">
-
-    ⚠️ IMPORTANT:
-    Balloon ko bilkul touch mat karna. ⚠️
-
-</p>
-
-
-<div
-    id="balloonMessage"
-    class="result"
->
-    Seriously... isko touch mat karna. 👀
-</div>
-
-
-<div class="balloonArea">
-
-    <div
-        id="balloon"
-        class="balloon balloonFloat"
-        onclick="balloonClick()"
-    ></div>
-
-</div>
-
-
-</section>
-
-
-
-<!-- ================= FINAL ================= -->
-
-<section
-    id="final"
-    class="hidden final"
->
-
-
-<div class="crown">
-    👑
-</div>
-
-
-<div class="bigHeart">
-    ❤️
-</div>
-
-
-<div class="smallTitle">
-    Surprise Unlocked
-</div>
-
-
-<h1>
-    Happy Birthday Urwa! 🎂
-</h1>
-
-
-<div class="finalDate">
-    ✨ 16 June ✨
-</div>
-
-
-<div class="finalMessage">
-
-    Hahaha... finally! 😂❤️
-
-    <br><br>
-
-    Tumne impossible button pakra,
-    cake bachaya,
-    mystery doors cross kiye,
-    password solve kiya...
-
-    <br><br>
-
-    Aur phir us naughty balloon ko bhi
-    aakhir pakar hi liya. 🎈😂
-
-    <br><br>
-
-    Lekin ab mazaak side par...
-
-    <br><br>
-
-    <strong>
-    16 June mere liye ek special date hai,
-    kyun ke isi din ek bohat achi dost
-    duniya mein aayi. 🌸
-    </strong>
-
-    <br><br>
-
-    Dua hai tumhari zindagi hamesha
-    khushiyon, sukoon, success aur
-    beautiful memories se bhari rahe. ✨
-
-    <br><br>
-
-    Tumhari har genuine wish poori ho,
-    tum hamesha smile karti raho,
-    aur zindagi tumhein bohat si
-    beautiful surprises deti rahe. ❤️
-
-    <br><br>
-
-    <strong>
-    Happy Birthday once again, Urwa! 🎂🌷
-    </strong>
-
-</div>
-
-
-<div class="divider"></div>
-
-
-<div class="signature">
-
-    With best wishes,<br>
-    Kashif ❤️
-
-</div>
-
-
-</section>
-
-
-</div>
-</div>
-
-
-<div
-    id="toast"
-    class="toast"
-></div>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 
 <script>
 
-/* =========================
-   GLOBAL
-========================= */
+/* =========================================
+   THREE.JS 3D WORLD
+========================================= */
 
-let currentTask = 1;
-let buttonAttempts = 0;
-let cakeAttempts = 0;
-let balloonAttempts = 0;
+const scene =
+    new THREE.Scene();
+
+scene.background =
+    new THREE.Color(0x080518);
+
+scene.fog =
+    new THREE.FogExp2(
+        0x120923,
+        0.018
+    );
 
 
-/* =========================
-   START
-========================= */
+const camera =
+    new THREE.PerspectiveCamera(
+        60,
+        window.innerWidth/window.innerHeight,
+        0.1,
+        1000
+    );
 
-function startAdventure(){
+camera.position.set(
+    0,
+    2.5,
+    13
+);
+
+
+const renderer =
+    new THREE.WebGLRenderer({
+        antialias:true,
+        alpha:false
+    });
+
+renderer.setSize(
+    window.innerWidth,
+    window.innerHeight
+);
+
+renderer.setPixelRatio(
+    Math.min(window.devicePixelRatio,2)
+);
+
+renderer.shadowMap.enabled = true;
+
+document
+.getElementById("scene")
+.appendChild(renderer.domElement);
+
+
+/* =========================================
+   LIGHTS
+========================================= */
+
+const ambient =
+    new THREE.AmbientLight(
+        0x9275b8,
+        1.5
+    );
+
+scene.add(ambient);
+
+
+const moonLight =
+    new THREE.PointLight(
+        0xffd9ee,
+        3,
+        35
+    );
+
+moonLight.position.set(
+    4,
+    8,
+    4
+);
+
+scene.add(moonLight);
+
+
+const pinkLight =
+    new THREE.PointLight(
+        0xff65b3,
+        2,
+        25
+    );
+
+pinkLight.position.set(
+    -6,
+    3,
+    4
+);
+
+scene.add(pinkLight);
+
+
+/* =========================================
+   MOON
+========================================= */
+
+const moonGeometry =
+    new THREE.SphereGeometry(
+        2,
+        40,
+        40
+    );
+
+const moonMaterial =
+    new THREE.MeshStandardMaterial({
+        color:0xffeac2,
+        emissive:0xffd98d,
+        emissiveIntensity:.4
+    });
+
+const moon =
+    new THREE.Mesh(
+        moonGeometry,
+        moonMaterial
+    );
+
+moon.position.set(
+    6,
+    8,
+    -10
+);
+
+scene.add(moon);
+
+
+/* =========================================
+   STARS
+========================================= */
+
+const starGeometry =
+    new THREE.BufferGeometry();
+
+const starPositions = [];
+
+for(let i=0;i<900;i++){
+
+    starPositions.push(
+        (Math.random()-.5)*80,
+        Math.random()*45,
+        (Math.random()-.5)*60
+    );
+}
+
+starGeometry.setAttribute(
+    "position",
+    new THREE.Float32BufferAttribute(
+        starPositions,
+        3
+    )
+);
+
+const starMaterial =
+    new THREE.PointsMaterial({
+        color:0xffffff,
+        size:.07
+    });
+
+const stars =
+    new THREE.Points(
+        starGeometry,
+        starMaterial
+    );
+
+scene.add(stars);
+
+
+/* =========================================
+   GROUND
+========================================= */
+
+const groundGeometry =
+    new THREE.CircleGeometry(
+        25,
+        64
+    );
+
+const groundMaterial =
+    new THREE.MeshStandardMaterial({
+        color:0x251433,
+        roughness:.8
+    });
+
+const ground =
+    new THREE.Mesh(
+        groundGeometry,
+        groundMaterial
+    );
+
+ground.rotation.x =
+    -Math.PI/2;
+
+ground.position.y =
+    -2;
+
+scene.add(ground);
+
+
+/* =========================================
+   FLOWERS
+========================================= */
+
+function createFlower(x,z){
+
+    const group =
+        new THREE.Group();
+
+    const stem =
+        new THREE.Mesh(
+            new THREE.CylinderGeometry(
+                .035,
+                .05,
+                1.3,
+                8
+            ),
+            new THREE.MeshStandardMaterial({
+                color:0x4c9a65
+            })
+        );
+
+    stem.position.y =
+        -.9;
+
+    group.add(stem);
+
+
+    for(let i=0;i<6;i++){
+
+        const petal =
+            new THREE.Mesh(
+                new THREE.SphereGeometry(
+                    .22,
+                    12,
+                    12
+                ),
+                new THREE.MeshStandardMaterial({
+                    color:
+                        i%2===0
+                        ?0xff91c8
+                        :0xd49aff
+                })
+            );
+
+        const angle =
+            i*Math.PI/3;
+
+        petal.position.set(
+            Math.cos(angle)*.25,
+            -.2,
+            Math.sin(angle)*.25
+        );
+
+        group.add(petal);
+    }
+
+
+    const center =
+        new THREE.Mesh(
+            new THREE.SphereGeometry(
+                .13,
+                12,
+                12
+            ),
+            new THREE.MeshStandardMaterial({
+                color:0xffd66b
+            })
+        );
+
+    center.position.y =
+        -.2;
+
+    group.add(center);
+
+
+    group.position.set(
+        x,
+        0,
+        z
+    );
+
+    scene.add(group);
+
+    return group;
+}
+
+
+for(let i=0;i<18;i++){
+
+    createFlower(
+        (Math.random()-.5)*22,
+        -Math.random()*15
+    );
+
+}
+
+
+/* =========================================
+   BALLOON
+========================================= */
+
+let balloon;
+
+function createBalloon(){
+
+    const group =
+        new THREE.Group();
+
+
+    const body =
+        new THREE.Mesh(
+            new THREE.SphereGeometry(
+                1,
+                32,
+                32
+            ),
+            new THREE.MeshStandardMaterial({
+                color:0xff77b7,
+                roughness:.25,
+                metalness:.05
+            })
+        );
+
+    body.scale.set(
+        .8,
+        1.15,
+        .8
+    );
+
+    group.add(body);
+
+
+    const string =
+        new THREE.Mesh(
+            new THREE.CylinderGeometry(
+                .015,
+                .015,
+                3,
+                8
+            ),
+            new THREE.MeshBasicMaterial({
+                color:0xe9d6df
+            })
+        );
+
+    string.position.y =
+        -2;
+
+    group.add(string);
+
+
+    group.position.set(
+        0,
+        1.5,
+        2
+    );
+
+    scene.add(group);
+
+    balloon = group;
+
+}
+
+createBalloon();
+
+
+/* =========================================
+   GIFT BOX
+========================================= */
+
+let gift;
+
+function createGift(){
+
+    const group =
+        new THREE.Group();
+
+
+    const box =
+        new THREE.Mesh(
+            new THREE.BoxGeometry(
+                2.5,
+                1.8,
+                2.5
+            ),
+            new THREE.MeshStandardMaterial({
+                color:0xff6fae,
+                roughness:.35
+            })
+        );
+
+    group.add(box);
+
+
+    const ribbon =
+        new THREE.Mesh(
+            new THREE.BoxGeometry(
+                .35,
+                1.9,
+                2.6
+            ),
+            new THREE.MeshStandardMaterial({
+                color:0xffe18b
+            })
+        );
+
+    group.add(ribbon);
+
+
+    const ribbon2 =
+        new THREE.Mesh(
+            new THREE.BoxGeometry(
+                2.6,
+                1.9,
+                .35
+            ),
+            new THREE.MeshStandardMaterial({
+                color:0xffe18b
+            })
+        );
+
+    group.add(ribbon2);
+
+
+    group.position.set(
+        0,
+        -.8,
+        -2
+    );
+
+
+    group.visible=false;
+
+    scene.add(group);
+
+    gift=group;
+
+}
+
+createGift();
+
+
+/* =========================================
+   CAKE
+========================================= */
+
+let cake;
+
+function createCake(){
+
+    const group =
+        new THREE.Group();
+
+
+    const base =
+        new THREE.Mesh(
+            new THREE.CylinderGeometry(
+                1.7,
+                1.7,
+                1,
+                32
+            ),
+            new THREE.MeshStandardMaterial({
+                color:0xffa8cf
+            })
+        );
+
+    group.add(base);
+
+
+    const cream =
+        new THREE.Mesh(
+            new THREE.CylinderGeometry(
+                1.3,
+                1.3,
+                .5,
+                32
+            ),
+            new THREE.MeshStandardMaterial({
+                color:0xffe9f4
+            })
+        );
+
+    cream.position.y=.7;
+
+    group.add(cream);
+
+
+    for(let i=0;i<3;i++){
+
+        const candle =
+            new THREE.Mesh(
+                new THREE.CylinderGeometry(
+                    .08,
+                    .08,
+                    .65,
+                    12
+                ),
+                new THREE.MeshStandardMaterial({
+                    color:0xffd166
+                })
+            );
+
+        candle.position.set(
+            (i-1)*.45,
+            1.2,
+            0
+        );
+
+        group.add(candle);
+
+    }
+
+
+    group.position.set(
+        5,
+        -1,
+        -2
+    );
+
+    group.visible=false;
+
+    scene.add(group);
+
+    cake=group;
+
+}
+
+createCake();
+
+
+/* =========================================
+   ANIMATION
+========================================= */
+
+const clock =
+    new THREE.Clock();
+
+
+function animate(){
+
+    requestAnimationFrame(
+        animate
+    );
+
+
+    const t =
+        clock.getElapsedTime();
+
+
+    stars.rotation.y =
+        t*.003;
+
+
+    moon.position.y =
+        8 + Math.sin(t*.3)*.15;
+
+
+    if(balloon){
+
+        balloon.rotation.y =
+            Math.sin(t)*.25;
+
+        balloon.position.y =
+            1.5 +
+            Math.sin(t*1.5)*.3;
+
+    }
+
+
+    if(gift.visible){
+
+        gift.rotation.y =
+            Math.sin(t*.7)*.15;
+
+    }
+
+
+    if(cake.visible){
+
+        cake.rotation.y =
+            Math.sin(t*.5)*.1;
+
+    }
+
+
+    renderer.render(
+        scene,
+        camera
+    );
+
+}
+
+animate();
+
+
+/* =========================================
+   GAME
+========================================= */
+
+let step=0;
+let balloonClicks=0;
+
+
+const tasks=[
+
+    {
+        title:"🎈 The Naughty Balloon",
+        text:
+        "Is balloon ko click karo...<br><br>"+
+        "<b>Warning:</b> Ye bilkul shareef nahi hai. 😂",
+        button:"Catch The Balloon 🎈"
+    },
+
+    {
+        title:"🎂 Birthday Cake Mission",
+        text:
+        "3D cake tumhara wait kar raha hai.<br><br>"+
+        "Cake par click karke candles check karo! ✨",
+        button:"Touch The Cake 🎂"
+    },
+
+    {
+        title:"🚪 Mystery Garden",
+        text:
+        "Magical garden mein 3 invisible doors hain.<br><br>"+
+        "Ek door tumhein surprise ke kareeb le jayega. 👀",
+        button:"Open Mystery Door 🚪"
+    },
+
+    {
+        title:"🎁 Final Surprise",
+        text:
+        "Last mission complete karo...<br><br>"+
+        "Phir asli birthday surprise unlock hoga. ❤️",
+        button:"Open The Gift 🎁"
+    }
+
+];
+
+
+function startGame(){
 
     const name =
         document
-        .getElementById("nameInput")
+        .getElementById("name")
         .value
         .trim();
 
-    if(name === ""){
 
-        toast("Pehle naam to likho madam 😂❤️");
+    if(!name){
+
+        alert(
+            "Pehle apna naam likho ❤️"
+        );
 
         return;
     }
@@ -1545,401 +1002,254 @@ function startAdventure(){
 
 
     document
-    .getElementById("adventure")
+    .getElementById("task")
     .classList.remove("hidden");
 
 
-    createHearts();
+    step=0;
+
+    showTask();
 
 }
 
 
-/* =========================
-   TASK 1
-   RUNNING BUTTON
-========================= */
+function showTask(){
 
-function runButtonClick(){
-
-    buttonAttempts++;
-
-    const button =
-        document
-        .getElementById("runButton");
-
-    const result =
-        document
-        .getElementById("result1");
-
-
-    if(buttonAttempts === 1){
-
-        result.innerHTML =
-        "😂 Oho! Button bhaag gaya! Dobara pakro.";
-
-        button.style.left="20%";
-        button.style.top="15px";
-
-        toast("HAHA! Missed it 😂");
-
-    }
-
-    else if(buttonAttempts === 2){
-
-        result.innerHTML =
-        "👀 Tum itni easily haarne wali nahi lag rahi...";
-
-        button.style.left="75%";
-        button.style.top="100px";
-
-        toast("Phir se bhaag gaya! 😭");
-
-    }
-
-    else if(buttonAttempts === 3){
-
-        result.innerHTML =
-        "😂 Bas bas! Itni mehnat surprise ke liye?";
-
-        button.style.left="40%";
-        button.style.top="120px";
-
-        toast("Almost! 😏");
-
-    }
-
-    else{
-
-        result.innerHTML =
-        "🎉 Okayyy! Tum jeet gayi. Button surrender karta hai. 😂❤️";
-
-        button.innerHTML =
-        "Unlocked! ✨";
-
-        button.style.left="50%";
-        button.style.top="60px";
-
-        setTimeout(
-            () => nextTask(2),
-            1600
-        );
-
-    }
-
-}
-
-
-/* =========================
-   TASK 2
-   CAKE
-========================= */
-
-function moveCake(){
-
-    const cake =
-        document
-        .getElementById("cake");
-
-    const area =
-        document
-        .querySelector(".cakeArea");
-
-
-    const maxX =
-        area.clientWidth - 80;
-
-    const maxY =
-        area.clientHeight - 80;
-
-
-    cake.style.left =
-        Math.random()*maxX + "px";
-
-    cake.style.top =
-        Math.random()*maxY + "px";
-
-}
-
-
-function catchCake(){
-
-    cakeAttempts++;
-
-    const result =
-        document
-        .getElementById("result2");
-
-
-    if(cakeAttempts < 4){
-
-        result.innerHTML =
-        "😂 HAHAHA! Cake phir bhaag gaya!";
-
-        moveCake();
-
-        toast("Cake escape kar gaya 🎂😂");
-
-    }
-    else{
-
-        result.innerHTML =
-        "🎂 CAKE SAVED! Tum official birthday hero ho. 😂❤️";
-
-        toast("Mission successful! 🎉");
-
-        setTimeout(
-            () => nextTask(3),
-            1700
-        );
-
-    }
-
-}
-
-
-/* move cake initially */
-
-setTimeout(
-    moveCake,
-    500
-);
-
-
-/* =========================
-   TASK 3
-   DOORS
-========================= */
-
-function chooseDoor(number){
-
-    const result =
-        document
-        .getElementById("result3");
-
-
-    if(number === 1){
-
-        result.innerHTML =
-        "😂 Wrong door! Yahan sirf birthday ki hawa chal rahi hai.";
-
-        toast("Nope! 😂");
-
-    }
-
-    else if(number === 2){
-
-        result.innerHTML =
-        "😭 Oops! Yahan birthday cake ka empty box hai.";
-
-        toast("Close... but nope! 🎂");
-
-    }
-
-    else{
-
-        result.innerHTML =
-        "👀 Door 3 khula... lekin surprise phir bhi bhaag gaya! 😂";
-
-        toast("HAHA! Surprise tricky hai 😏");
-
-        setTimeout(
-            () => nextTask(4),
-            1800
-        );
-
-    }
-
-}
-
-
-/* =========================
-   TASK 4
-   PASSWORD
-========================= */
-
-function checkPassword(){
-
-    const value =
-        document
-        .getElementById("password")
-        .value
-        .trim()
-        .toLowerCase();
-
-
-    const result =
-        document
-        .getElementById("result4");
-
-
-    if(
-        value === "urwa ❤️" ||
-        value === "urwa❤️" ||
-        value === "urwa" ||
-        value === "urwa love"
-    ){
-
-        result.innerHTML =
-        "🔓 Password accepted! Tumne secret unlock kar liya. ❤️✨";
-
-        toast("Correct! 🔐❤️");
-
-
-        setTimeout(
-            showBalloonLevel,
-            1800
-        );
-
-    }
-    else{
-
-        result.innerHTML =
-        "❌ Wrong password! Hint mein 'Urwa + ❤️' likha tha... 👀😂";
-
-        toast("Password ko thora pyar se likho 😂");
-
-    }
-
-}
-
-
-/* =========================
-   NEXT TASK
-========================= */
-
-function nextTask(number){
-
-    document
-    .getElementById("task"+currentTask)
-    .classList.add("hidden");
-
-
-    currentTask = number;
+    const task =
+        tasks[step];
 
 
     document
-    .getElementById("task"+number)
-    .classList.remove("hidden");
-
-
-    document
-    .getElementById("progressText")
+    .getElementById("taskTitle")
     .innerHTML =
-        "Surprise " + number + " of 4";
+        task.title;
 
 
     document
-    .getElementById("progressBar")
+    .getElementById("taskText")
+    .innerHTML =
+        task.text;
+
+
+    document
+    .getElementById("taskButton")
+    .innerHTML =
+        task.button;
+
+
+    document
+    .getElementById("message")
+    .innerHTML="";
+
+
+    document
+    .getElementById("bar")
     .style.width =
-        (number*25) + "%";
+        ((step)/4*100)+"%";
+
+
+    /* scene changes */
+
+    if(step===0){
+
+        balloon.visible=true;
+        gift.visible=false;
+        cake.visible=false;
+
+    }
+
+    if(step===1){
+
+        balloon.visible=false;
+        cake.visible=true;
+
+    }
+
+    if(step===2){
+
+        cake.visible=false;
+
+        balloon.visible=false;
+
+    }
+
+    if(step===3){
+
+        gift.visible=true;
+        cake.visible=false;
+
+    }
 
 }
 
 
-/* =========================
-   BALLOON LEVEL
-========================= */
+/* =========================================
+   TASK ACTION
+========================================= */
 
-function showBalloonLevel(){
-
-    document
-    .getElementById("adventure")
-    .classList.add("hidden");
-
-
-    document
-    .getElementById("balloonLevel")
-    .classList.remove("hidden");
-
-}
-
-
-/* =========================
-   BALLOON
-========================= */
-
-function balloonClick(){
-
-    balloonAttempts++;
-
-    const balloon =
-        document
-        .getElementById("balloon");
+function taskAction(){
 
     const message =
         document
-        .getElementById("balloonMessage");
+        .getElementById("message");
 
 
-    if(balloonAttempts === 1){
+    /* BALLOON */
+
+    if(step===0){
+
+        balloonClicks++;
+
+
+        if(balloonClicks<3){
+
+            balloon.position.x =
+                (Math.random()-.5)*9;
+
+            balloon.position.z =
+                Math.random()*3;
+
+            message.innerHTML =
+                "😂 Oho! Balloon bhaag gaya! Dobara pakro.";
+
+            return;
+
+        }
+
 
         message.innerHTML =
-        "😂 Oho! Maine kaha tha touch mat karna!";
-
-        balloon.style.left="20%";
-        balloon.style.top="70px";
-
-        toast("Balloon bhaag gaya! 🎈😂");
-
-    }
-
-    else if(balloonAttempts === 2){
-
-        message.innerHTML =
-        "HAHA! Phir se? Tum seriously balloon ke peeche ho. 😂";
-
-        balloon.style.left="76%";
-        balloon.style.top="210px";
-
-        toast("Again miss! 😭🎈");
-
-    }
-
-    else if(balloonAttempts === 3){
-
-        message.innerHTML =
-        "Okay... ab main bilkul nahi bhaagunga. Promise. 👀";
-
-        balloon.style.left="50%";
-        balloon.style.top="35px";
-
-        toast("Last chance... 😏");
-
-    }
-
-    else{
-
-        message.innerHTML =
-        "💥 OH NOOOO! Balloon POP ho gaya!";
-
-        balloon.classList.remove("balloonFloat");
-        balloon.classList.add("pop");
+            "💥 Balloon finally pakra gaya! 😂";
 
 
-        createConfetti();
-        createConfetti();
+        balloon.visible=false;
 
 
         setTimeout(
-            showFinal,
-            1000
+            ()=>{
+                step++;
+                showTask();
+            },
+            1200
         );
+
+        return;
+
+    }
+
+
+    /* CAKE */
+
+    if(step===1){
+
+        message.innerHTML =
+            "🎂 Cake approved! Candles bhi ready hain. ✨";
+
+
+        setTimeout(
+            ()=>{
+                step++;
+                showTask();
+            },
+            1200
+        );
+
+        return;
+
+    }
+
+
+    /* DOOR */
+
+    if(step===2){
+
+        message.innerHTML =
+            "🚪 Door open hua... aur tum surprise ke aur kareeb aa gayi! 👀";
+
+
+        setTimeout(
+            ()=>{
+                step++;
+                showTask();
+            },
+            1200
+        );
+
+        return;
+
+    }
+
+
+    /* GIFT */
+
+    if(step===3){
+
+        document
+        .getElementById("task")
+        .classList.add("hidden");
+
+
+        document
+        .getElementById("bar")
+        .style.width="100%";
+
+
+        openGift();
 
     }
 
 }
 
 
-/* =========================
+/* =========================================
+   OPEN GIFT
+========================================= */
+
+function openGift(){
+
+    gift.visible=true;
+
+
+    let scale=1;
+
+
+    const timer =
+        setInterval(
+            ()=>{
+
+                scale+=.03;
+
+                gift.scale.set(
+                    scale,
+                    scale,
+                    scale
+                );
+
+
+                if(scale>=1.35){
+
+                    clearInterval(timer);
+
+                    createConfetti();
+
+                    setTimeout(
+                        showFinal,
+                        700
+                    );
+
+                }
+
+            },
+            30
+        );
+
+}
+
+
+/* =========================================
    FINAL
-========================= */
+========================================= */
 
 function showFinal(){
-
-    document
-    .getElementById("balloonLevel")
-    .classList.add("hidden");
-
 
     document
     .getElementById("final")
@@ -1947,154 +1257,193 @@ function showFinal(){
 
 
     createConfetti();
+
     createConfetti();
-    createHearts();
 
 }
 
 
-/* =========================
-   TOAST
-========================= */
-
-function toast(message){
-
-    const element =
-        document
-        .getElementById("toast");
-
-
-    element.innerHTML = message;
-
-    element.classList.add("show");
-
-
-    setTimeout(
-        () => element.classList.remove("show"),
-        2200
-    );
-
-}
-
-
-/* =========================
+/* =========================================
    CONFETTI
-========================= */
+========================================= */
 
 function createConfetti(){
 
-    const symbols =
-    [
-        "✨",
-        "💗",
-        "🌸",
-        "🎀",
-        "⭐",
-        "💕",
-        "🌷"
+    const colors=[
+        0xff9fc9,
+        0xc6a4ff,
+        0xffd166,
+        0xffffff
     ];
 
 
-    for(let i=0;i<45;i++){
+    for(let i=0;i<160;i++){
+
+        const geo =
+            new THREE.SphereGeometry(
+                .045,
+                6,
+                6
+            );
+
+
+        const mat =
+            new THREE.MeshBasicMaterial({
+                color:
+                    colors[
+                        Math.floor(
+                            Math.random()*colors.length
+                        )
+                    ]
+            });
+
 
         const piece =
-            document
-            .createElement("div");
+            new THREE.Mesh(
+                geo,
+                mat
+            );
 
 
-        piece.className =
-            "confetti";
-
-
-        piece.innerHTML =
-            symbols[
-                Math.floor(
-                    Math.random()*symbols.length
-                )
-            ];
-
-
-        piece.style.left =
-            Math.random()*100 + "vw";
-
-
-        piece.style.fontSize =
-            (10 + Math.random()*14) + "px";
-
-
-        piece.style.animationDuration =
-            (2.5 + Math.random()*3) + "s";
-
-
-        document.body.appendChild(piece);
-
-
-        setTimeout(
-            () => piece.remove(),
-            6000
+        piece.position.set(
+            (Math.random()-.5)*14,
+            5+Math.random()*7,
+            (Math.random()-.5)*8
         );
 
-    }
 
-}
-
-
-/* =========================
-   FLOATING HEARTS
-========================= */
-
-function createHearts(){
-
-    for(let i=0;i<8;i++){
-
-        setTimeout(
-            () => {
-
-                const heart =
-                    document
-                    .createElement("div");
+        scene.add(piece);
 
 
-                heart.className =
-                    "floatHeart";
+        let velocity =
+            .025+
+            Math.random()*.05;
 
 
-                heart.innerHTML =
-                    Math.random() > .5
-                    ? "💗"
-                    : "💕";
+        function fall(){
+
+            piece.position.y -= velocity;
+
+            piece.rotation.x += .05;
+            piece.rotation.z += .04;
 
 
-                heart.style.left =
-                    Math.random()*100 + "vw";
+            if(piece.position.y>-4){
 
-
-                heart.style.animationDuration =
-                    (5 + Math.random()*4) + "s";
-
-
-                document.body.appendChild(heart);
-
-
-                setTimeout(
-                    () => heart.remove(),
-                    9000
+                requestAnimationFrame(
+                    fall
                 );
 
-            },
-            i*800
-        );
+            }
+            else{
+
+                scene.remove(
+                    piece
+                );
+
+            }
+
+        }
+
+        fall();
 
     }
 
 }
 
 
-/* floating hearts loop */
+/* =========================================
+   RESIZE
+========================================= */
 
-setInterval(
-    createHearts,
-    9000
+window.addEventListener(
+    "resize",
+    ()=>{
+
+        camera.aspect =
+            window.innerWidth/
+            window.innerHeight;
+
+        camera.updateProjectionMatrix();
+
+        renderer.setSize(
+            window.innerWidth,
+            window.innerHeight
+        );
+
+    }
+);
+
+
+/* =========================================
+   CLICK 3D OBJECTS
+========================================= */
+
+const raycaster =
+    new THREE.Raycaster();
+
+const mouse =
+    new THREE.Vector2();
+
+
+renderer.domElement.addEventListener(
+    "click",
+    function(event){
+
+        mouse.x =
+            (event.clientX/
+            window.innerWidth)*2-1;
+
+        mouse.y =
+            -(event.clientY/
+            window.innerHeight)*2+1;
+
+
+        raycaster.setFromCamera(
+            mouse,
+            camera
+        );
+
+
+        const objects =
+            raycaster.intersectObjects(
+                scene.children,
+                true
+            );
+
+
+        if(objects.length){
+
+            const object =
+                objects[0].object;
+
+
+            if(
+                balloon &&
+                balloon.visible &&
+                (object===balloon ||
+                 object.parent===balloon)
+            ){
+
+                taskAction();
+
+            }
+
+
+            if(
+                cake &&
+                cake.visible &&
+                (object===cake ||
+                 object.parent===cake)
+            ){
+
+                taskAction();
+
+            }
+
+        }
+
+    }
 );
 
 </script>
